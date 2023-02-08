@@ -3,9 +3,9 @@ const express = require('express')
 const app = express()
 const port = 8000
 
-// const auth = require('./auth/auth')
-// const database = require('./database/database')
-// const initial = require('./database/initial')
+const auth = require('./auth/auth')
+const database = require('./database/database')
+const initial = require('./database/initial')
 // const patient_records = require('./patient_records/patient_records')
 
 // Main
@@ -17,21 +17,21 @@ async function main() {
     app.use(bodyParser.json())
 
     // Create db.sqlite Database
-    // const source = './database/db.sqlite'
-    // const db = await database.openOrCreateDB(source)
+    const source = './database/db.sqlite'
+    const db = await database.openOrCreateDB(source)
     // end Create db.sqlite Database
 
     // Initial
-    // await initial.createInitialTables(db)
+    await initial.createInitialTables(db)
     // end Initial
 
     // Passport Auth and Session
-    // await auth.main(app)
-    // await auth.configureLocalStrategy(db)
+    await auth.main(app)
+    await auth.configureLocalStrategy(db)
     // end Passport Auth and Session
 
     // Routers
-    // app.use('/', auth.router)
+    app.use('/', auth.router)
     // app.use('/', patient_records.router)
     // end Routers
 
