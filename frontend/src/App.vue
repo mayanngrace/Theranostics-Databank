@@ -1,21 +1,18 @@
 <script>
-export default {
-  data() {
-    return {
-      // variables go here
-    }
-  },
-  methods: {
-    // methods go here
-  }
-}
+
 </script>
 
 <template>
-<div>
-
+<div style="flex-grow: 1;">
+  <router-view style="min-height: 100%;" />
 </div>
 </template>
 
 <style>
+* {
+  box-sizing: border-box;
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+}
 </style>
