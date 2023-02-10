@@ -6,7 +6,7 @@ const port = 8000
 const auth = require('./auth/auth')
 const database = require('./database/database')
 const initial = require('./database/initial')
-// const patient_records = require('./patient_records/patient_records')
+const patient_records = require('./patient_records/patient_records')
 
 // Main
 async function main() {
@@ -32,7 +32,7 @@ async function main() {
 
     // Routers
     app.use('/', auth.router)
-    // app.use('/', patient_records.router)
+    app.use('/', patient_records.router)
     // end Routers
 
   // end Insert async calls here
@@ -48,6 +48,7 @@ async function main() {
     app.use(express.static(path.join(__dirname, 'dist'))) // added
 
     app.get('*', function(req, res) {
+      // res.send('Yoooo')
       res.sendFile(__dirname + '/dist/index.html');
     })
 

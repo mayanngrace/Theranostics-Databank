@@ -1,21 +1,21 @@
 {
-  "name": "hi_191_final_proj_2",
+  "name": "hi-191-final-proj",
   "version": "1.0.0",
-  "description": "HI 191 Final Proj Max' Group",
+  "description": "",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zrfvnzr/hi_191_final_proj_2.git"
+    "url": "git+https://github.com/zrfvnzr/hi-191-final-proj.git"
   },
   "author": "zrfvnzr",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/zrfvnzr/hi_191_final_proj_2/issues"
+    "url": "https://github.com/zrfvnzr/hi-191-final-proj/issues"
   },
-  "homepage": "https://github.com/zrfvnzr/hi_191_final_proj_2#readme",
+  "homepage": "https://github.com/zrfvnzr/hi-191-final-proj#readme",
   "dependencies": {
     "body-parser": "^1.20.1",
     "connect-sqlite3": "^0.9.13",
@@ -24,6 +24,7 @@
     "express-session": "^1.17.3",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
-    "sqlite3": "^5.1.4"
+    "sqlite3": "^5.1.4",
+    "uuidv4": "^6.2.13"
   }
 }

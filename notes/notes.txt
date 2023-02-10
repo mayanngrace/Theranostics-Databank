@@ -1,0 +1,29 @@
+Modules
+  Web Server Module
+  Database Module
+  Authentication Module
+  Frontend Module
+    Vue Router
+    Bootstrap
+    Vue Axios
+
+// Templates
+
+<div class="input-group input-group-sm">
+  <span class="input-group-text">Histopath Result</span>
+  <input type="text" class="form-control" placeholder="" style="flex: none; min-width: 500px;">
+</div>
+
+<div class="input-group input-group-sm">
+  <span class="input-group-text">ECOG Score</span>
+  <select v-model="part1.ecog_score" name="ecog_score" style="font-size: 14px; width: 50px;">
+    <option value="0">0</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+  </select>
+</div>
+
+// end Templates
