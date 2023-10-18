@@ -17,7 +17,7 @@ export default {
         location.href = '/'
       } catch (error) {
         console.log('Error on Login.vue > doLogin()', error)
-        alert("Error on Login")
+        alert("An error occurred.")
       }
     }
   },
@@ -27,7 +27,6 @@ export default {
       location.href = '/'
     } catch (error) {
       console.log('Error on mounted')
-      // alert('Error on mounted')
     }
   }
 }
