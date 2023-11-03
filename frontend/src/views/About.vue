@@ -10,14 +10,10 @@ export default {
   <Header />
   <div class="align-items-center py-3" style="flex: 1 1 auto; padding-left: 300px; padding-right: 300px;">
     <div class="alert alert-success text-center" role="alert">
-      This system is done as a project requirement for the course HI 191 taken during the first semester of A.Y. 2022-2023 by the following students:
+      <h2>Theranostics Databank</h2>
       <br><br>
       <p class="text-center">
-        Calibuyot, Dhone Matthews<br>
-        Ednalan, Emmanuel<br>
-        Licup, John Paolo<br>
-        Magsino, Dea Louisa<br>
-        Ortega, Nathaniel<br>
+        Manage, view, and import theranostics patients records.
       </p>
     </div>
   </div>
