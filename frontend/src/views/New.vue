@@ -5,6 +5,8 @@ export default {
   components: {Header},
   data() {
     return {
+      backendUrl: 'http://localhost:8000', // TEMP, DISABLE THIS ON DEPLOYMENT
+      // backendUrl: '', // ENABLE THIS ON DEPLOYMENT
       part1: {
         pt1_psma_prostate: 'psma_absent_prostate',
         pt1_psma_lymphs: 'psma_absent_node',
@@ -36,11 +38,11 @@ export default {
     async createNewPatient() {
       try {
         this.part1.pt1_bmi = this.computed_bmi()
-        const response = await this.axios.post('/api/patient/create', {
+        const response = await this.axios.post(`${this.backendUrl}/api/patient/create`, {
           part1: this.part1,
           therapy_sessions: this.therapy_sessions,
           post_therapy_sessions: this.post_therapy_sessions
-        })
+        }, { withCredentials: true })
         alert(response.data.message)
         location.href = '/'
       } catch (error) {
@@ -63,7 +65,7 @@ export default {
   },
   async mounted() {
     try {
-      const response = await this.axios.post('/api/patient_code/new')
+      const response = await this.axios.post(`${this.backendUrl}/api/patient_code/new`, {}, { withCredentials: true })
       this.part1.pt1_patient_code = response.data.generated_patient_code
     } catch (error) {
       console.log('Error in New.vue > mounted()', error)

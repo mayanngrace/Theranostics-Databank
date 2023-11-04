@@ -5,6 +5,8 @@ export default {
   components: {Header},
   data() {
     return {
+      backendUrl: 'http://localhost:8000', // TEMP, DISABLE THIS ON DEPLOYMENT
+      // backendUrl: '', // ENABLE THIS ON DEPLOYMENT
       currentDivShown: 'table',
       editDisabled: true,
       filter_config: '',
@@ -352,7 +354,7 @@ export default {
     },
     async addFollowUpRecordAPI() {
       try {
-        const response = await this.axios.post('/api/patient/followup/new', {
+        const response = await this.axios.post(`${this.backendUrl}/api/patient/followup/new`, {
           pt1_patient_code: this.patient_follow_up.part1.pt1_patient_code,
           pt4_date: this.part4.pt4_date,
           pt4_psa: this.part4.pt4_psa,
@@ -428,7 +430,7 @@ export default {
           pt4_fdg_others_measure: this.part4.pt4_fdg_others_measure,
           pt4_assessment: this.part4.pt4_assessment,
           pt4_plan: this.part4.pt4_plan
-        })
+        }, { withCredentials: true })
         alert(response.data.message)
         location.href = '/'
       } catch (error) {
@@ -445,12 +447,12 @@ export default {
     async finishEditing() {
       this.editDisabled = true
       try {
-        const response = await this.axios.post('/api/patient/edit', {
+        const response = await this.axios.post(`${this.backendUrl}/api/patient/edit`, {
           part1: this.view_patient.part1,
           therapy_sessions: this.view_patient.therapy_sessions,
           post_therapy_sessions: this.view_patient.post_therapy_sessions,
           part4: this.view_patient.part4 
-        })
+        }, { withCredentials: true })
         alert(response.data.message)
       } catch (error) {
         console.log('Error in Home.vue > finishEditing()', error)
@@ -486,7 +488,7 @@ export default {
     async authorize() {
       console.log('authorize called')
       try {
-        const response = await this.axios.post('/api/authorize')
+        const response = await this.axios.post(`${this.backendUrl}/api/authorize`, {}, { withCredentials: true })
         await this.readPatients()
       } catch (error) {
         console.log('Error on Home.vue > authorize()')
@@ -532,19 +534,19 @@ export default {
         }
         var response
         if (!searchEnabled && !filterEnabled) {
-          response = await this.axios.post('/api/patient/read')
+          response = await this.axios.post(`${this.backendUrl}/api/patient/read`, {}, { withCredentials: true })
         } else if (searchEnabled && !filterEnabled) {
-          response = await this.axios.post('/api/patient/read', {searchString: this.searchString})
+          response = await this.axios.post(`${this.backendUrl}/api/patient/read`, {searchString: this.searchString}, { withCredentials: true })
         } else if (!searchEnabled && filterEnabled) {
-          response = await this.axios.post('/api/patient/read', {filter: 'true', l1dropdown: this.l1dropdown, filter_config: this.filter_config}) // todo 
+          response = await this.axios.post(`${this.backendUrl}/api/patient/read`, {filter: 'true', l1dropdown: this.l1dropdown, filter_config: this.filter_config}, { withCredentials: true }) // todo 
         } else {
           // both true
-          response = await this.axios.post('/api/patient/read', {
+          response = await this.axios.post(`${this.backendUrl}/api/patient/read`, {
             searchString: this.searchString,
             filter: 'true',
             l1dropdown: this.l1dropdown,
             filter_config: this.filter_config
-          })
+          }, { withCredentials: true })
         }
 
         this.patients = response.data.rows

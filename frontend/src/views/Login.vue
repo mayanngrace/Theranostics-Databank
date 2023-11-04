@@ -3,6 +3,8 @@ export default {
   name: 'Login',
   data() {
     return {
+      backendUrl: 'http://localhost:8000', // TEMP, DISABLE THIS ON DEPLOYMENT
+      // backendUrl: '', // ENABLE THIS ON DEPLOYMENT
       username: '',
       password: ''
     }
@@ -10,10 +12,10 @@ export default {
   methods: {
     async doLogin() {
       try {
-        const response = await this.axios.post('/api/login', {
+        const response = await this.axios.post(`${this.backendUrl}/api/login`, {
           username: this.username,
           password: this.password
-        })
+        }, { withCredentials: true })
         location.href = '/'
       } catch (error) {
         console.log('Error on Login.vue > doLogin()', error)
@@ -23,7 +25,7 @@ export default {
   },
   async mounted() {
     try {
-      const response = await this.axios.post('/api/authorize')
+      const response = await this.axios.post(`${this.backendUrl}/api/authorize`, {}, { withCredentials: true })
       location.href = '/'
     } catch (error) {
       console.log('Error on mounted')

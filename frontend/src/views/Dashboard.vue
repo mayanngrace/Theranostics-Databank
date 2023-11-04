@@ -9,10 +9,10 @@
       async authorize() {
       console.log('authorize called')
       try {
-        const response = await this.axios.post('/api/authorize')
+        const response = await this.axios.post(`${this.backendUrl}/api/authorize`, {}, { withCredentials: true })
       }
       catch (error) {
-        console.log('Error on Home.vue > authorize()')
+        console.log('Error on Dashboard.vue > authorize()', error)
         // alert('Error on mounted')
         location.href = '/login'
       }
@@ -24,6 +24,8 @@
     },
     data() {
       return {
+        backendUrl: 'http://localhost:8000', // TEMP, DISABLE THIS ON DEPLOYMENT
+      // backendUrl: '', // ENABLE THIS ON DEPLOYMENT
         websiteUrl: 'https://www.philcancer.org.ph/'
       };
     }
