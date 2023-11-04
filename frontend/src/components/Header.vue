@@ -3,6 +3,8 @@ export default {
   name: 'Header',
   data() {
     return {
+      backendUrl: 'http://localhost:8000', // TEMP, DISABLE THIS ON DEPLOYMENT
+      // backendUrl: '', // ENABLE THIS ON DEPLOYMENT
       navVisible: false,
     };
   },
@@ -12,8 +14,8 @@ export default {
       },
     async doLogout() {
       try {
-        const response = await this.axios.post('/api/logout')
-        location.href = response.data.redirect
+        const response = await this.axios.post(`${this.backendUrl}/api/logout`, {}, { withCredentials: true });
+        location.href = '/login'
       } catch (error) {
         console.log('Error on Header.vue > doLogout()', error)
         alert('Error on logout')
