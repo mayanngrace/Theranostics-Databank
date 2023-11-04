@@ -89,7 +89,7 @@ async function configureLocalStrategy(db) {
   })
   // end authorize
 
-  // login
+  //login
   router.post('/api/login', (req, res) => {
     try {
       passport.authenticate('local', (err, user, info, status) => {
@@ -111,7 +111,9 @@ async function configureLocalStrategy(db) {
       res.status(401).json({message: error}).send()
     }
   })
-  // end login  
+  //end login  
+
+  
 
   // logout
   router.post('/api/logout', function(req, res) {
@@ -119,7 +121,7 @@ async function configureLocalStrategy(db) {
       req.logout(function(err) {
         if (err) { res.json({message: `Error on logout: ${err}`}).send() }
         else {
-          res.json({redirect: '/toLoggedOut'}).send()
+          res.json({redirect: '/'}).send()
           // res.send('Success')
         }
       })

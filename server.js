@@ -2,15 +2,22 @@ require('dotenv').config()
 const express = require('express')
 const app = express()
 const port = 8000
-
+//lines 6,29,30,34
 const auth = require('./auth/auth')
 const database = require('./database/database')
 const initial = require('./database/initial')
 const patient_records = require('./patient_records/patient_records')
+const cors = require('cors')
 
 // Main
 async function main() {
   // Insert async calls here
+
+    app.use(cors({
+      origin: true,
+      methods: ["POST", 'GET', 'DELETE', 'PUT', 'PATCH'],
+      credentials: true,
+    }));
 
     // Body Parser
     const bodyParser = require('body-parser')
