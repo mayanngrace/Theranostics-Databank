@@ -591,10 +591,10 @@ export default {
       this.patient_view_follow_up_index = index
     }
   },
-  // async mounted() {
-  //   await this.authorize()
-  //   // await this.readPatients()
-  // }
+  async mounted() {
+    await this.authorize()
+    // await this.readPatients()
+  }
 }
 </script>
 <template>

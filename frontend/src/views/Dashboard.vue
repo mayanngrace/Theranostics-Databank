@@ -6,10 +6,21 @@
     name: 'Dashboard',
     components: {Header},
     methods: {
-        async mounted() {
+      async authorize() {
+      console.log('authorize called')
+      try {
+        const response = await this.axios.post('/api/authorize')
+      }
+      catch (error) {
+        console.log('Error on Home.vue > authorize()')
+        // alert('Error on mounted')
+        location.href = '/login'
+      }
+        }, 
+    },
+    async mounted() {
         await this.authorize()
         // await this.readPatients()
-      },
     },
     data() {
       return {
