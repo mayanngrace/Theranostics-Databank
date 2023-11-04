@@ -940,7 +940,7 @@ const { v4: uuidv4 } = require('uuid')
         if (req.body.l1dropdown == 'assessment') {
           // then filter by assessment given by req.body.filter_config
           for (let i=0; i<rows.length; i++) {
-            if (rows[i].part1.pt1_assessment == req.body.filter_config || req.body.filter_config == '') {
+            if (rows[i].part1?.pt1_assessment == req.body.filter_config || req.body.filter_config == '') {
               filteredRows.push(rows[i])
             }
           }
@@ -948,7 +948,7 @@ const { v4: uuidv4 } = require('uuid')
         } else if (req.body.l1dropdown == 'bone metastasis') {
           // then filter by bone metastasis given by req.body.filter_config
           for (let i=0; i<rows.length; i++) {
-            if (rows[i].part1.pt1_bone_scan == req.body.filter_config || req.body.filter_config == '') {
+            if (rows[i].part1?.pt1_bone_scan == req.body.filter_config || req.body.filter_config == '') {
               filteredRows.push(rows[i])
             }
           }
@@ -958,7 +958,7 @@ const { v4: uuidv4 } = require('uuid')
           // reduce to matching psma_dropdown
           var reduced_psma_dropdown = [] // this will store rows that has matching psma dropdown choice
           for (let i=0; i<rows.length; i++) {
-            if (req.body.filter_config.psma_dropdown == rows[i].part1.pt1_psma_picked) {
+            if (req.body.filter_config.psma_dropdown == rows[i].part1?.pt1_psma_picked) {
               reduced_psma_dropdown.push(rows[i])
             }
           }
