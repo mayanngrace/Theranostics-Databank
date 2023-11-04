@@ -12,6 +12,7 @@ app.use(VueAxios, axios)
   import { createRouter, createWebHistory } from 'vue-router'
 
   // Import Route Components
+  import Dashboard from './views/Dashboard.vue'
   import About from './views/About.vue'
   import Home from './views/Home.vue'
   import Login from './views/Login.vue'
@@ -21,7 +22,8 @@ app.use(VueAxios, axios)
 
   // Set Routes
   const routes = [
-    {path: '/', component: Home},
+    {path: '/', component: Dashboard},
+    {path: '/home', component: Home},
     {path: '/about', component: About},
     {path: '/login', component: Login},
     {path: '/new', component: New},

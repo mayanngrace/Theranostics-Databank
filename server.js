@@ -2,7 +2,7 @@ require('dotenv').config()
 const express = require('express')
 const app = express()
 const port = 8000
-
+//lines 6,29,30,34
 const auth = require('./auth/auth')
 const database = require('./database/database')
 const initial = require('./database/initial')

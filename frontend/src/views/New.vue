@@ -72,8 +72,9 @@ export default {
   }
 }
 </script>
+
 <template>
-<div class="d-flex flex-column" style="background-color: lightgray;">
+<div class="d-flex flex-column" style="background: lightgray;">
   <Header />
   <!-- New Body -->
   <div class="p-3">
