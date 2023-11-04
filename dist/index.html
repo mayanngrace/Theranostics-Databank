@@ -6,12 +6,34 @@
     <link rel="stylesheet" href="/bootstrap_5.3.0-alpha1/bootstrap.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Theranostics Databank for Prostate Cancer Patients</title>
-    <script type="module" crossorigin src="/assets/index-f9959ca3.js"></script>
-    <link rel="stylesheet" href="/assets/index-0a017c89.css">
+    <script type="module" crossorigin src="/assets/index-a11f20c7.js"></script>
+    <link rel="stylesheet" href="/assets/index-3a6f8c31.css">
   </head>
   <body style="display: flex; flex-grow: 1;">
     <div id="app" style="display: flex; flex-grow: 1;"></div>
     
     <script src="/bootstrap_5.3.0-alpha1/bootstrap.bundle.min.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js'></script><script  src="./script.js"></script>
+    <script>
+      const mobileScreen = window.matchMedia("(max-width: 990px )");
+      $(document).ready(function () {
+          $(".dashboard-nav-dropdown-toggle").click(function () {
+              $(this).closest(".dashboard-nav-dropdown")
+                  .toggleClass("show")
+                  .find(".dashboard-nav-dropdown")
+                  .removeClass("show");
+              $(this).parent()
+                  .siblings()
+                  .removeClass("show");
+          });
+          $(".menu-toggle").click(function () {
+              if (mobileScreen.matches) {
+                  $(".dashboard-nav").toggleClass("mobile-show");
+              } else {
+                  $(".dashboard").toggleClass("dashboard-compact");
+              }
+          });
+      });
+      </script>  
   </body>
 </html>

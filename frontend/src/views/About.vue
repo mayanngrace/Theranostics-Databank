@@ -15,7 +15,7 @@ export default {
       <p class="text-center">
         Calibuyot, Dhone Matthews<br>
         Ednalan, Emmanuel<br>
-        Licup, John Paolo<br>
+        Licup, John Paola<br>
         Magsino, Dea Louisa<br>
         Ortega, Nathaniel<br>
       </p>
