@@ -432,7 +432,7 @@ export default {
           pt4_plan: this.part4.pt4_plan
         }, { withCredentials: true })
         alert(response.data.message)
-        location.href = '/'
+        location.href = '/home'
       } catch (error) {
         console.log('Error in Home.vue > ')
       }
@@ -901,7 +901,7 @@ export default {
         <tbody>
           <tr v-for="(obj, index) in patients" :key="index">
             <td class="text-center" style="font-size: 14px; overflow: hidden; text-overflow: ellipsis; text-transform: uppercase; white-space: nowrap;">{{patients[index].pt1_patient_code}}</td>
-            <td class="text-center" style="font-size: 14px; overflow: hidden; text-overflow: ellipsis; text-transform: capitalize; white-space: nowrap;">{{patients[index].part1.pt1_first_name}}</td>
+            <td class="text-center" style="font-size: 14px; overflow: hidden; text-overflow: ellipsis; text-transform: capitalize; white-space: nowrap;">{{patients[index].part1?.pt1_first_name ??''}}</td>
             <td class="text-center" style="font-size: 14px; overflow: hidden; text-overflow: ellipsis; text-transform: capitalize; white-space: nowrap;">{{patients[index].part1.pt1_last_name}}</td>
             <td class="text-center" style="font-size: 14px; overflow: hidden; text-overflow: ellipsis; text-transform: capitalize; white-space: nowrap;">{{formatted_date(patients[index].first_visit)}}</td>
             <td class="text-center" style="font-size: 14px; overflow: hidden; text-overflow: ellipsis; text-transform: capitalize; white-space: nowrap;">{{formatted_date(patients[index].last_visit)}}</td>
@@ -1664,7 +1664,7 @@ export default {
           </div>
           <div class="input-group input-group-sm">
             <span class="input-group-text">Date of Follow Up</span>
-            <input :disabled="editDisabled" v-model="patient_view_follow_up.pt4_date_psma" type="date" class="form-control" placeholder="" style="flex: none; min-width: 300px;">
+            <input :disabled="editDisabled" v-model="patient_view_follow_up.pt4_date" type="date" class="form-control" placeholder="" style="flex: none; min-width: 300px;">
           </div>
           <span style="font-size: 16px; font-weight: bold;">Diagnosis</span>
           <span class="ms-1">a. Laboratory</span>

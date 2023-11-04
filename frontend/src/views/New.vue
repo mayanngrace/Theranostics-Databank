@@ -44,7 +44,7 @@ export default {
           post_therapy_sessions: this.post_therapy_sessions
         }, { withCredentials: true })
         alert(response.data.message)
-        location.href = '/'
+        location.href = '/home'
       } catch (error) {
         console.log('Error in New.vue > createNewPatient()', error)
         alert('Error on creating new patient')
