@@ -940,7 +940,7 @@ const { v4: uuidv4 } = require('uuid')
         if (req.body.l1dropdown == 'assessment') {
           // then filter by assessment given by req.body.filter_config
           for (let i=0; i<rows.length; i++) {
-            if (rows[i].part1.pt1_assessment == req.body.filter_config || req.body.filter_config == '') {
+            if (rows[i].part1?.pt1_assessment == req.body.filter_config || req.body.filter_config == '') {
               filteredRows.push(rows[i])
             }
           }
@@ -948,7 +948,7 @@ const { v4: uuidv4 } = require('uuid')
         } else if (req.body.l1dropdown == 'bone metastasis') {
           // then filter by bone metastasis given by req.body.filter_config
           for (let i=0; i<rows.length; i++) {
-            if (rows[i].part1.pt1_bone_scan == req.body.filter_config || req.body.filter_config == '') {
+            if (rows[i].part1?.pt1_bone_scan == req.body.filter_config || req.body.filter_config == '') {
               filteredRows.push(rows[i])
             }
           }
@@ -958,7 +958,7 @@ const { v4: uuidv4 } = require('uuid')
           // reduce to matching psma_dropdown
           var reduced_psma_dropdown = [] // this will store rows that has matching psma dropdown choice
           for (let i=0; i<rows.length; i++) {
-            if (req.body.filter_config.psma_dropdown == rows[i].part1.pt1_psma_picked) {
+            if (req.body.filter_config.psma_dropdown == rows[i].part1?.pt1_psma_picked) {
               reduced_psma_dropdown.push(rows[i])
             }
           }
@@ -968,14 +968,14 @@ const { v4: uuidv4 } = require('uuid')
           console.log(`req.body.filter_config.psma_checkboxes.prostate is ${req.body.filter_config.psma_checkboxes.prostate}`) // temp
           console.log(`typeof req.body.filter_config.psma_checkboxes.prostate is ${typeof(req.body.filter_config.psma_checkboxes.prostate)}`) // temp
           for (let i=0; i<reduced_psma_dropdown.length; i++) {
-            if ( (reduced_psma_dropdown[i].part1.pt1_psma_prostate == 'psma_present_prostate' && req.body.filter_config.psma_checkboxes.prostate) || (reduced_psma_dropdown[i].part1.pt1_psma_prostate == 'psma_absent_prostate' && !req.body.filter_config.psma_checkboxes.prostate) ) {
+            if ( (reduced_psma_dropdown[i].part1?.pt1_psma_prostate == 'psma_present_prostate' && req.body.filter_config.psma_checkboxes.prostate) || (reduced_psma_dropdown[i].part1?.pt1_psma_prostate == 'psma_absent_prostate' && !req.body.filter_config.psma_checkboxes.prostate) ) {
               console.log('winner!!') // temp
-              if ( (reduced_psma_dropdown[i].part1.pt1_psma_lymphs == 'psma_present_node' && req.body.filter_config.psma_checkboxes.lymph_nodes) || (reduced_psma_dropdown[i].part1.pt1_psma_lymphs == 'psma_absent_node' && !req.body.filter_config.psma_checkboxes.lymph_nodes) ) {
-                if ( (reduced_psma_dropdown[i].part1.pt1_psma_bone == 'psma_present_bone' && req.body.filter_config.psma_checkboxes.bone) || (reduced_psma_dropdown[i].part1.pt1_psma_bone == 'psma_absent_bone' && !req.body.filter_config.psma_checkboxes.bone) ) {
-                  if ( (reduced_psma_dropdown[i].part1.pt1_psma_brain == 'psma_present_brain' && req.body.filter_config.psma_checkboxes.brain) || (reduced_psma_dropdown[i].part1.pt1_psma_brain == 'psma_absent_brain' && !req.body.filter_config.psma_checkboxes.brain) ) {
-                    if ( (reduced_psma_dropdown[i].part1.pt1_psma_lungs == 'psma_present_lungs' && req.body.filter_config.psma_checkboxes.lungs) || (reduced_psma_dropdown[i].part1.pt1_psma_lungs == 'psma_absent_lungs' && !req.body.filter_config.psma_checkboxes.lungs) ) {
-                      if ( (reduced_psma_dropdown[i].part1.pt1_psma_liver == 'psma_present_liver' && req.body.filter_config.psma_checkboxes.liver) || (reduced_psma_dropdown[i].part1.pt1_psma_liver == 'psma_absent_liver' && !req.body.filter_config.psma_checkboxes.liver) ) {
-                        if ( (reduced_psma_dropdown[i].part1.pt1_psma_others == 'psma_present_others' && req.body.filter_config.psma_checkboxes.other) || (reduced_psma_dropdown[i].part1.pt1_psma_others == 'psma_absent_others' && !req.body.filter_config.psma_checkboxes.other) ) {
+              if ( (reduced_psma_dropdown[i].part1?.pt1_psma_lymphs == 'psma_present_node' && req.body.filter_config.psma_checkboxes.lymph_nodes) || (reduced_psma_dropdown[i].part1?.pt1_psma_lymphs == 'psma_absent_node' && !req.body.filter_config.psma_checkboxes.lymph_nodes) ) {
+                if ( (reduced_psma_dropdown[i].part1?.pt1_psma_bone == 'psma_present_bone' && req.body.filter_config.psma_checkboxes.bone) || (reduced_psma_dropdown[i].part1?.pt1_psma_bone == 'psma_absent_bone' && !req.body.filter_config.psma_checkboxes.bone) ) {
+                  if ( (reduced_psma_dropdown[i].part1?.pt1_psma_brain == 'psma_present_brain' && req.body.filter_config.psma_checkboxes.brain) || (reduced_psma_dropdown[i].part1?.pt1_psma_brain == 'psma_absent_brain' && !req.body.filter_config.psma_checkboxes.brain) ) {
+                    if ( (reduced_psma_dropdown[i].part1?.pt1_psma_lungs == 'psma_present_lungs' && req.body.filter_config.psma_checkboxes.lungs) || (reduced_psma_dropdown[i].part1?.pt1_psma_lungs == 'psma_absent_lungs' && !req.body.filter_config.psma_checkboxes.lungs) ) {
+                      if ( (reduced_psma_dropdown[i].part1?.pt1_psma_liver == 'psma_present_liver' && req.body.filter_config.psma_checkboxes.liver) || (reduced_psma_dropdown[i].part1?.pt1_psma_liver == 'psma_absent_liver' && !req.body.filter_config.psma_checkboxes.liver) ) {
+                        if ( (reduced_psma_dropdown[i].part1?.pt1_psma_others == 'psma_present_others' && req.body.filter_config.psma_checkboxes.other) || (reduced_psma_dropdown[i].part1?.pt1_psma_others == 'psma_absent_others' && !req.body.filter_config.psma_checkboxes.other) ) {
                           // winners
                           reduced_psma_checkboxes.push(reduced_psma_dropdown[i])
                         }
@@ -991,13 +991,13 @@ const { v4: uuidv4 } = require('uuid')
           // remove those that did not match fdg_checkboxes
           var reduced_fdg_checkboxes = []
           for (let i=0; i<reduced_psma_checkboxes.length; i++) {
-            if ( (reduced_psma_checkboxes[i].part1.pt1_fdg_prostate == 'fdg_present_prostate' && req.body.filter_config.fdg_checkboxes.prostate) || (reduced_psma_checkboxes[i].part1.pt1_fdg_prostate == 'fdg_absent_prostate' && !req.body.filter_config.fdg_checkboxes.prostate) ) {
-              if ( (reduced_psma_checkboxes[i].part1.pt1_fdg_lymphs == 'fdg_present_node' && req.body.filter_config.fdg_checkboxes.lymph_nodes) || (reduced_psma_checkboxes[i].part1.pt1_fdg_lymphs == 'fdg_absent_node' && !req.body.filter_config.fdg_checkboxes.lymph_nodes) ) {
-                if ( (reduced_psma_checkboxes[i].part1.pt1_fdg_bone == 'fdg_present_bone' && req.body.filter_config.fdg_checkboxes.bone) || (reduced_psma_checkboxes[i].part1.pt1_fdg_bone == 'fdg_absent_bone' && !req.body.filter_config.fdg_checkboxes.bone) ) {
-                  if ( (reduced_psma_checkboxes[i].part1.pt1_fdg_brain == 'fdg_present_brain' && req.body.filter_config.fdg_checkboxes.brain) || (reduced_psma_checkboxes[i].part1.pt1_fdg_brain == 'fdg_absent_brain' && !req.body.filter_config.fdg_checkboxes.brain) ) {
-                    if ( (reduced_psma_checkboxes[i].part1.pt1_fdg_lungs == 'fdg_present_lungs' && req.body.filter_config.fdg_checkboxes.lungs) || (reduced_psma_checkboxes[i].part1.pt1_fdg_lungs == 'fdg_absent_lungs' && !req.body.filter_config.fdg_checkboxes.lungs) ) {
-                      if ( (reduced_psma_checkboxes[i].part1.pt1_fdg_liver == 'fdg_present_liver' && req.body.filter_config.fdg_checkboxes.liver) || (reduced_psma_checkboxes[i].part1.pt1_fdg_liver == 'fdg_absent_liver' && !req.body.filter_config.fdg_checkboxes.liver) ) {
-                        if ( (reduced_psma_checkboxes[i].part1.pt1_fdg_others == 'fdg_present_others' && req.body.filter_config.fdg_checkboxes.other) || (reduced_psma_checkboxes[i].part1.pt1_fdg_others == 'fdg_absent_others' && !req.body.filter_config.fdg_checkboxes.other) ) {
+            if ( (reduced_psma_checkboxes[i].part1?.pt1_fdg_prostate == 'fdg_present_prostate' && req.body.filter_config.fdg_checkboxes.prostate) || (reduced_psma_checkboxes[i].part1?.pt1_fdg_prostate == 'fdg_absent_prostate' && !req.body.filter_config.fdg_checkboxes.prostate) ) {
+              if ( (reduced_psma_checkboxes[i].part1?.pt1_fdg_lymphs == 'fdg_present_node' && req.body.filter_config.fdg_checkboxes.lymph_nodes) || (reduced_psma_checkboxes[i].part1?.pt1_fdg_lymphs == 'fdg_absent_node' && !req.body.filter_config.fdg_checkboxes.lymph_nodes) ) {
+                if ( (reduced_psma_checkboxes[i].part1?.pt1_fdg_bone == 'fdg_present_bone' && req.body.filter_config.fdg_checkboxes.bone) || (reduced_psma_checkboxes[i].part1?.pt1_fdg_bone == 'fdg_absent_bone' && !req.body.filter_config.fdg_checkboxes.bone) ) {
+                  if ( (reduced_psma_checkboxes[i].part1?.pt1_fdg_brain == 'fdg_present_brain' && req.body.filter_config.fdg_checkboxes.brain) || (reduced_psma_checkboxes[i].part1?.pt1_fdg_brain == 'fdg_absent_brain' && !req.body.filter_config.fdg_checkboxes.brain) ) {
+                    if ( (reduced_psma_checkboxes[i].part1?.pt1_fdg_lungs == 'fdg_present_lungs' && req.body.filter_config.fdg_checkboxes.lungs) || (reduced_psma_checkboxes[i].part1?.pt1_fdg_lungs == 'fdg_absent_lungs' && !req.body.filter_config.fdg_checkboxes.lungs) ) {
+                      if ( (reduced_psma_checkboxes[i].part1?.pt1_fdg_liver == 'fdg_present_liver' && req.body.filter_config.fdg_checkboxes.liver) || (reduced_psma_checkboxes[i].part1?.pt1_fdg_liver == 'fdg_absent_liver' && !req.body.filter_config.fdg_checkboxes.liver) ) {
+                        if ( (reduced_psma_checkboxes[i].part1?.pt1_fdg_others == 'fdg_present_others' && req.body.filter_config.fdg_checkboxes.other) || (reduced_psma_checkboxes[i].part1?.pt1_fdg_others == 'fdg_absent_others' && !req.body.filter_config.fdg_checkboxes.other) ) {
                           // winners
                           reduced_fdg_checkboxes.push(reduced_psma_checkboxes[i])
                         }

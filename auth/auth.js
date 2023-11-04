@@ -121,7 +121,7 @@ async function configureLocalStrategy(db) {
       req.logout(function(err) {
         if (err) { res.json({message: `Error on logout: ${err}`}).send() }
         else {
-          res.json({redirect: '/toLoggedOut'}).send()
+          res.json({redirect: '/'}).send()
           // res.send('Success')
         }
       })

@@ -7,10 +7,17 @@ const auth = require('./auth/auth')
 const database = require('./database/database')
 const initial = require('./database/initial')
 const patient_records = require('./patient_records/patient_records')
+const cors = require('cors')
 
 // Main
 async function main() {
   // Insert async calls here
+
+    app.use(cors({
+      origin: true,
+      methods: ["POST", 'GET', 'DELETE', 'PUT', 'PATCH'],
+      credentials: true,
+    }));
 
     // Body Parser
     const bodyParser = require('body-parser')
