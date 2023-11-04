@@ -902,7 +902,7 @@ export default {
           <tr v-for="(obj, index) in patients" :key="index">
             <td class="text-center" style="font-size: 14px; overflow: hidden; text-overflow: ellipsis; text-transform: uppercase; white-space: nowrap;">{{patients[index].pt1_patient_code}}</td>
             <td class="text-center" style="font-size: 14px; overflow: hidden; text-overflow: ellipsis; text-transform: capitalize; white-space: nowrap;">{{patients[index].part1?.pt1_first_name ??''}}</td>
-            <td class="text-center" style="font-size: 14px; overflow: hidden; text-overflow: ellipsis; text-transform: capitalize; white-space: nowrap;">{{patients[index].part1.pt1_last_name}}</td>
+            <td class="text-center" style="font-size: 14px; overflow: hidden; text-overflow: ellipsis; text-transform: capitalize; white-space: nowrap;">{{patients[index].part1?.pt1_last_name}}</td>
             <td class="text-center" style="font-size: 14px; overflow: hidden; text-overflow: ellipsis; text-transform: capitalize; white-space: nowrap;">{{formatted_date(patients[index].first_visit)}}</td>
             <td class="text-center" style="font-size: 14px; overflow: hidden; text-overflow: ellipsis; text-transform: capitalize; white-space: nowrap;">{{formatted_date(patients[index].last_visit)}}</td>
             <td>
