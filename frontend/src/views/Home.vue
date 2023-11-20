@@ -593,26 +593,24 @@ export default {
       this.patient_view_follow_up_index = index
     }
   },
-  async mounted() {
-    await this.authorize()
-    // await this.readPatients()
-  }
+  // async mounted() {
+  //   await this.authorize()
+  //   // await this.readPatients()
+  // }
 }
 </script>
 <template>
-<div class="d-flex flex-column" style="background-color: lightgray;">
+<div class="d-flex flex-column" style="background: linear-gradient(to bottom, #4415159f, #C59A2E9f, #0B25099f);">
   <Header />
   <div class="d-flex flex-column p-3" style="flex: 1 1 auto;">
-    <button @click="toNew()" v-if="currentDivShown == 'table'" type="button" class="align-self-center btn btn-secondary mb-3" style="background-color: #093405;">Add New Patient</button>
     <!-- Count Div -->
-    <div v-if="currentDivShown == 'table'" class="align-items-center d-flex flex-column partDiv mb-2" style="flex: none;">
-      <h3 class="mt-3" style="font-size: 20px; font-weight: bold;">Count / Filter</h3>
+    <div v-if="currentDivShown == 'table'" class="align-items-center d-flex flex-column partDiv mb-2" style="flex: none; background-color: #0b250950; border-width: 1px; border-radius: 10px;">
       <!-- Count Div Body -->
       <div class="align-items-center d-flex flex-row" style="gap: 20px;">
         <!-- L1 -->
         <div>
           <select v-model="l1dropdown" class="align-self-start" style="font-size: 20px; height: 25px;">
-            <option value="">--Choose one--</option>
+            <option value="">--None Selected--</option>
             <option value="assessment">Assessment</option>
             <option value="bone metastasis">Bone metastatis</option>
             <option value="lesions during screening">Lesions during screening</option>
@@ -625,7 +623,7 @@ export default {
         <!-- L2 assessment -->
         <div>
           <select v-model="l2_assessment" v-if="l1dropdown == 'assessment'" class="align-self-start" style="font-size: 20px; height: 25px;">
-            <option value="">--Choose One--</option>
+            <option value="">--None Selected--</option>
             <option value="low risk">Low Risk</option>
             <option value="intermediate risk">Intermediate Risk</option>
             <option value="high risk">High Risk</option>
@@ -635,7 +633,7 @@ export default {
         <!-- L2 bone metastatis -->
         <div>
           <select v-model="l2_assessment_bone" v-if="l1dropdown == 'bone metastasis'" class="align-self-start" style="font-size: 20px; height: 25px;">
-            <option value="">--Choose One--</option>
+            <option value="">--None Selected--</option>
             <option value="no metastasis">No Metastatis</option>
             <option value="with metastasis">With Metastatis</option>
           </select>
@@ -649,7 +647,7 @@ export default {
             <span style="margin-left:5px; font-size: 20px;">PSMA</span>
             <div class="ms-3" v-if="l2_lesion_screening.psma">
               <select v-model="l2_lesion_screening.psma_dropdown" class="align-self-start" style="font-size: 20px; height: 25px;">
-                <option value="">--Choose One--</option>
+                <option value="">--None Selected--</option>
                 <option value="ga-68">GA-68</option>
                 <option value="f-18">F-18</option>
               </select>
@@ -788,7 +786,7 @@ export default {
             <span style="margin-left:5px; font-size: 20px;">PSMA</span>
             <div class="ms-3" v-if="l3_follow_up_lesion.psma">
               <select v-model="l3_follow_up_lesion.psma_dropdown" class="align-self-start" style="font-size: 20px; height: 25px;">
-                <option value="">--Choose One--</option>
+                <option value="">--None Selected--</option>
                 <option value="ga-68">GA-68</option>
                 <option value="f-18">F-18</option>
               </select>
@@ -872,21 +870,26 @@ export default {
       </div>
       <!-- end Count Div Body -->
       <!-- Apply Button -->
-      <button @click="readPatients()" v-if="currentDivShown == 'table'" type="button" class="align-self-center btn btn-secondary mt-2" style="background-color: #093405;">Apply</button>
+      <button @click="readPatients()" v-if="currentDivShown == 'table'" type="button" class="align-self-center btn btn-secondary mt-2" style="background-color: #C59A2E; border-color: white;">Apply Filter</button>
       <!-- end Apply Button -->
-      <h3 class="align-self-center mt-3" style="font-size: 24px; font-weight: bold;">TOTAL: <span style="color: red">{{ patients.length }}</span></h3>
+      <!-- Search -->
+      <div v-if="currentDivShown == 'table'" class="align-self-end d-flex flex-row mb-2" style="gap: 5px;">
+        <input v-model="searchString" type="text" class="form-control form-control-sm" placeholder="Search by first name or last name" style="flex: none; width: 300px;">
+        <button @click="readPatients()" type="button" class="btn btn-sm btn-secondary">Search</button>
+        <button v-if="searchString" @click="clearSearch()" type="button" class="btn btn-sm btn-secondary">Clear Search</button>
+      </div>
+      <!-- end Search-->
     </div>
     <!-- end Count Div -->
-    <!-- Search -->
-    <div v-if="currentDivShown == 'table'" class="align-self-end d-flex flex-row mb-2" style="gap: 5px;">
-      <input v-model="searchString" type="text" class="form-control form-control-sm" placeholder="Search by first name or last name" style="flex: none; width: 300px;">
-      <button @click="readPatients()" type="button" class="btn btn-sm btn-secondary">Search</button>
-      <button v-if="searchString" @click="clearSearch()" type="button" class="btn btn-sm btn-secondary">Clear Search</button>
+    <!-- Add New -->
+    <div v-if="currentDivShown == 'table'" class="align-self-center d-flex flex-row mb-2" style="gap: 5px; width: 100%;">
+      <h3 class="align-self-start mt-3" style="font-size: 24px; font-weight: bold;"># of Patients: <span style="color: #441515;">{{ patients.length }}</span></h3>
+      <button @click="toNew()" v-if="currentDivShown == 'table'" type="button" class="btn btn-secondary mb-2" style="background-color: #0B2509; margin-left: 75%;">Add New Patient</button>
     </div>
-    <!-- end Search -->
+    <!-- end Add New -->
     <!-- Table -->
-    <div v-if="currentDivShown == 'table'" class="align-items-start d-flex flex-column mb-3" style="background-color: white; border: 2px solid black; flex-grow: 1; width: 100%;">
-      <table class="fixed-table-body table table-bordered table-responsive" style="table-layout: fixed;">
+    <div v-if="currentDivShown == 'table'" class="align-items-start d-flex flex-column mb-3" style="background-color: #0B250950; border: 1px solid black; border-radius: 10px; flex-grow: 1; width: 100%;">
+      <table class="fixed-table-body table table-responsive" style="table-layout: fixed;">
         <thead>
           <tr>
             <th class="align-middle text-center" scope="col">Patient Code</th>
@@ -908,14 +911,14 @@ export default {
             <td>
               <!-- View Records Button -->
               <div @click="viewPatient(patients[index])" class="align-items-center d-flex flex-row hoverTransform justify-content-center m-auto">
-                <span class="myButton1" style="background-color: #7F6000;">View Records</span>
+                <span class="myButton1" style="background-color: #C59A2E;">View Records</span>
               </div>
               <!-- end View Records Button -->
             </td>
             <td>
               <!-- Add Follow Up Record -->
               <div @click="addFollowUpRecord(patients[index])" class="align-items-center d-flex flex-row hoverTransform justify-content-center m-auto">
-                <span class="myButton1" style="background-color: #093405;">Add Follow Up</span>
+                <span class="myButton1" style="background-color: #0B2509;">Add Follow Up</span>
               </div>
               <!-- end Add Follow Up Record -->
             </td>
@@ -925,26 +928,26 @@ export default {
     </div>
     <!-- end Table -->
     <!-- View Patient Div -->
-    <div v-if="currentDivShown == 'viewPatientDiv'" class="d-flex flex-column p-3" style="background-color: white; border: 2px solid black;">
+    <div v-if="currentDivShown == 'viewPatientDiv'" class="d-flex flex-column p-3" style="background-color: #0B250950; border: 1px solid black; border-radius: 10px;">
       <!-- View Patient Header -->
       <div class="d-flex flex-row justify-content-between mb-4">
         <h1 style="font-size: 20px; font-weight: bold;">View Patient</h1>
-        <span @click="switchDiv('table')" class="myButton1" style="background-color: #7F6000;">Close Record</span>
+        <span @click="switchDiv('table')" class="myButton1" style="background-color: #C59A2E;">Close Record</span>
       </div>
       <!-- end View Patient Header -->
       <h3 style="font-size: 18px; font-weight: bold;">Record of First Visit</h3>
-      <div class="accordion" id="accordionExample">
-        <div class="accordion-item">
+      <div class="accordion" id="accordionExample" style="background-color: #ffffff9f">
+        <div class="accordion-item" style="background-color: #ffffff9f">
           <h2 class="accordion-header" id="headingOne">
             <button style="font-weight: bold;" class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
               Part 1: Demographics
             </button>
           </h2>
           <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-            <div class="accordion-body partDiv">
+            <div class="accordion-body partDiv" style="background-color: #ffffff9f">
               <!-- Part 1 -->
-                <span v-if="editDisabled" @click="enableEdit()" class="align-self-start myButton1" style="background-color: #7F6000;">Edit Record</span>
-                <span v-if="!editDisabled" @click="finishEditing()" class="align-self-start myButton1" style="background-color: #023020;">Finish Editing</span>
+                <span v-if="editDisabled" @click="enableEdit()" class="align-self-start myButton1" style="background-color: #C59A2E;">Edit Record</span>
+                <span v-if="!editDisabled" @click="finishEditing()" class="align-self-start myButton1" style="background-color: #0B2509;">Finish Editing</span>
                 
                 <!-- 1.1 -->
                 <b>1.1 Demographics</b>
