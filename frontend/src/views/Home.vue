@@ -902,7 +902,7 @@ export default {
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(obj, index) in patients" :key="index">
+          <tr v-for="(obj, index) in patients" :key="index" style="background: #ffffff50">
             <td class="text-center" style="font-size: 14px; overflow: hidden; text-overflow: ellipsis; text-transform: uppercase; white-space: nowrap;">{{patients[index].pt1_patient_code}}</td>
             <td class="text-center" style="font-size: 14px; overflow: hidden; text-overflow: ellipsis; text-transform: capitalize; white-space: nowrap;">{{patients[index].part1?.pt1_first_name ??''}}</td>
             <td class="text-center" style="font-size: 14px; overflow: hidden; text-overflow: ellipsis; text-transform: capitalize; white-space: nowrap;">{{patients[index].part1?.pt1_last_name}}</td>
