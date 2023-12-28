@@ -1096,7 +1096,7 @@ const { v4: uuidv4 } = require('uuid')
                 configParsed_prostate = '1'
               }
               // console.log(`rows[i].pt1_patient_code is ${rows[i].pt1_patient_code} and index is ${req.body.filter_config.post_therapy_config}`) // temp
-              if ( configParsed_prostate == rows[i].post_therapy_sessions[req.body.filter_config.post_therapy_config].pt3_prostate ) {             
+              if ( configParsed_prostate == rows[i].post_therapy_sessions[req.body.filter_config.post_therapy_config]?.pt3_prostate ) {             
                 // console.log('someone passed battle 1 prostate') // temp
                 var configParsed_lymph_nodes
                 if (!req.body.filter_config.l2_lesion_post_therapy.lymph_nodes) {
