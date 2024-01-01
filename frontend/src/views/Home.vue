@@ -22,7 +22,7 @@ export default {
       //   follow_up_records: [] // array of part4{} objects from FollowUp.vue
       // }
       ],
-      post_therapy_config: '',
+      post_therapy_config: this.highestSessions ?? '',
       l1dropdown: '',
       l2_assessment: '', // store which l2 assessment was selected from dropdown
       l2_assessment_bone: '',
