@@ -3,3 +3,4 @@ frontend/node_modules
 node_modules
 database/db.sqlite
 database/session.db
+dist
