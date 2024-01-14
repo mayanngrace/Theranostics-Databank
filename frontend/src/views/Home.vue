@@ -22,7 +22,7 @@ export default {
       //   follow_up_records: [] // array of part4{} objects from FollowUp.vue
       // }
       ],
-      post_therapy_config: this.highestSessions ?? '',
+      post_therapy_config: this.highestSessions ?? '1',
       l1dropdown: '',
       l2_assessment: '', // store which l2 assessment was selected from dropdown
       l2_assessment_bone: '',
@@ -741,7 +741,7 @@ export default {
         <!-- L2 post therapy lesion checkboxes -->
         <div v-if="l1dropdown == 'lesions during post therapy'" class="d-flex flex-column p-1" style="border: 1px solid gray; height: 150px; overflow-y: scroll;">
           <div class="d-flex flex-row" v-for="x in highestSessions" style="gap: 5px;">
-            <input v-model="post_therapy_config" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" :value="x-1">
+            <input v-model="post_therapy_config" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" :value="x">
             <label class="form-check-label" for="inlineRadio1" style="font-size: 14px;">Post Therapy #{{x}}</label>
           </div>
         </div>
@@ -1136,9 +1136,9 @@ export default {
                   </select>
                 </div>
                 <div class="input-group input-group-sm">
-                  <span class="input-group-text">iii. Bone Scan</span>
+                  <span class="input-group-text" style="color: red; font-weight: bold;">iii. Bone Scan</span>
                   <select v-model="view_patient.part1.pt1_bone_scan" :disabled="editDisabled" name="pt1_bone_scan" style="font-size: 14px;">
-                    <option value="no_mestastasis">No Metastasis</option>
+                    <option value="no mestastasis">No Metastasis</option>
                     <option value="with_metastasis">With Metastasis</option>
                   </select>
                 </div>
@@ -1147,14 +1147,14 @@ export default {
                   <input v-model="view_patient.part1.pt1_bone_withmetas" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
                 </div>
                 <div class="align-self-start p-2" style="border: 1px solid lightgray; border-radius: 5px; gap: 5px;">
-                  <span style="font-size: 14px; padding-right: 1cm;">iv. PSMA</span>
+                  <span style="font-size: 14px; padding-right: 1cm; color: red; font-weight: bold;">iv. PSMA</span>
                   <div class="form-check form-check-inline">
                     <input v-model="view_patient.part1.pt1_psma_picked" :disabled="editDisabled" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="ga-68">
-                    <label class="form-check-label" for="inlineRadio1" style="font-size: 14px;">Ga-68</label>
+                    <label class="form-check-label" for="inlineRadio1" style="font-size: 14px; color: red; font-weight: bold;">Ga-68</label>
                   </div>
                   <div class="form-check form-check-inline">
-                    <input v-model="view_patient.part1.pt1_psma_picked" :disabled="editDisabled" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="f-18" checked>
-                    <label class="form-check-label" for="inlineRadio2" style="font-size: 14px;">F-18</label>
+                    <input v-model="view_patient.part1.pt1_psma_picked" :disabled="editDisabled" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="f-18">
+                    <label class="form-check-label" for="inlineRadio2" style="font-size: 14px; color: red; font-weight: bold;">F-18</label>
                   </div>
                   <div class="d-flex flex-column" style="gap: 5px;">
                     <div class="input-group input-group-sm">
@@ -1265,7 +1265,7 @@ export default {
                   </div>
                 </div>
                 <div class="align-self-start d-flex flex-column p-2" style="border: 1px solid lightgray; border-radius: 5px; gap: 5px;">
-                  <span style="padding-right:1cm">v. FDG PET/CT</span>
+                  <span style="padding-right:1cm; color: red; font-weight: bold;">v. FDG PET/CT</span>
                   <div class="input-group input-group-sm">
                   <span class="input-group-text">a. Prostate</span>
                   <select v-model="view_patient.part1.pt1_fdg_prostate" :disabled="editDisabled" name="pt1_fdg_prostate" style="font-size: 14px;">
@@ -1373,7 +1373,7 @@ export default {
                   </div>
                 </div>
                 <div class="input-group input-group-sm">
-                  <span class="input-group-text" style="font-size: 16px;">c. Assessment</span>
+                  <span class="input-group-text" style="font-size: 16px; color: red; font-weight: bold;">c. Assessment</span>
                   <select v-model="view_patient.part1.pt1_assessment" :disabled="editDisabled" name="part1_new_assessment" style="font-size: 14px; width: 150px;">
                     <option value="low_risk">Low Risk</option>
                     <option value="inter_risk">Intermediate Risk</option>
@@ -1462,7 +1462,7 @@ export default {
                     <input v-model="this.view_therapy_session.pt2_activity" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 180px;" >
                   </div>
                   <div class="input-group input-group-sm mt-2">
-                    <span class="ms-1">Side effects (report 0 or more side effects)</span>
+                    <span class="ms-1" style="color: red; font-weight: bold;">Side effects (report 0 or more side effects)</span>
                     <div class="input-group mb-1 mt-1">
                       <div class="input-group-text">
                         <input true-value="1" v-model="this.view_therapy_session.pt2_fatigue" :disabled="editDisabled" class="form-check-input mt-0" type="checkbox" aria-label="pt2_side_checkbox" >
@@ -1564,7 +1564,7 @@ export default {
                   <div class="input-group input-group-sm">
                     <!-- Lesion -->
                     <div class="input-group input-group-sm p-3">
-                      <span class="input-group-text" >Lesions</span>
+                      <span class="input-group-text" style="color: red; font-weight: bold;" >Lesions</span>
                         <!-- Lesion Body -->
                         <div class="input-group mb-1">
                           <div class="input-group-text">
@@ -1649,6 +1649,7 @@ export default {
               </ul>
             </nav>
         <!-- end Pagination -->
+
         <!-- Follow Up Record -->
         <div v-if="patient_view_follow_up.record_id" class="p-3">
         <div class="partDiv">
@@ -1738,14 +1739,14 @@ export default {
             <input v-model="patient_view_follow_up.pt4_withmetas" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
           </div>
           <div class="align-self-start p-2" style="border: 1px solid lightgray; border-radius: 5px; gap: 5px;">
-            <span style="font-size: 14px; padding-right: 1cm;">iv. PSMA</span>
+            <span style="font-size: 14px; padding-right: 1cm; color: red; font-weight: bold;">iv. PSMA</span>
           <div class="form-check form-check-inline">
             <input  v-model="patient_view_follow_up.pt4_psma_picked" :disabled="editDisabled" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="fu_ga">
-            <label class="form-check-label" for="inlineRadio1" style="font-size: 14px;">Ga-68</label>
+            <label class="form-check-label" for="inlineRadio1" style="font-size: 14px; color: red; font-weight: bold;">Ga-68</label>
           </div>
           <div class="form-check form-check-inline">
             <input v-model="patient_view_follow_up.pt4_psma_picked" :disabled="editDisabled" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="fu_f">
-            <label class="form-check-label" for="inlineRadio2" style="font-size: 14px;">F-18</label>
+            <label class="form-check-label" for="inlineRadio2" style="font-size: 14px; color: red; font-weight: bold;">F-18</label>
           </div>
             <div class="d-flex flex-column" style="gap: 5px;">
               <div class="input-group input-group-sm">
@@ -1856,7 +1857,7 @@ export default {
             </div>
           </div>
           <div class="align-self-start d-flex flex-column p-2" style="border: 1px solid lightgray; border-radius: 5px; gap: 5px;">
-            <span style="padding-right:1cm">v. FDG PET/CT</span>
+            <span style="padding-right:1cm; color: red; font-weight: bold;">v. FDG PET/CT</span>
             <div class="input-group input-group-sm">
             <span class="input-group-text">a. Prostate</span>
             <select v-model="patient_view_follow_up.pt4_fdg_prostate" :disabled="editDisabled" name="fdg_prostate" style="font-size: 14px;">
@@ -2073,14 +2074,14 @@ export default {
             <input v-model="part4.pt4_withmetas" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
           </div>
           <div class="align-self-start p-2" style="border: 1px solid lightgray; border-radius: 5px; gap: 5px;">
-            <span style="font-size: 14px; padding-right: 1cm;">iv. PSMA</span>
+            <span style="font-size: 14px; padding-right: 1cm; color: red; font-weight: bold;">iv. PSMA</span>
           <div class="form-check form-check-inline">
             <input v-model="part4.pt4_psma_picked" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="ga-68">
-            <label class="form-check-label" for="inlineRadio1" style="font-size: 14px;">Ga-68</label>
+            <label class="form-check-label" for="inlineRadio1" style="font-size: 14px; color: red; font-weight: bold;">Ga-68</label>
           </div>
           <div class="form-check form-check-inline">
             <input v-model="part4.pt4_psma_picked" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="f-18">
-            <label class="form-check-label" for="inlineRadio2" style="font-size: 14px;">F-18</label>
+            <label class="form-check-label" for="inlineRadio2" style="font-size: 14px; color: red; font-weight: bold;">F-18</label>
           </div>
             <div class="d-flex flex-column" style="gap: 5px;">
               <div class="input-group input-group-sm">
