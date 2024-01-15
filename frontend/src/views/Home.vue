@@ -1741,11 +1741,11 @@ export default {
           <div class="align-self-start p-2" style="border: 1px solid lightgray; border-radius: 5px; gap: 5px;">
             <span style="font-size: 14px; padding-right: 1cm; color: red; font-weight: bold;">iv. PSMA</span>
           <div class="form-check form-check-inline">
-            <input  v-model="patient_view_follow_up.pt4_psma_picked" :disabled="editDisabled" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="fu_ga">
+            <input  v-model="patient_view_follow_up.pt4_psma_picked" :disabled="editDisabled" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="ga-68">
             <label class="form-check-label" for="inlineRadio1" style="font-size: 14px; color: red; font-weight: bold;">Ga-68</label>
           </div>
           <div class="form-check form-check-inline">
-            <input v-model="patient_view_follow_up.pt4_psma_picked" :disabled="editDisabled" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="fu_f">
+            <input v-model="patient_view_follow_up.pt4_psma_picked" :disabled="editDisabled" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="f-18">
             <label class="form-check-label" for="inlineRadio2" style="font-size: 14px; color: red; font-weight: bold;">F-18</label>
           </div>
             <div class="d-flex flex-column" style="gap: 5px;">

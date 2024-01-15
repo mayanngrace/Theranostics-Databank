@@ -93,11 +93,11 @@ export default {
       <div class="align-self-start p-2" style="border: 1px solid lightgray; border-radius: 5px; gap: 5px;">
         <span style="font-size: 14px; padding-right: 1cm;">iv. PSMA</span>
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="fu_ga">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="ga-68">
         <label class="form-check-label" for="inlineRadio1" style="font-size: 14px;">Ga-18</label>
       </div>
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="fu_f" checked>
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="f-18" checked>
         <label class="form-check-label" for="inlineRadio2" style="font-size: 14px;">F-18</label>
       </div>
         <div class="d-flex flex-column" style="gap: 5px;">
