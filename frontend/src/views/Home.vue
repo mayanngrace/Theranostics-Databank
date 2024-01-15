@@ -831,12 +831,12 @@ export default {
         <div v-if="l1dropdown == 'lesions during follow up'" class="align-items-start d-flex flex-column input-group-text">
           <!-- FDG Header -->
           <div class="align-items-center d-flex flex-row justify-content-center">
-            <input v-model="l2_lesion_screening.fdg" class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">
+            <input v-model="l3_follow_up_lesion.fdg" class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">
             <span style="margin-left:5px; font-size: 20px;">FDG PET/C</span>
           </div>
           <!-- end FDG Header -->
           <!-- FDG Checkboxes -->
-          <div v-if="l2_lesion_screening.fdg" class="align-items-start d-flex flex-row justify-content-start mt-3" style="gap: 20px;">
+          <div v-if="l3_follow_up_lesion.fdg" class="align-items-start d-flex flex-row justify-content-start mt-3" style="gap: 20px;">
             <div class="align-items-start d-flex flex-column justify-content-center">
               <div class="align-items-center d-flex flex-row">
                 <input v-model="l3_follow_up_lesion.fdg_checkboxes.prostate" class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">

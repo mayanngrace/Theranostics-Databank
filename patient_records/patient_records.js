@@ -1093,6 +1093,7 @@ const { v4: uuidv4 } = require('uuid')
           rows = filteredRows // update rows to those with patients with side effects only
         }
       }
+
       // end check for more filters
 
       // part 3
@@ -1180,166 +1181,175 @@ const { v4: uuidv4 } = require('uuid')
           SELECT * FROM part4 WHERE pt1_patient_code = ?
         `, [rows[i].pt1_patient_code], false)
         rows[i].part4 = part4_rows
+        // console.log("part4_rows.length is", part4_rows.length); // temp
       }
+      // console.log("rows.length here is", rows.length); // temp
       // end part 4
 
       // do follow up filters
       if (req.body.filter == 'true') {
         if (req.body.l1dropdown == 'lesions during follow up') {
 
-          var filtered_psma_dropdown = []
-          for (let i=0; i<rows.length; i++) {
-            // if config # > patient follow up length, will yield undefined
-            // console.log(`comparing length ${req.body.filter_config.follow_up_config+1} and ${rows[i].part4.length}`) // temp
-            if (req.body.filter_config.follow_up_config+1 > rows[i].part4.length) {
-              // will yield undefined so dont check
-            } else {
-              // console.log(`comparing ${req.body.filter_config.l3_follow_up_lesion.psma_dropdown} and ${rows[i].part4[req.body.filter_config.follow_up_config].pt4_psma_picked}`) // temp
-              if (req.body.filter_config.l3_follow_up_lesion.psma_dropdown == rows[i].part4[req.body.filter_config.follow_up_config].pt4_psma_picked) {
-                filtered_psma_dropdown.push(rows[i])
+          if (req.body.filter_config.l3_follow_up_lesion.psma) {
+            var filtered_psma_dropdown = []
+            for (let i=0; i<rows.length; i++) {
+              // if config # > patient follow up length, will yield undefined
+              // console.log(`comparing length ${req.body.filter_config.follow_up_config+1} and ${rows[i].part4.length}`) // temp
+              if (req.body.filter_config.follow_up_config+1 > rows[i].part4.length) {
+                // will yield undefined so dont check
+              } else {
+                // console.log(`comparing ${req.body.filter_config.l3_follow_up_lesion.psma_dropdown} and ${rows[i].part4[req.body.filter_config.follow_up_config].pt4_psma_picked}`) // temp
+                if (req.body.filter_config.l3_follow_up_lesion.psma_dropdown == rows[i].part4[req.body.filter_config.follow_up_config].pt4_psma_picked) {
+                  filtered_psma_dropdown.push(rows[i])
+                }
               }
             }
+            rows = filtered_psma_dropdown
           }
-          rows = filtered_psma_dropdown
-
+          // console.log("rows.length here 1209 is", rows.length); // temp
           // console.log(`rows after filtering psma dropdown has length ${rows.length}`) // temp
 
           // console.log('doing psma follow up filters') // temp
-          var follow_up_filtered_psma = [] // will store winners from below
-          for (let i=0; i<rows.length; i++) {
-          // for each patient
-            // if config # > patient follow up length, will yield undefined
-            if (req.body.filter_config.follow_up_config+1 > rows[i].part4.length) {
-              // will yield undefined so dont check
-            } else {
-              // this patient has that # of follow up
-              // access that follow up and compare lesions
-              var configParsed_prostate
-              if (!req.body.filter_config.l3_follow_up_lesion.psma_checkboxes.prostate) {
-                configParsed_prostate = 'psma_absent_prostate'
+          if (req.body.filter_config.l3_follow_up_lesion.psma) {
+            var follow_up_filtered_psma = [] // will store winners from below
+            for (let i=0; i<rows.length; i++) {
+            // for each patient
+              // if config # > patient follow up length, will yield undefined
+              if (req.body.filter_config.follow_up_config+1 > rows[i].part4.length) {
+                // will yield undefined so dont check
               } else {
-                configParsed_prostate = 'psma_present_prostate'
-              }
-              // console.log(`rows[i].pt1_patient_code is ${rows[i].pt1_patient_code} and index is ${req.body.filter_config.post_therapy_config}`) // temp
-              if ( configParsed_prostate == rows[i].part4[req.body.filter_config.follow_up_config].pt4_psma_prostate ) {             
-                // console.log('someone passed battle 1 prostate') // temp
-                var configParsed_lymph_nodes
-                if (!req.body.filter_config.l3_follow_up_lesion.psma_checkboxes.lymph_nodes) {
-                  configParsed_lymph_nodes = 'psma_absent_node'
+                // this patient has that # of follow up
+                // access that follow up and compare lesions
+                var configParsed_prostate
+                if (!req.body.filter_config.l3_follow_up_lesion.psma_checkboxes.prostate) {
+                  configParsed_prostate = 'psma_absent_prostate'
                 } else {
-                  configParsed_lymph_nodes = 'psma_present_node'
+                  configParsed_prostate = 'psma_present_prostate'
                 }
-                // console.log(`comparing ${configParsed_lymph_nodes} with ${rows[i].post_therapy_sessions[req.body.filter_config.post_therapy_config].pt3_lymph_nodes}`)
-                if ( configParsed_lymph_nodes == rows[i].part4[req.body.filter_config.follow_up_config].pt4_psma_lymphs ) {
-                  var configParsed_bones
-                  if (!req.body.filter_config.l3_follow_up_lesion.psma_checkboxes.bone) {
-                    configParsed_bones = 'psma_absent_bone'
+                // console.log(`rows[i].pt1_patient_code is ${rows[i].pt1_patient_code} and index is ${req.body.filter_config.post_therapy_config}`) // temp
+                if ( configParsed_prostate == rows[i].part4[req.body.filter_config.follow_up_config].pt4_psma_prostate ) {             
+                  // console.log('someone passed battle 1 prostate') // temp
+                  var configParsed_lymph_nodes
+                  if (!req.body.filter_config.l3_follow_up_lesion.psma_checkboxes.lymph_nodes) {
+                    configParsed_lymph_nodes = 'psma_absent_node'
                   } else {
-                    configParsed_bones = 'psma_present_bone'
+                    configParsed_lymph_nodes = 'psma_present_node'
                   }
-                  // console.log('someone passed battle 2 lymph nodes') // temp
-                  if ( configParsed_bones == rows[i].part4[req.body.filter_config.follow_up_config].pt4_psma_bone ) {
-                    // console.log('someone passed battle 3 bone') // temp
-                    var configParsed_brain
-                    if (!req.body.filter_config.l3_follow_up_lesion.psma_checkboxes.brain) {
-                      configParsed_brain = 'psma_absent_brain'
+                  // console.log(`comparing ${configParsed_lymph_nodes} with ${rows[i].post_therapy_sessions[req.body.filter_config.post_therapy_config].pt3_lymph_nodes}`)
+                  if ( configParsed_lymph_nodes == rows[i].part4[req.body.filter_config.follow_up_config].pt4_psma_lymphs ) {
+                    var configParsed_bones
+                    if (!req.body.filter_config.l3_follow_up_lesion.psma_checkboxes.bone) {
+                      configParsed_bones = 'psma_absent_bone'
                     } else {
-                      configParsed_brain = 'psma_present_brain'
+                      configParsed_bones = 'psma_present_bone'
                     }
-                    if ( configParsed_brain == rows[i].part4[req.body.filter_config.follow_up_config].pt4_psma_brain ) {
-                      // console.log('someone passed battle 3 brain') // temp
-                      var configParsed_lungs
-                      if (!req.body.filter_config.l3_follow_up_lesion.psma_checkboxes.lungs) {
-                        configParsed_lungs = 'psma_absent_lungs'
+                    // console.log('someone passed battle 2 lymph nodes') // temp
+                    if ( configParsed_bones == rows[i].part4[req.body.filter_config.follow_up_config].pt4_psma_bone ) {
+                      // console.log('someone passed battle 3 bone') // temp
+                      var configParsed_brain
+                      if (!req.body.filter_config.l3_follow_up_lesion.psma_checkboxes.brain) {
+                        configParsed_brain = 'psma_absent_brain'
                       } else {
-                        configParsed_lungs = 'psma_present_lungs'
+                        configParsed_brain = 'psma_present_brain'
                       }
-                      if ( configParsed_lungs == rows[i].part4[req.body.filter_config.follow_up_config].pt4_psma_lungs) {
-                        // console.log('someone passed battle 4 lungs') // temp
-                        var configParsed_liver
-                        if (!req.body.filter_config.l3_follow_up_lesion.psma_checkboxes.liver) {
-                          configParsed_liver = 'psma_absent_liver'
+                      if ( configParsed_brain == rows[i].part4[req.body.filter_config.follow_up_config].pt4_psma_brain ) {
+                        // console.log('someone passed battle 3 brain') // temp
+                        var configParsed_lungs
+                        if (!req.body.filter_config.l3_follow_up_lesion.psma_checkboxes.lungs) {
+                          configParsed_lungs = 'psma_absent_lungs'
                         } else {
-                          configParsed_liver = 'psma_present_liver'
+                          configParsed_lungs = 'psma_present_lungs'
                         }
-                        if ( configParsed_liver == rows[i].part4[req.body.filter_config.follow_up_config].pt4_psma_liver ) {
-                          // console.log('someone passed final battle liver') // temp
-                          // winners
-                          follow_up_filtered_psma.push(rows[i])
+                        if ( configParsed_lungs == rows[i].part4[req.body.filter_config.follow_up_config].pt4_psma_lungs) {
+                          // console.log('someone passed battle 4 lungs') // temp
+                          var configParsed_liver
+                          if (!req.body.filter_config.l3_follow_up_lesion.psma_checkboxes.liver) {
+                            configParsed_liver = 'psma_absent_liver'
+                          } else {
+                            configParsed_liver = 'psma_present_liver'
+                          }
+                          if ( configParsed_liver == rows[i].part4[req.body.filter_config.follow_up_config].pt4_psma_liver ) {
+                            // console.log('someone passed final battle liver') // temp
+                            // winners
+                            follow_up_filtered_psma.push(rows[i])
+                          }
                         }
-                      }
-                    }  
+                      }  
+                    }
                   }
                 }
               }
             }
+            rows = follow_up_filtered_psma
           }
-          rows = follow_up_filtered_psma
+          // console.log("rows.length here 1285 is", rows.length); // temp
 
           // console.log(`rows length here is ${rows.length}`) // temp
 
           // repeat for fdg
-          var follow_up_filtered_fdg = [] // will store winners from below
-          for (let i=0; i<rows.length; i++) {
-          // for each patient
-            // if config # > patient follow up length, will yield undefined
-            if (req.body.filter_config.follow_up_config+1 > rows[i].part4.length) {
-              // will yield undefined so dont check
-            } else {
-              // this patient has that # of follow up
-              // access that follow up and compare lesions
-              var configParsed_prostate
-              if (!req.body.filter_config.l3_follow_up_lesion.fdg_checkboxes.prostate) {
-                configParsed_prostate = 'fdg_absent_prostate'
+          if (req.body.filter_config.l3_follow_up_lesion.fdg) {
+            var follow_up_filtered_fdg = [] // will store winners from below
+            for (let i=0; i<rows.length; i++) {
+            // for each patient
+              // if config # > patient follow up length, will yield undefined
+              if (req.body.filter_config.follow_up_config+1 > rows[i].part4.length) {
+                // will yield undefined so dont check
               } else {
-                configParsed_prostate = 'fdg_present_prostate'
-              }
-              // console.log(`rows[i].pt1_patient_code is ${rows[i].pt1_patient_code} and index is ${req.body.filter_config.post_therapy_config}`) // temp
-              if ( configParsed_prostate == rows[i].part4[req.body.filter_config.follow_up_config].pt4_fdg_prostate ) {             
-                // console.log('someone passed battle 1 prostate') // temp
-                var configParsed_lymph_nodes
-                if (!req.body.filter_config.l3_follow_up_lesion.fdg_checkboxes.lymph_nodes) {
-                  configParsed_lymph_nodes = 'fdg_absent_node'
+                // this patient has that # of follow up
+                // access that follow up and compare lesions
+                var configParsed_prostate
+                if (!req.body.filter_config.l3_follow_up_lesion.fdg_checkboxes.prostate) {
+                  configParsed_prostate = 'fdg_absent_prostate'
                 } else {
-                  configParsed_lymph_nodes = 'fdg_present_node'
+                  configParsed_prostate = 'fdg_present_prostate'
                 }
-                // console.log(`comparing ${configParsed_lymph_nodes} with ${rows[i].post_therapy_sessions[req.body.filter_config.post_therapy_config].pt3_lymph_nodes}`)
-                if ( configParsed_lymph_nodes == rows[i].part4[req.body.filter_config.follow_up_config].pt4_fdg_lymphs ) {
-                  var configParsed_bones
-                  if (!req.body.filter_config.l3_follow_up_lesion.fdg_checkboxes.bone) {
-                    configParsed_bones = 'fdg_absent_bone'
+                // console.log(`rows[i].pt1_patient_code is ${rows[i].pt1_patient_code} and index is ${req.body.filter_config.post_therapy_config}`) // temp
+                if ( configParsed_prostate == rows[i].part4[req.body.filter_config.follow_up_config].pt4_fdg_prostate ) {             
+                  // console.log('someone passed battle 1 prostate') // temp
+                  var configParsed_lymph_nodes
+                  if (!req.body.filter_config.l3_follow_up_lesion.fdg_checkboxes.lymph_nodes) {
+                    configParsed_lymph_nodes = 'fdg_absent_node'
                   } else {
-                    configParsed_bones = 'fdg_present_bone'
+                    configParsed_lymph_nodes = 'fdg_present_node'
                   }
-                  // console.log('someone passed battle 2 lymph nodes') // temp
-                  if ( configParsed_bones == rows[i].part4[req.body.filter_config.follow_up_config].pt4_fdg_bone ) {
-                    // console.log('someone passed battle 3 bone') // temp
-                    var configParsed_brain
-                    if (!req.body.filter_config.l3_follow_up_lesion.fdg_checkboxes.brain) {
-                      configParsed_brain = 'fdg_absent_brain'
+                  // console.log(`comparing ${configParsed_lymph_nodes} with ${rows[i].post_therapy_sessions[req.body.filter_config.post_therapy_config].pt3_lymph_nodes}`)
+                  if ( configParsed_lymph_nodes == rows[i].part4[req.body.filter_config.follow_up_config].pt4_fdg_lymphs ) {
+                    var configParsed_bones
+                    if (!req.body.filter_config.l3_follow_up_lesion.fdg_checkboxes.bone) {
+                      configParsed_bones = 'fdg_absent_bone'
                     } else {
-                      configParsed_brain = 'fdg_present_brain'
+                      configParsed_bones = 'fdg_present_bone'
                     }
-                    if ( configParsed_brain == rows[i].part4[req.body.filter_config.follow_up_config].pt4_fdg_brain ) {
-                      // console.log('someone passed battle 3 brain') // temp
-                      var configParsed_lungs
-                      if (!req.body.filter_config.l3_follow_up_lesion.fdg_checkboxes.lungs) {
-                        configParsed_lungs = 'fdg_absent_lungs'
+                    // console.log('someone passed battle 2 lymph nodes') // temp
+                    if ( configParsed_bones == rows[i].part4[req.body.filter_config.follow_up_config].pt4_fdg_bone ) {
+                      // console.log('someone passed battle 3 bone') // temp
+                      var configParsed_brain
+                      if (!req.body.filter_config.l3_follow_up_lesion.fdg_checkboxes.brain) {
+                        configParsed_brain = 'fdg_absent_brain'
                       } else {
-                        configParsed_lungs = 'fdg_present_lungs'
-                      }  
-                      if ( configParsed_lungs == rows[i].part4[req.body.filter_config.follow_up_config].pt4_fdg_lungs) {
-                        // console.log('someone passed battle 4 lungs') // temp
-                        var configParsed_liver
-                        if (!req.body.filter_config.l3_follow_up_lesion.fdg_checkboxes.liver) {
-                          configParsed_liver = 'fdg_absent_liver'
+                        configParsed_brain = 'fdg_present_brain'
+                      }
+                      if ( configParsed_brain == rows[i].part4[req.body.filter_config.follow_up_config].pt4_fdg_brain ) {
+                        // console.log('someone passed battle 3 brain') // temp
+                        var configParsed_lungs
+                        if (!req.body.filter_config.l3_follow_up_lesion.fdg_checkboxes.lungs) {
+                          configParsed_lungs = 'fdg_absent_lungs'
                         } else {
-                          configParsed_liver = 'fdg_present_liver'
-                        }
-                        if ( configParsed_liver == rows[i].part4[req.body.filter_config.follow_up_config].pt4_fdg_liver ) {
-                          // console.log('someone passed final battle liver') // temp
-                          // winners
-                          follow_up_filtered_fdg.push(rows[i])
+                          configParsed_lungs = 'fdg_present_lungs'
+                        }  
+                        if ( configParsed_lungs == rows[i].part4[req.body.filter_config.follow_up_config].pt4_fdg_lungs) {
+                          // console.log('someone passed battle 4 lungs') // temp
+                          var configParsed_liver
+                          if (!req.body.filter_config.l3_follow_up_lesion.fdg_checkboxes.liver) {
+                            configParsed_liver = 'fdg_absent_liver'
+                          } else {
+                            configParsed_liver = 'fdg_present_liver'
+                          }
+                          if ( configParsed_liver == rows[i].part4[req.body.filter_config.follow_up_config].pt4_fdg_liver ) {
+                            // console.log('someone passed final battle liver') // temp
+                            // winners
+                            follow_up_filtered_fdg.push(rows[i])
+                          }
                         }
                       }
                     }
@@ -1347,9 +1357,9 @@ const { v4: uuidv4 } = require('uuid')
                 }
               }
             }
+            rows = follow_up_filtered_fdg   
           }
-
-          rows = follow_up_filtered_fdg         
+          // console.log("rows.length here 1362 is", rows.length); // temp
           // end repeat for fdg
         }
       }
