@@ -508,7 +508,7 @@ export default {
         this.filter_config = this.l2_lesion_screening
       } else if (this.l1dropdown == 'lesions during post therapy'){
         this.filter_config = {
-          post_therapy_config: this.post_therapy_config, // contains which therapy number is checked
+          post_therapy_config: this.post_therapy_config-1, // contains which therapy number is checked
           l2_lesion_post_therapy: this.l2_lesion_post_therapy
         }
       } else if (this.l1dropdown == 'lesions during follow up') {
