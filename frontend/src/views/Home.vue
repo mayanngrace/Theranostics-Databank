@@ -608,7 +608,9 @@ export default {
   <div class="d-flex flex-column p-3" style="flex: 1 1 auto;">
     <button @click="toNew()" v-if="currentDivShown == 'table'" type="button" class="align-self-center btn btn-secondary mb-3" style="background-color: #093405;">Add New Patient</button>
     <!-- Count Div -->
-    <div v-if="currentDivShown == 'table'" class="align-items-center d-flex flex-column partDiv mb-2" style="flex: none;">
+    <!-- <div v-if="currentDivShown == 'table'" class="align-items-center d-flex flex-column partDiv mb-2" style="flex: none; border-radius:30px; border-width: 20px;"> -->
+    <div v-if="currentDivShown == 'table'" id= "filter-table" class="align-items-center d-flex flex-column partDiv mb-2">
+ 
       <h3 class="mt-3" style="font-size: 20px; font-weight: bold;">Count / Filter</h3>
       <!-- Count Div Body -->
       <div class="align-items-center d-flex flex-row" style="gap: 20px;">
@@ -888,8 +890,8 @@ export default {
     </div>
     <!-- end Search -->
     <!-- PATIENTS TABLE -->
-    <div v-if="currentDivShown == 'table'" class="align-items-start d-flex flex-column mb-3" style="background-color: white; border: 3px solid black; flex-grow: 1; width: 100%;">
-      <table class="fixed-table-body table table-bordered table-responsive" style="table-layout: fixed;">
+    <div v-if="currentDivShown == 'table'" id="patient-table" class="align-items-start d-flex flex-column mb-3">
+      <table class="fixed-table-body table table-responsive" style="table-layout: fixed;">
         <thead>
           <tr>
             <th class="align-middle text-center" scope="col">Patient Code</th>
@@ -2323,6 +2325,7 @@ export default {
   </div>
 </div>
 </template>
+
 <style scoped>
 .myButton1 {
   border: 1px solid white;
@@ -2341,4 +2344,25 @@ export default {
   padding: 20px;
   width: 100%;
 }
+#filter-table {
+  flex: none; 
+  border-radius:20px; 
+  border-width: 5px; 
+  margin-left: 30px;
+  margin-right: 20px; 
+  width: calc(100% - 60px); 
+  background-color: rgba(255, 255, 255, 0.818); 
+  border-color: black;
+}
+
+#patient-table {
+  background-color: rgba(255, 255, 255, 0.818);
+  flex-grow: 1;
+  width: calc(100% - 60px); 
+  margin-left: 30px;
+  margin-right: 20px; 
+  border: solid 5px black;
+  border-radius: 20px;
+}
+
 </style>
