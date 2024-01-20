@@ -34,23 +34,6 @@ export default {
   }
 }
 </script>
-<!-- <template>
-<div class="align-items-center d-flex flex-column justify-content-center" style="background-color: lightgray;">
-  <h1 class="mb-5">Logined</h1>
-  <div class="input-group mb-3" style="max-width: 300px;">
-    <span class="input-group-text" style="width: 100px;">Username</span>
-    <input v-model="username" type="text" class="form-control" placeholder="">
-  </div>
-  <div class="input-group mb-4" style="max-width: 300px;">
-    <span class="input-group-text" style="width: 100px;">Password</span>
-    <input v-model="password" type="password" class="form-control" placeholder="">
-  </div>
-  <button @click="doLogin()" type="button" class="btn btn-lg btn-secondary">Login</button>
-</div>
-</template>
-<style>
- background: linear-gradient(to bottom, #441515, #C59A2E, #0B2509);
-</style> -->
 <template>
   <link href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 

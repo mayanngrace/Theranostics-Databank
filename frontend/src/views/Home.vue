@@ -599,38 +599,40 @@ export default {
   }
 }
 </script>
-<template>
-<!-- FILTER TABLE -->
 
-<!-- <div class="d-flex flex-column" style="background-color: lightgray;"> -->
-  <div class="d-flex flex-column" style="background: linear-gradient(to bottom, #441515, #C59A2E, #0B2509);"> 
+<template>
+  <head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+  </head>
+<!-- FILTER TABLE -->
+<body>
+  <div class="d-flex flex-column"> 
   <Header />
-  <div class="d-flex flex-column p-3" style="flex: 1 1 auto;">
-    <button @click="toNew()" v-if="currentDivShown == 'table'" type="button" class="align-self-center btn btn-secondary mb-3" style="background-color: #093405;">Add New Patient</button>
+  <div class="d-flex flex-column p-3" style="flex: 1 1 auto; margin-left: 30px; margin-right:30px; width: calc(100% - 60px);">
     <!-- Count Div -->
-    <!-- <div v-if="currentDivShown == 'table'" class="align-items-center d-flex flex-column partDiv mb-2" style="flex: none; border-radius:30px; border-width: 20px;"> -->
     <div v-if="currentDivShown == 'table'" id= "filter-table" class="align-items-center d-flex flex-column partDiv mb-2">
- 
-      <h3 class="mt-3" style="font-size: 20px; font-weight: bold;">Count / Filter</h3>
+      <h3 class="align-self-start mt-3" style="font-size: 18px; text-align:left; font-weight: bold;">Filter by:</h3>
       <!-- Count Div Body -->
       <div class="align-items-center d-flex flex-row" style="gap: 20px;">
         <!-- L1 -->
         <div>
-          <select v-model="l1dropdown" class="align-self-start" style="font-size: 20px; height: 25px;">
-            <option value="">--Choose one--</option>
+          <select v-model="l1dropdown" class="align-self-start" style="font-size: 16px; height: 20px;">
+            <option value="">--Select All--</option>
             <option value="assessment">Assessment</option>
-            <option value="bone metastasis">Bone metastatis</option>
-            <option value="lesions during screening">Lesions during screening</option>
-            <option value="has side effects during therapy">Has side effects during therapy</option>
-            <option value="lesions during post therapy">Lesions during post therapy</option>
-            <option value="lesions during follow up">Lesions during follow up</option>
+            <option value="bone metastasis">Bone Metastatis</option>
+            <option value="lesions during screening">Lesions during Screening</option>
+            <option value="has side effects during therapy">Has Side Effects during Therapy</option>
+            <option value="lesions during post therapy">Lesions during Post Therapy</option>
+            <option value="lesions during follow up">Lesions during Follow Up</option>
           </select>
         </div>
         <!-- end L1 -->
         <!-- L2 assessment -->
         <div>
-          <select v-model="l2_assessment" v-if="l1dropdown == 'assessment'" class="align-self-start" style="font-size: 20px; height: 25px;">
-            <option value="">--Choose One--</option>
+          <select v-model="l2_assessment" v-if="l1dropdown == 'assessment'" class="align-self-start" style="font-size: 16px; height: 20px;">
+            <option value="">--Select Option--</option>
             <option value="low risk">Low Risk</option>
             <option value="intermediate risk">Intermediate Risk</option>
             <option value="high risk">High Risk</option>
@@ -639,8 +641,8 @@ export default {
         <!-- end L2 assessment -->
         <!-- L2 bone metastatis -->
         <div>
-          <select v-model="l2_assessment_bone" v-if="l1dropdown == 'bone metastasis'" class="align-self-start" style="font-size: 20px; height: 25px;">
-            <option value="">--Choose One--</option>
+          <select v-model="l2_assessment_bone" v-if="l1dropdown == 'bone metastasis'" class="align-self-start" style="font-size: 16px; height: 20px;">
+            <option value="">--Select Option--</option>
             <option value="no metastasis">No Metastatis</option>
             <option value="with metastasis">With Metastatis</option>
           </select>
@@ -651,10 +653,10 @@ export default {
           <!-- PSMA Header + Ga-68 dropdown -->
           <div class="align-items-center d-flex flex-row">
             <input v-model="l2_lesion_screening.psma" class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input" checked>
-            <span style="margin-left:5px; font-size: 20px;">PSMA</span>
+            <span style="margin-left:5px; font-size: 16px;">PSMA</span>
             <div class="ms-3" v-if="l2_lesion_screening.psma">
-              <select v-model="l2_lesion_screening.psma_dropdown" class="align-self-start" style="font-size: 20px; height: 25px;">
-                <option value="">--Choose One--</option>
+              <select v-model="l2_lesion_screening.psma_dropdown" class="align-self-start" style="font-size: 16px; height: 20px;">
+                <option value="">--Select Option--</option>
                 <option value="ga-68">GA-68</option>
                 <option value="f-18">F-18</option>
               </select>
@@ -666,33 +668,33 @@ export default {
             <div class="align-items-start d-flex flex-column justify-content-center">
               <div class="align-items-center d-flex flex-row">
                 <input v-model="l2_lesion_screening.psma_checkboxes.prostate" class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">
-                <span style="margin-left:5px; font-size: 20px;">Prostate</span>
+                <span style="margin-left:5px; font-size: 16px;">Prostate</span>
               </div>
               <div class="align-items-center d-flex flex-row">
                 <input v-model="l2_lesion_screening.psma_checkboxes.lymph_nodes" class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">
-                <span style="margin-left:5px; font-size: 20px;">Lymph Nodes</span>
+                <span style="margin-left:5px; font-size: 16px;">Lymph Nodes</span>
               </div>
               <div class="align-items-center d-flex flex-row">
                 <input v-model="l2_lesion_screening.psma_checkboxes.bone" class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">
-                <span style="margin-left:5px; font-size: 20px;">Bone</span>
+                <span style="margin-left:5px; font-size: 16px;">Bone</span>
               </div>
               <div class="align-items-center d-flex flex-row justify-content-center">
                 <input v-model="l2_lesion_screening.psma_checkboxes.other" class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">
-                <span style="margin-left:5px; font-size: 20px;">Other</span>
+                <span style="margin-left:5px; font-size: 16px;">Other</span>
               </div>
             </div>
             <div class="align-items-start d-flex flex-column justify-content-center">
               <div class="align-items-center d-flex flex-row">
                 <input v-model="l2_lesion_screening.psma_checkboxes.brain" class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">
-                <span style="margin-left:5px; font-size: 20px;">Brain</span>
+                <span style="margin-left:5px; font-size: 16px;">Brain</span>
               </div>
               <div class="align-items-center d-flex flex-row justify-content-center">
                 <input v-model="l2_lesion_screening.psma_checkboxes.lungs" class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">
-                <span style="margin-left:5px; font-size: 20px;">Lungs</span>
+                <span style="margin-left:5px; font-size: 16px;">Lungs</span>
               </div>
               <div class="align-items-center d-flex flex-row justify-content-center">
                 <input v-model="l2_lesion_screening.psma_checkboxes.liver" class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">
-                <span style="margin-left:5px; font-size: 20px;">Liver</span>
+                <span style="margin-left:5px; font-size: 16px;">Liver</span>
               </div>
             </div>
           </div>
@@ -702,7 +704,7 @@ export default {
           <!-- FDG Header -->
           <div class="align-items-center d-flex flex-row justify-content-center">
             <input v-model="l2_lesion_screening.fdg" class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input" checked>
-            <span style="margin-left:5px; font-size: 20px;">FDG PET/C</span>
+            <span style="margin-left:5px; font-size: 16px;">FDG PET/C</span>
           </div>
           <!-- end FDG Header -->
           <!-- FDG Checkboxes -->
@@ -710,33 +712,33 @@ export default {
             <div class="align-items-start d-flex flex-column justify-content-center">
               <div class="align-items-center d-flex flex-row">
                 <input v-model="l2_lesion_screening.fdg_checkboxes.prostate" class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">
-                <span style="margin-left:5px; font-size: 20px;">Prostate</span>
+                <span style="margin-left:5px; font-size: 16px;">Prostate</span>
               </div>
               <div class="align-items-center d-flex flex-row">
                 <input v-model="l2_lesion_screening.fdg_checkboxes.lymph_nodes" class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">
-                <span style="margin-left:5px; font-size: 20px;">Lymph Nodes</span>
+                <span style="margin-left:5px; font-size: 16px;">Lymph Nodes</span>
               </div>
               <div class="align-items-center d-flex flex-row">
                 <input v-model="l2_lesion_screening.fdg_checkboxes.bone" class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">
-                <span style="margin-left:5px; font-size: 20px;">Bone</span>
+                <span style="margin-left:5px; font-size: 16px;">Bone</span>
               </div>
               <div class="align-items-center d-flex flex-row">
                 <input v-model="l2_lesion_screening.fdg_checkboxes.other" class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">
-                <span style="margin-left:5px; font-size: 20px;">Other</span>
+                <span style="margin-left:5px; font-size: 16px;">Other</span>
               </div>
             </div>
             <div class="align-items-start d-flex flex-column justify-content-center">
               <div class="align-items-center d-flex flex-row">
                 <input v-model="l2_lesion_screening.fdg_checkboxes.brain" class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">
-                <span style="margin-left:5px; font-size: 20px;">Brain</span>
+                <span style="margin-left:5px; font-size: 16px;">Brain</span>
               </div>
               <div class="align-items-center d-flex flex-row justify-content-center">
                 <input v-model="l2_lesion_screening.fdg_checkboxes.lungs" class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">
-                <span style="margin-left:5px; font-size: 20px;">Lungs</span>
+                <span style="margin-left:5px; font-size: 16px;">Lungs</span>
               </div>
               <div class="align-items-center d-flex flex-row justify-content-center">
                 <input v-model="l2_lesion_screening.fdg_checkboxes.liver" class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">
-                <span style="margin-left:5px; font-size: 20px;">Liver</span>
+                <span style="margin-left:5px; font-size: 16px;">Liver</span>
               </div>
             </div>
           </div>
@@ -754,25 +756,25 @@ export default {
           <div class="align-items-start d-flex flex-column justify-content-center">
             <div class="align-items-center d-flex flex-row">
               <input v-model="l2_lesion_post_therapy.prostate" class="form-check-input mt-0" type="checkbox" aria-label="Checkbox for following text input">
-              <span style="margin-left:5px; font-size: 20px;">Prostate</span>
+              <span style="margin-left:5px; font-size: 16px;">Prostate</span>
             </div>
             <div class="align-items-center d-flex flex-row">
               <input v-model="l2_lesion_post_therapy.lymph_nodes" class="form-check-input mt-0" type="checkbox" aria-label="Checkbox for following text input">
-              <span style="margin-left:5px; font-size: 20px;">Lymph Nodes</span>
+              <span style="margin-left:5px; font-size: 16px;">Lymph Nodes</span>
             </div>
             <div class="align-items-center d-flex flex-row">
               <input v-model="l2_lesion_post_therapy.bone" class="form-check-input mt-0" type="checkbox" aria-label="Checkbox for following text input">
-              <span style="margin-left:5px; font-size: 20px;">Bone</span>
+              <span style="margin-left:5px; font-size: 16px;">Bone</span>
             </div>
           </div>
           <div class="align-items-start d-flex flex-column justify-content-center">
             <div class="align-items-center d-flex flex-row justify-content-center">
               <input v-model="l2_lesion_post_therapy.lungs" class="form-check-input mt-0" type="checkbox" aria-label="Checkbox for following text input">
-              <span style="margin-left:5px; font-size: 20px;">Lungs</span>
+              <span style="margin-left:5px; font-size: 16px;">Lungs</span>
             </div>
             <div class="align-items-center d-flex flex-row justify-content-center">
               <input v-model="l2_lesion_post_therapy.liver" class="form-check-input mt-0" type="checkbox" aria-label="Checkbox for following text input">
-              <span style="margin-left:5px; font-size: 20px;">Liver</span>
+              <span style="margin-left:5px; font-size: 16px;">Liver</span>
             </div>
           </div>
         </div>
@@ -790,10 +792,10 @@ export default {
           <!-- PSMA Header + Ga-68 dropdown -->
           <div class="align-items-center d-flex flex-row">
             <input v-model="l3_follow_up_lesion.psma" class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">
-            <span style="margin-left:5px; font-size: 20px;">PSMA</span>
+            <span style="margin-left:5px; font-size: 16px;">PSMA</span>
             <div class="ms-3" v-if="l3_follow_up_lesion.psma">
-              <select v-model="l3_follow_up_lesion.psma_dropdown" class="align-self-start" style="font-size: 20px; height: 25px;">
-                <option value="">--Choose One--</option>
+              <select v-model="l3_follow_up_lesion.psma_dropdown" class="align-self-start" style="font-size: 16px; height: 20px;">
+                <option value="">--Select Option--</option>
                 <option value="ga-68">GA-68</option>
                 <option value="f-18">F-18</option>
               </select>
@@ -805,29 +807,29 @@ export default {
             <div class="align-items-start d-flex flex-column justify-content-center">
               <div class="align-items-center d-flex flex-row">
                 <input v-model="l3_follow_up_lesion.psma_checkboxes.prostate" class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">
-                <span style="margin-left:5px; font-size: 20px;">Prostate</span>
+                <span style="margin-left:5px; font-size: 16px;">Prostate</span>
               </div>
               <div class="align-items-center d-flex flex-row">
                 <input v-model="l3_follow_up_lesion.psma_checkboxes.lymph_nodes" class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">
-                <span style="margin-left:5px; font-size: 20px;">Lymph Nodes</span>
+                <span style="margin-left:5px; font-size: 16px;">Lymph Nodes</span>
               </div>
               <div class="align-items-center d-flex flex-row">
                 <input v-model="l3_follow_up_lesion.psma_checkboxes.bone" class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">
-                <span style="margin-left:5px; font-size: 20px;">Bone</span>
+                <span style="margin-left:5px; font-size: 16px;">Bone</span>
               </div>
             </div>
             <div class="align-items-start d-flex flex-column justify-content-center">
               <div class="align-items-center d-flex flex-row">
                 <input v-model="l3_follow_up_lesion.psma_checkboxes.brain" class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">
-                <span style="margin-left:5px; font-size: 20px;">Brain</span>
+                <span style="margin-left:5px; font-size: 16px;">Brain</span>
               </div>
               <div class="align-items-center d-flex flex-row justify-content-center">
                 <input v-model="l3_follow_up_lesion.psma_checkboxes.lungs" class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">
-                <span style="margin-left:5px; font-size: 20px;">Lungs</span>
+                <span style="margin-left:5px; font-size: 16px;">Lungs</span>
               </div>
               <div class="align-items-center d-flex flex-row justify-content-center">
                 <input v-model="l3_follow_up_lesion.psma_checkboxes.liver" class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">
-                <span style="margin-left:5px; font-size: 20px;">Liver</span>
+                <span style="margin-left:5px; font-size: 16px;">Liver</span>
               </div>
             </div>
           </div>
@@ -837,7 +839,7 @@ export default {
           <!-- FDG Header -->
           <div class="align-items-center d-flex flex-row justify-content-center">
             <input v-model="l3_follow_up_lesion.fdg" class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">
-            <span style="margin-left:5px; font-size: 20px;">FDG PET/C</span>
+            <span style="margin-left:5px; font-size: 16px;">FDG PET/C</span>
           </div>
           <!-- end FDG Header -->
           <!-- FDG Checkboxes -->
@@ -845,29 +847,29 @@ export default {
             <div class="align-items-start d-flex flex-column justify-content-center">
               <div class="align-items-center d-flex flex-row">
                 <input v-model="l3_follow_up_lesion.fdg_checkboxes.prostate" class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">
-                <span style="margin-left:5px; font-size: 20px;">Prostate</span>
+                <span style="margin-left:5px; font-size: 16px;">Prostate</span>
               </div>
               <div class="align-items-center d-flex flex-row">
                 <input v-model="l3_follow_up_lesion.fdg_checkboxes.lymph_nodes" class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">
-                <span style="margin-left:5px; font-size: 20px;">Lymph Nodes</span>
+                <span style="margin-left:5px; font-size: 16px;">Lymph Nodes</span>
               </div>
               <div class="align-items-center d-flex flex-row">
                 <input v-model="l3_follow_up_lesion.fdg_checkboxes.bone" class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">
-                <span style="margin-left:5px; font-size: 20px;">Bone</span>
+                <span style="margin-left:5px; font-size: 16px;">Bone</span>
               </div>
             </div>
             <div class="align-items-start d-flex flex-column justify-content-center">
               <div class="align-items-center d-flex flex-row">
                 <input v-model="l3_follow_up_lesion.fdg_checkboxes.brain" class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">
-                <span style="margin-left:5px; font-size: 20px;">Brain</span>
+                <span style="margin-left:5px; font-size: 16px;">Brain</span>
               </div>
               <div class="align-items-center d-flex flex-row justify-content-center">
                 <input v-model="l3_follow_up_lesion.fdg_checkboxes.lungs" class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">
-                <span style="margin-left:5px; font-size: 20px;">Lungs</span>
+                <span style="margin-left:5px; font-size: 16px;">Lungs</span>
               </div>
               <div class="align-items-center d-flex flex-row justify-content-center">
                 <input v-model="l3_follow_up_lesion.fdg_checkboxes.liver" class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">
-                <span style="margin-left:5px; font-size: 20px;">Liver</span>
+                <span style="margin-left:5px; font-size: 16px;">Liver</span>
               </div>
             </div>
           </div>
@@ -877,22 +879,40 @@ export default {
       </div>
       <!-- end Count Div Body -->
       <!-- Apply Button -->
-      <button @click="readPatients()" v-if="currentDivShown == 'table'" type="button" class="align-self-center btn btn-secondary mt-2" style="background-color: #093405;">Apply</button>
+      <button @click="readPatients()" v-if="currentDivShown == 'table'" type="button" class="myButton1">Enter</button>
       <!-- end Apply Button -->
-      <h3 class="align-self-center mt-3" style="font-size: 24px; font-weight: bold;">TOTAL: <span style="color: red">{{ patients.length }}</span></h3>
     </div>
     <!-- end Count Div -->
+    <div v-if="currentDivShown == 'table'">
+      <h3 class="mt-3" style="font-size: 24px; color:black; font-weight: bold; text-align:center ">PATIENT LIST</h3>
+      <h3 class="mt-3" style="font-size: 20px; color:black; font-weight: bold; text-align:center">Count: <span style="text-decoration: underline; color: rgb(98, 17, 17)">{{ patients.length }}</span></h3>
+      <hr>
+    </div>
     <!-- Search -->
-    <div v-if="currentDivShown == 'table'" class="align-self-end d-flex flex-row mb-2" style="gap: 5px;">
+    <!-- <div v-if="currentDivShown == 'table'" class="align-self-end d-flex flex-row mb-2" style="gap: 5px;">
       <input v-model="searchString" type="text" class="form-control form-control-sm" placeholder="Search by first name or last name" style="flex: none; width: 300px;">
       <button @click="readPatients()" type="button" class="btn btn-sm btn-secondary">Search</button>
       <button v-if="searchString" @click="clearSearch()" type="button" class="btn btn-sm btn-secondary">Clear Search</button>
+    </div> -->
+
+    <div v-if="currentDivShown == 'table'" id="search-bar" class="d-flex flex-row mb-2">
+    <input v-model="searchString" type="text" class="form-control form-control-sm" placeholder="Search by first name or last name..." style="flex-grow: 1; width: auto;">
+    <button @click="readPatients()" type="button" class="btn btn-sm btn-secondary" style="position: absolute; right: 0; z-index: 1; background: black; min-height:40px; min-width:40px;">
+        <i class="fas fa-search"></i>
+    </button>
+    <button v-if="searchString" @click="clearSearch()" type="button" class="btn btn-sm btn-secondary" style="position: absolute; right: 40px; z-index: 1; background: black; min-height:40px; min-width:40px;">
+        <i class="fas fa-times"></i>
+    </button>
     </div>
     <!-- end Search -->
+    <div style="display: flex; justify-content: flex-end;">
+      <button @click="toNew()" v-if="currentDivShown == 'table'" type="button" class="myButton2" style=" margin-top: 15px;"><i class="fas fa-plus"></i> New Patient</button>
+    </div>
+
     <!-- PATIENTS TABLE -->
-    <div v-if="currentDivShown == 'table'" id="patient-table" class="align-items-start d-flex flex-column mb-3">
-      <table class="fixed-table-body table table-responsive" style="table-layout: fixed;">
-        <thead>
+    <div v-if="currentDivShown == 'table'" id="patient-table" class="align-items-start d-flex flex-column mb-3" style="margin-top:15px;">
+      <table class="fixed-table-body table table-striped table-responsive" style="table-layout: fixed; padding:2px;">
+        <thead style="background-color:#0B2509; color:white; font-size:16px; margin-top: 30px;">
           <tr>
             <th class="align-middle text-center" scope="col">Patient Code</th>
             <th class="align-middle text-center" scope="col">First Name</th>
@@ -913,14 +933,14 @@ export default {
             <td>
               <!-- View Records Button -->
               <div @click="viewPatient(patients[index])" class="align-items-center d-flex flex-row hoverTransform justify-content-center m-auto">
-                <span class="myButton1" style="background-color: #7F6000;">View Records</span>
+                <span class="myButton1">View</span>
               </div>
               <!-- end View Records Button -->
             </td>
             <td>
               <!-- Add Follow Up Record -->
               <div @click="addFollowUpRecord(patients[index])" class="align-items-center d-flex flex-row hoverTransform justify-content-center m-auto">
-                <span class="myButton1" style="background-color: #093405;">Add Follow Up</span>
+                <span class="myButton1">Add</span>
               </div>
               <!-- end Add Follow Up Record -->
             </td>
@@ -2324,16 +2344,78 @@ export default {
     <!-- end Add Follow Up Div -->
   </div>
 </div>
+</body>
 </template>
 
 <style scoped>
+
+* {
+  font-family: 'Roboto';
+}
+
+select {
+  font-family: 'Roboto';
+  font-size: 18px;
+}
+
+
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to bottom, #441515, #C59A2E, #0B2509);
+  min-height: 100vh;
+  font-family:'Roboto';
+  }
+
 .myButton1 {
-  border: 1px solid white;
-  border-radius: 5px; color:
-  white; cursor: pointer;
+  /* border: 1px solid white;
+  border-radius: 5px; 
+  color:white; 
+  cursor: pointer;
   font-size: 14px;
   padding: 5px 10px;
+  background-color: black; */
+
+  padding: 9px;
+  background-color: black;
+  border-width: 1px;
+  color: #ffffff;
+  border-radius: 20px; /* Rounded corners for buttons */
+  font-size: 14px; /* Uniform font size for buttons */
+  margin: 2px;
+  width: 120px;
+  text-align: center; /* Center text horizontally */
+  line-height: normal; /* Adjust line height for vertical centering */
 }
+.myButton1:hover {
+  background-color:  #0B2509;
+  border-color:  #0B2509;
+  color: white;
+  transform: scale(1.1); 
+}
+
+.myButton2 {
+  padding: 10px;
+  background-color:  #0B2509;
+  border-width: 1px;
+  border: solid 1px white;
+  color: #ffffff;
+  border-radius: 20px; /* Rounded corners for buttons */
+  font-size: 14px; /* Uniform font size for buttons */
+  margin: 2px;
+  width: 150px;
+  text-align: center; /* Center text horizontally */
+  line-height: normal; /* Adjust line height for vertical centering */
+  font-size: 16px;
+}
+
+.myButton2:hover {
+  background-color:  #0B2509;
+  border-color:  #0B2509;
+  color: white;
+  transform: scale(1.1); 
+}
+
 .partDiv {
   background-color: white;
   border: 1px solid black;
@@ -2348,21 +2430,21 @@ export default {
   flex: none; 
   border-radius:20px; 
   border-width: 5px; 
-  margin-left: 30px;
-  margin-right: 20px; 
-  width: calc(100% - 60px); 
   background-color: rgba(255, 255, 255, 0.818); 
-  border-color: black;
+  border: solid 3px #0B2509; 
 }
 
 #patient-table {
   background-color: rgba(255, 255, 255, 0.818);
   flex-grow: 1;
-  width: calc(100% - 60px); 
-  margin-left: 30px;
-  margin-right: 20px; 
-  border: solid 5px black;
-  border-radius: 20px;
+  border-radius: 10px; 
+  border: solid 3px #0B2509;
+}
+
+#search-bar {
+  position: relative; 
+  gap: 5px; 
+  min-height: 40px;
 }
 
 </style>
