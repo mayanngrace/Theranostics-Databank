@@ -600,7 +600,10 @@ export default {
 }
 </script>
 <template>
-<div class="d-flex flex-column" style="background-color: lightgray;">
+<!-- FILTER TABLE -->
+
+<!-- <div class="d-flex flex-column" style="background-color: lightgray;"> -->
+  <div class="d-flex flex-column" style="background: linear-gradient(to bottom, #441515, #C59A2E, #0B2509);"> 
   <Header />
   <div class="d-flex flex-column p-3" style="flex: 1 1 auto;">
     <button @click="toNew()" v-if="currentDivShown == 'table'" type="button" class="align-self-center btn btn-secondary mb-3" style="background-color: #093405;">Add New Patient</button>
@@ -884,8 +887,8 @@ export default {
       <button v-if="searchString" @click="clearSearch()" type="button" class="btn btn-sm btn-secondary">Clear Search</button>
     </div>
     <!-- end Search -->
-    <!-- Table -->
-    <div v-if="currentDivShown == 'table'" class="align-items-start d-flex flex-column mb-3" style="background-color: white; border: 2px solid black; flex-grow: 1; width: 100%;">
+    <!-- PATIENTS TABLE -->
+    <div v-if="currentDivShown == 'table'" class="align-items-start d-flex flex-column mb-3" style="background-color: white; border: 3px solid black; flex-grow: 1; width: 100%;">
       <table class="fixed-table-body table table-bordered table-responsive" style="table-layout: fixed;">
         <thead>
           <tr>

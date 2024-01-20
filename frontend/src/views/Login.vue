@@ -61,7 +61,7 @@ export default {
     </div>
     <div class="login-card">
       <div style="text-align:center;margin-bottom:30px">
-      <img src="../assets/log.png" alt="log" class="log">
+      <img src="../assets/tblogo.png" alt="log" class="log">
       </div>
       <h4 class="login-title">UP Theranostics Databank<br></h4>
       <div class="input-group login-input">
@@ -108,8 +108,8 @@ body {
 }
 
 .log{
-  width:80px;
-  height:80px;
+  width:135px;
+  height:120px;
   text-align:center;
 }
 .login-card {
@@ -148,7 +148,7 @@ body {
 
 .login-btn {
   width: 100%;
-  background-color: #0B2509; /* Standard blue for buttons */
+  background-color: #0B2509; 
   color: white;
   border: none;
   padding: 0.75rem 0;

@@ -6,7 +6,7 @@ export default {
 }
 </script>
 <template>
-<div class="d-flex flex-column" style="background-color: lightgray;">
+<div class="d-flex flex-column" style="background: linear-gradient(to bottom, #441515, #C59A2E, #0B2509);">
   <Header />
   <div class="align-items-center py-3" style="flex: 1 1 auto; padding-left: 300px; padding-right: 300px;">
     <div class="alert alert-success text-center" role="alert">

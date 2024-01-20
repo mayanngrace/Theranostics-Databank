@@ -36,15 +36,18 @@ export default {
 
   <body>
     <div id="app">
-      <a @click="toggleNav" class="toggle-button"> <i class="fas fa-bars"></i></a>
       <div class="watermark">
-        <i class="fas fa-anchor"></i> <span style="text-align:right">UP TDB</span>
+        <span style="text-align: left;">
+          <a @click="toggleNav" class="toggle-button"> <i class="fas fa-bars"></i></a>
+        </span>
+          <span style="margin-right: 10px; margin-top: 5px; font-family: 'Open Sans';"> UP TDB</span>
+          <img src="../assets/tblogo.png" alt="log" class="log">
       </div>
 
       <aside :class="{ 'nav-open': navVisible }" class="nav">
         <nav class="nav-menu">
-          <router-link to="/" class="nav-item"><i class="fas fa-tachometer-alt">&nbsp&nbsp</i>Home</router-link>
-          <router-link to="/home" @click="toHome()" class="nav-item"><i class="fas fa-file-upload">&nbsp&nbsp</i>Dashboard</router-link>
+          <router-link to="/" class="nav-item"><i class="fas fa-tachometer-alt">&nbsp&nbsp</i>Dashboard</router-link>
+          <router-link to="/home" @click="toHome()" class="nav-item"><i class="fas fa-file-upload">&nbsp&nbsp</i>Patient Records</router-link>
           <router-link to="/about" class="nav-item"><i class="fas fa-envelope">&nbsp&nbsp</i>About</router-link>
           <a @click="doLogout()" href="#" class="nav-item"><i class="fas fa-user">&nbsp&nbsp</i>Log Out</a>
         </nav>
@@ -75,17 +78,22 @@ body {
 .watermark {
   color: white;
   font-size: 22px;
-  padding: 10px 15px;
+  padding: 1px 15px;
   font-weight: bold;
   font-family: "Open Sans";
-  margin-top: 15px;
-  margin-right: 15px;
+  margin-top: 8px;
+  margin-right: 10px;
   text-align: right;
+}
+
+.log{
+  width:75px;
+  height:65px;
+  text-align:right;
 }
 
 /* Button to toggle the navigation */
 .toggle-button {
-  position: fixed;
   top: 15px;
   left: 15px;
   z-index: 3;
@@ -96,6 +104,9 @@ body {
   cursor: pointer;
   font-size: 22px;
   transition: background-color 0.3s;
+  text-align:left;
+  margin-right: 1000px;
+  position:fixed;
 }
 
 .toggle-button:hover,
