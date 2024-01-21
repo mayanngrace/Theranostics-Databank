@@ -702,15 +702,15 @@ const { v4: uuidv4 } = require('uuid')
           req.body.post_therapy_sessions[i].pt3_date_post_therapy,
           req.body.post_therapy_sessions[i].pt3_hour,
           req.body.post_therapy_sessions[i].pt3_spectct,
-          req.body.post_therapy_sessions[i].pt3_prostate,
+          req.body.post_therapy_sessions[i].pt3_prostate == '1' ? '1' : null,
           req.body.post_therapy_sessions[i].pt3_prostate_text,
-          req.body.post_therapy_sessions[i].pt3_lymph_nodes,
+          req.body.post_therapy_sessions[i].pt3_lymph_nodes == '1' ? '1' : null,
           req.body.post_therapy_sessions[i].pt3_lymph_nodes_text,
-          req.body.post_therapy_sessions[i].pt3_bones,
+          req.body.post_therapy_sessions[i].pt3_bones == '1' ? '1' : null,
           req.body.post_therapy_sessions[i].pt3_bones_text,
-          req.body.post_therapy_sessions[i].pt3_lungs,
+          req.body.post_therapy_sessions[i].pt3_lungs == '1' ? '1' : null,
           req.body.post_therapy_sessions[i].pt3_lungs_text,
-          req.body.post_therapy_sessions[i].pt3_liver,
+          req.body.post_therapy_sessions[i].pt3_liver == '1' ? '1' : null,
           req.body.post_therapy_sessions[i].pt3_liver_text,
           req.body.post_therapy_sessions[i].pt3_sg,
           req.body.post_therapy_sessions[i].pt3_rk,
@@ -1160,7 +1160,7 @@ const { v4: uuidv4 } = require('uuid')
                         configParsed_liver = '1'
                       }
                       if ( configParsed_liver == rows[i].post_therapy_sessions[req.body.filter_config.post_therapy_config].pt3_liver ) {
-                        // console.log('someone passed final battle liver') // temp
+                        // console.log('someone passed final battle liver', rows[i]) // temp
                         // winners
                         post_therapy_filtered.push(rows[i])
                       }

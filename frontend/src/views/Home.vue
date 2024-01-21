@@ -1167,8 +1167,8 @@ export default {
                 <div class="input-group input-group-sm">
                   <span class="input-group-text" style="color: red; font-weight: bold;">iii. Bone Scan</span>
                   <select v-model="view_patient.part1.pt1_bone_scan" :disabled="editDisabled" name="pt1_bone_scan" style="font-size: 14px;">
-                    <option value="no mestastasis">No Metastasis</option>
-                    <option value="with_metastasis">With Metastasis</option>
+                    <option value="no metastasis">No Metastasis</option>
+                    <option value="with metastasis">With Metastasis</option>
                   </select>
                 </div>
                 <div v-if="view_patient.part1.pt1_bone_scan == 'with_metastasis'" class="input-group input-group-sm">
@@ -1279,7 +1279,7 @@ export default {
                     <div class="input-group input-group-sm">
                       <span class="input-group-text">g. Others</span>
                       <select v-model="view_patient.part1.pt1_psma_others" :disabled="editDisabled" name="pt1_psma_others" style="font-size: 14px;">
-                        <option value="psma_absent_other">Absent</option>
+                        <option value="psma_absent_others">Absent</option>
                         <option value="psma_present_others">Present</option>
                       </select>
                     </div>
@@ -1313,7 +1313,7 @@ export default {
                   <div class="input-group input-group-sm">
                   <span class="input-group-text">b. Lymph Nodes</span>
                   <select v-model="view_patient.part1.pt1_fdg_lymphs" :disabled="editDisabled" name="pt1_fdg_lymphs" style="font-size: 14px;">
-                    <option value="absent_node">Absent</option>
+                    <option value="fdg_absent_node">Absent</option>
                     <option value="fdg_present_node">Present</option>
                   </select>
                   </div>
@@ -1328,7 +1328,7 @@ export default {
                   <div class="input-group input-group-sm">
                   <span class="input-group-text">c. Bone</span>
                   <select v-model="view_patient.part1.pt1_fdg_bone" :disabled="editDisabled" name="fdg_bone" style="font-size: 14px;">
-                    <option value="absent_bone">Absent</option>
+                    <option value="fdg_absent_bone">Absent</option>
                     <option value="fdg_present_bone">Present</option>
                   </select>
                   </div>
@@ -1343,7 +1343,7 @@ export default {
                   <div class="input-group input-group-sm">
                   <span class="input-group-text">d. Brain</span>
                   <select v-model="view_patient.part1.pt1_fdg_brain" :disabled="editDisabled" name="fdg_brain" style="font-size: 14px;">
-                    <option value="absent_brain">Absent</option>
+                    <option value="fdg_absent_brain">Absent</option>
                     <option value="fdg_present_brain">Present</option>
                   </select>
                   </div>
@@ -1358,7 +1358,7 @@ export default {
                   <div class="input-group input-group-sm">
                   <span class="input-group-text">e. Lungs</span>
                   <select v-model="view_patient.part1.pt1_fdg_lungs" :disabled="editDisabled" name="fdg_lungs" style="font-size: 14px;">
-                    <option value="absent_lungs">Absent</option>
+                    <option value="fdg_absent_lungs">Absent</option>
                     <option value="fdg_present_lungs">Present</option>
                   </select>
                   </div>
@@ -1373,7 +1373,7 @@ export default {
                   <div class="input-group input-group-sm">
                   <span class="input-group-text">f. Liver</span>
                   <select v-model="view_patient.part1.pt1_fdg_liver" :disabled="editDisabled" name="fdg_liver" style="font-size: 14px;">
-                    <option value="absent_liver">Absent</option>
+                    <option value="fdg_absent_liver">Absent</option>
                     <option value="fdg_present_liver">Present</option>
                   </select>
                   </div>
@@ -1388,7 +1388,7 @@ export default {
                   <div class="input-group input-group-sm">
                   <span class="input-group-text">g. Others</span>
                   <select v-model="view_patient.part1.pt1_fdg_others" :disabled="editDisabled" name="fdg_others" style="font-size: 14px;">
-                    <option value="absent_other">Absent</option>
+                    <option value="fdg_absent_others">Absent</option>
                     <option value="fdg_present_others">Present</option>
                   </select>
                   </div>
@@ -1404,9 +1404,9 @@ export default {
                 <div class="input-group input-group-sm">
                   <span class="input-group-text" style="font-size: 16px; color: red; font-weight: bold;">c. Assessment</span>
                   <select v-model="view_patient.part1.pt1_assessment" :disabled="editDisabled" name="part1_new_assessment" style="font-size: 14px; width: 150px;">
-                    <option value="low_risk">Low Risk</option>
-                    <option value="inter_risk">Intermediate Risk</option>
-                    <option value="high_risk">High Risk</option>
+                    <option value="low risk">Low Risk</option>
+                    <option value="intermediate risk">Intermediate Risk</option>
+                    <option value="high risk">High Risk</option>
                   </select>
                 </div>
                 <div class="input-group mb-3">
@@ -1759,8 +1759,8 @@ export default {
           <div class="input-group input-group-sm">
             <span class="input-group-text">iii. Bone Scan</span>
             <select v-model="patient_view_follow_up.pt4_bone_scan" :disabled="editDisabled" name="bone_scan" style="font-size: 14px;">
-              <option value="no_mestastasis">No Metastasis</option>
-              <option value="with_metastasis">With Metastasis</option>
+              <option value="no metastasis">No Metastasis</option>
+              <option value="with metastasis">With Metastasis</option>
             </select>
           </div>
           <div v-if="patient_view_follow_up.pt4_bone_scan == 'with_metastasis'" :disabled="editDisabled" class="input-group input-group-sm">
@@ -1780,12 +1780,12 @@ export default {
             <div class="d-flex flex-column" style="gap: 5px;">
               <div class="input-group input-group-sm">
                 <span class="input-group-text">a. Prostate</span>
-                <select v-model="patient_view_follow_up.pt4_psma_picked" :disabled="editDisabled" name="psma_prostate" style="font-size: 14px;">
-                  <option value="absent_prostate">Absent</option>
+                <select v-model="patient_view_follow_up.pt4_psma_prostate" :disabled="editDisabled" name="psma_prostate" style="font-size: 14px;">
+                  <option value="psma_absent_prostate">Absent</option>
                   <option value="psma_present_prostate">Present</option>
                 </select>
               </div>
-              <div v-if="patient_view_follow_up.pt4_psma_picked == 'psma_present_prostate'" class="input-group input-group-sm">
+              <div v-if="patient_view_follow_up.pt4_psma_prostate == 'psma_present_prostate'" class="input-group input-group-sm">
                 <span class="input-group-text">Location</span>
                 <input v-model="patient_view_follow_up.pt4_psma_prostate_loc" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
                 <span class="input-group-text">SUV</span>
@@ -1796,7 +1796,7 @@ export default {
               <div class="input-group input-group-sm">
                 <span class="input-group-text">b. Lymph Nodes</span>
                 <select v-model="patient_view_follow_up.pt4_psma_lymphs" :disabled="editDisabled" name="psma_lymphn" style="font-size: 14px;">
-                  <option value="absent_node">Absent</option>
+                  <option value="psma_absent_node">Absent</option>
                   <option value="psma_present_node">Present</option>
                 </select>
               </div>
@@ -1811,7 +1811,7 @@ export default {
               <div class="input-group input-group-sm">
                 <span class="input-group-text">c. Bone</span>
                 <select v-model="patient_view_follow_up.pt4_psma_bone" :disabled="editDisabled" name="psma_bone" style="font-size: 14px;">
-                  <option value="absent_bone">Absent</option>
+                  <option value="psma_absent_bone">Absent</option>
                   <option value="psma_present_bone">Present</option>
                 </select>
               </div>
@@ -1826,7 +1826,7 @@ export default {
               <div class="input-group input-group-sm">
                 <span class="input-group-text">d. Brain</span>
                 <select v-model="patient_view_follow_up.pt4_psma_brain" :disabled="editDisabled" name="psma_brain" style="font-size: 14px;">
-                  <option value="absent_brain">Absent</option>
+                  <option value="psma_absent_brain">Absent</option>
                   <option value="psma_present_brain">Present</option>
                 </select>
               </div>
@@ -1841,7 +1841,7 @@ export default {
               <div class="input-group input-group-sm">
                 <span class="input-group-text">e. Lungs</span>
                 <select v-model="patient_view_follow_up.pt4_psma_lungs" :disabled="editDisabled" name="psma_lungs" style="font-size: 14px;">
-                  <option value="absent_lungs">Absent</option>
+                  <option value="psma_absent_lungs">Absent</option>
                   <option value="psma_present_lungs">Present</option>
                 </select>
               </div>
@@ -1856,7 +1856,7 @@ export default {
               <div class="input-group input-group-sm">
                 <span class="input-group-text">f. Liver</span>
                 <select v-model="patient_view_follow_up.pt4_psma_liver" :disabled="editDisabled" name="psma_liver" style="font-size: 14px;">
-                  <option value="absent_liver">Absent</option>
+                  <option value="psma_absent_liver">Absent</option>
                   <option value="psma_present_liver">Present</option>
                 </select>
               </div>
@@ -1871,7 +1871,7 @@ export default {
               <div class="input-group input-group-sm">
                 <span class="input-group-text">g. Others</span>
                 <select v-model="patient_view_follow_up.pt4_psma_others" :disabled="editDisabled" name="psma_others" style="font-size: 14px;">
-                  <option value="absent_other">Absent</option>
+                  <option value="psma_absent_others">Absent</option>
                   <option value="psma_present_others">Present</option>
                 </select>
               </div>
@@ -1890,7 +1890,7 @@ export default {
             <div class="input-group input-group-sm">
             <span class="input-group-text">a. Prostate</span>
             <select v-model="patient_view_follow_up.pt4_fdg_prostate" :disabled="editDisabled" name="fdg_prostate" style="font-size: 14px;">
-              <option value="absent_prostate">Absent</option>
+              <option value="fdg_absent_prostate">Absent</option>
               <option value="fdg_present_prostate">Present</option>
             </select>
             </div>
@@ -1905,7 +1905,7 @@ export default {
             <div class="input-group input-group-sm">
             <span class="input-group-text">b. Lymph Nodes</span>
             <select v-model="patient_view_follow_up.pt4_fdg_lymphs" :disabled="editDisabled" name="fdg_lymphn" style="font-size: 14px;">
-              <option value="absent_node">Absent</option>
+              <option value="fdg_absent_node">Absent</option>
               <option value="fdg_present_node">Present</option>
             </select>
             </div>
@@ -1920,7 +1920,7 @@ export default {
             <div class="input-group input-group-sm">
             <span class="input-group-text">c. Bone</span>
             <select v-model="patient_view_follow_up.pt4_fdg_bone" :disabled="editDisabled" name="fdg_bone" style="font-size: 14px;">
-              <option value="absent_bone">Absent</option>
+              <option value="fdg_absent_bone">Absent</option>
               <option value="fdg_present_bone">Present</option>
             </select>
             </div>
@@ -1935,7 +1935,7 @@ export default {
             <div class="input-group input-group-sm">
             <span class="input-group-text">d. Brain</span>
             <select v-model="patient_view_follow_up.pt4_fdg_brain" :disabled="editDisabled" name="fdg_brain" style="font-size: 14px;">
-              <option value="absent_brain">Absent</option>
+              <option value="fdg_absent_brain">Absent</option>
               <option value="fdg_present_brain">Present</option>
             </select>
             </div>
@@ -1950,7 +1950,7 @@ export default {
             <div class="input-group input-group-sm">
             <span class="input-group-text">e. Lungs</span>
             <select v-model="patient_view_follow_up.pt4_fdg_lungs" :disabled="editDisabled" name="fdg_lungs" style="font-size: 14px;">
-              <option value="absent_lungs">Absent</option>
+              <option value="fdg_absent_lungs">Absent</option>
               <option value="fdg_present_lungs">Present</option>
             </select>
             </div>
@@ -1965,7 +1965,7 @@ export default {
             <div class="input-group input-group-sm">
             <span class="input-group-text">f. Liver</span>
             <select v-model="patient_view_follow_up.pt4_fdg_liver" :disabled="editDisabled" name="fdg_liver" style="font-size: 14px;">
-              <option value="absent_liver">Absent</option>
+              <option value="fdg_absent_liver">Absent</option>
               <option value="fdg_present_liver">Present</option>
             </select>
             </div>
@@ -1980,7 +1980,7 @@ export default {
             <div class="input-group input-group-sm">
             <span class="input-group-text">g. Others</span>
             <select v-model="patient_view_follow_up.pt4_fdg_others" :disabled="editDisabled" name="fdg_others" style="font-size: 14px;">
-              <option value="absent_other">Absent</option>
+              <option value="fdg_absent_others">Absent</option>
               <option value="fdg_present_others">Present</option>
             </select>
             </div>
@@ -1996,9 +1996,9 @@ export default {
           <div class="input-group input-group-sm">
             <span class="input-group-text" style="font-size: 16px;">c. Assessment</span>
             <select v-model="patient_view_follow_up.pt4_assessment" :disabled="editDisabled" name="fu_new_assessment" style="font-size: 14px; width: 150px;">
-              <option value="low_risk">Low Risk</option>
-              <option value="inter_risk">Intermediate Risk</option>
-              <option value="high_risk">High Risk</option>
+              <option value="low risk">Low Risk</option>
+              <option value="intermediate risk">Intermediate Risk</option>
+              <option value="high risk">High Risk</option>
             </select>
           </div>
           <div class="input-group mb-3">
@@ -2332,7 +2332,7 @@ export default {
             <span class="input-group-text" style="font-size: 16px;">c. Assessment</span>
             <select v-model="part4.pt4_assessment" name="fu_new_assessment" style="font-size: 14px; width: 150px;">
               <option value="low risk">Low Risk</option>
-              <option value="inter risk">Intermediate Risk</option>
+              <option value="intermediate risk">Intermediate Risk</option>
               <option value="high risk">High Risk</option>
             </select>
           </div>
