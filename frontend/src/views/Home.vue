@@ -949,15 +949,19 @@ export default {
       </table>
     </div>
     <!-- end Table -->
+
     <!-- View Patient Div -->
-    <div v-if="currentDivShown == 'viewPatientDiv'" class="d-flex flex-column p-3" style="background-color: white; border: 2px solid black;">
+    <div v-if="currentDivShown == 'viewPatientDiv'" class="d-flex flex-column p-3" id="view-page">
       <!-- View Patient Header -->
-      <div class="d-flex flex-row justify-content-between mb-4">
-        <h1 style="font-size: 20px; font-weight: bold;">View Patient</h1>
-        <span @click="switchDiv('table')" class="myButton1" style="background-color: #7F6000;">Close Record</span>
+      <div class="d-flex flex-row justify-content-between mb-4" style="margin-bottom:1px; margin-top:20px">
+        <h1 style="font-size: 25px; font-weight: bold;">View Patient</h1>
+        <span @click="switchDiv('table')" class="myButton1"><i class="fas fa-times"></i>&nbsp; Close</span>
       </div>
+     <hr>
       <!-- end View Patient Header -->
-      <h3 style="font-size: 18px; font-weight: bold;">Record of First Visit</h3>
+      <h3 style="font-size: 18px; font-weight: bold; color:#0B2509;">FIRST VISIT RECORDS</h3>
+
+      <!-- START OF ACCORDION -->
       <div class="accordion" id="accordionExample">
         <div class="accordion-item">
           <h2 class="accordion-header" id="headingOne">
@@ -968,8 +972,8 @@ export default {
           <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
             <div class="accordion-body partDiv">
               <!-- Part 1 -->
-                <span v-if="editDisabled" @click="enableEdit()" class="align-self-start myButton1" style="background-color: #7F6000;">Edit Record</span>
-                <span v-if="!editDisabled" @click="finishEditing()" class="align-self-start myButton1" style="background-color: #023020;">Finish Editing</span>
+                <span v-if="editDisabled" @click="enableEdit()" class="align-self-end myButton1"><i class="fas fa-edit"></i>&nbsp;Edit</span>
+                <span v-if="!editDisabled" @click="finishEditing()" class="align-self-end myButton1"><i class="fas fa-check-circle"></i>&nbsp;Finish</span>
                 
                 <!-- 1.1 -->
                 <b>1.1 Demographics</b>
@@ -2368,14 +2372,6 @@ body {
   }
 
 .myButton1 {
-  /* border: 1px solid white;
-  border-radius: 5px; 
-  color:white; 
-  cursor: pointer;
-  font-size: 14px;
-  padding: 5px 10px;
-  background-color: black; */
-
   padding: 9px;
   background-color: black;
   border-width: 1px;
@@ -2445,6 +2441,30 @@ body {
   position: relative; 
   gap: 5px; 
   min-height: 40px;
+}
+
+#view-page {
+  background-color:  rgba(255, 255, 255, 0.818);
+  border: 3px solid #0B2509; 
+  margin-left:150px;
+  margin-right:150px;
+  width: calc(100% - 300px);
+}
+
+.input-group-text {
+    background-color: black;  
+    color: white; 
+}
+
+.accordion-body input[type="text"],
+.accordion-body input[type="number"] {
+    flex: none;
+    width: 100%; /* Adjust the width as needed */
+    min-width: 200px; /* Optional, adjust as needed */
+}
+
+.accordion-button {
+  color:#0B2509; 
 }
 
 </style>
