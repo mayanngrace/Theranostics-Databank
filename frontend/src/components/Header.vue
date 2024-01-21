@@ -3,7 +3,7 @@ export default {
   name: 'Header',
   data() {
     return {
-      backendUrl: 'http://localhost:8000', // TEMP, DISABLE THIS ON DEPLOYMENT
+      backendUrl: 'https://up-theranostics-databank.onrender.com', // TEMP, DISABLE THIS ON DEPLOYMENT
       // backendUrl: '', // ENABLE THIS ON DEPLOYMENT
       navVisible: false,
     };

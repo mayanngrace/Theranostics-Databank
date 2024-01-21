@@ -24,7 +24,7 @@
     },
     data() {
       return {
-        backendUrl: 'http://localhost:8000', // TEMP, DISABLE THIS ON DEPLOYMENT
+        backendUrl: 'https://up-theranostics-databank.onrender.com', // TEMP, DISABLE THIS ON DEPLOYMENT
       // backendUrl: '', // ENABLE THIS ON DEPLOYMENT
         websiteUrl: 'https://www.philcancer.org.ph/'
       };
