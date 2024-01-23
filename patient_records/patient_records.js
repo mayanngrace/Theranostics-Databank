@@ -715,6 +715,26 @@ const { v4: uuidv4 } = require('uuid')
           req.body.post_therapy_sessions[i].pt3_sg,
           req.body.post_therapy_sessions[i].pt3_rk,
           req.body.post_therapy_sessions[i].pt3_lk
+
+          // req.body.post_therapy_sessions[i].post_therapy_session_id,
+          // req.body.part1.pt1_patient_record,
+          // req.body.part1.pt1_patient_code,
+          // req.body.post_therapy_sessions[i].pt3_date_post_therapy,
+          // req.body.post_therapy_sessions[i].pt3_hour,
+          // req.body.post_therapy_sessions[i].pt3_spectct,
+          // req.body.post_therapy_sessions[i].pt3_prostate,
+          // req.body.post_therapy_sessions[i].pt3_prostate_text,
+          // req.body.post_therapy_sessions[i].pt3_lymph_nodes,
+          // req.body.post_therapy_sessions[i].pt3_lymph_nodes_text,
+          // req.body.post_therapy_sessions[i].pt3_bones,
+          // req.body.post_therapy_sessions[i].pt3_bones_text,
+          // req.body.post_therapy_sessions[i].pt3_lungs,
+          // req.body.post_therapy_sessions[i].pt3_lungs_text,
+          // req.body.post_therapy_sessions[i].pt3_liver,
+          // req.body.post_therapy_sessions[i].pt3_liver_text,
+          // req.body.post_therapy_sessions[i].pt3_sg,
+          // req.body.post_therapy_sessions[i].pt3_rk,
+          // req.body.post_therapy_sessions[i].pt3_lk
         ], false)
         // end create row in part3 table        
       

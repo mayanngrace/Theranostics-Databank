@@ -14,7 +14,7 @@ export default {
       This system is done as a project requirement for the course HI 191 by the following students:</p>
       <p class="text-center">
         <span style="font-style:italic;">Palisoc, May Ann Grace<br></span>
-        <span style="font-style:italic;">Lagasca, Kaye Sophia</span><br><br><br>
+        <span style="font-style:italic;">Lagasca, Kaye Sophia</span><br><br>
         <span style="font-weight:bold;">&copy; 2024</span>
       </p>
     </div>
