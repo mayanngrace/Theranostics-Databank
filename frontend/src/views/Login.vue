@@ -48,11 +48,11 @@ export default {
       <h4 class="login-title">UP Theranostics Databank<br></h4>
       <div class="input-group login-input">
         <span class="input-group-text">Username</span>
-        <input v-model="username" type="text" class="form-control" placeholder="Input username">
+        <input v-model="username" type="text" class="form-control" placeholder="Enter username">
       </div>
       <div class="input-group login-input">
         <span class="input-group-text">Password</span>
-        <input v-model="password" type="password" class="form-control" placeholder="Input password">
+        <input v-model="password" type="password" class="form-control" placeholder="Enter password">
       </div>
       <button @click="doLogin()" type="button" class="btn login-btn">Log in</button>
     </div>
