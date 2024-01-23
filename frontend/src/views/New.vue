@@ -5,8 +5,8 @@ export default {
   components: {Header},
   data() {
     return {
-     // backendUrl: 'https://up-theranostics-databank.onrender.com', // TEMP, ENABLE THIS ON DEPLOYMENT
-      backendUrl: 'http://localhost:8000', // DISABLE THIS ON DEPLOYMENT
+      backendUrl: 'https://up-theranostics-databank.onrender.com', // TEMP, ENABLE THIS ON DEPLOYMENT
+      // backendUrl: 'http://localhost:8000', // DISABLE THIS ON DEPLOYMENT
       part1: {
         pt1_psma_prostate: 'psma_absent_prostate',
         pt1_psma_lymphs: 'psma_absent_node',

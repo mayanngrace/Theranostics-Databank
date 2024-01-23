@@ -5,8 +5,8 @@ export default {
   components: {Header},
   data() {
     return {
-     // backendUrl: 'https://up-theranostics-databank.onrender.com', // TEMP, ENABLE THIS ON DEPLOYMENT
-     backendUrl: 'http://localhost:8000', // DISABLE THIS ON DEPLOYMENT
+      backendUrl: 'https://up-theranostics-databank.onrender.com', // TEMP, ENABLE THIS ON DEPLOYMENT
+     //backendUrl: 'http://localhost:8000', // DISABLE THIS ON DEPLOYMENT
       currentDivShown: 'table',
       editDisabled: true,
       filter_config: '',
