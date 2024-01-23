@@ -4,7 +4,6 @@ export default {
   data() {
     return {
       backendUrl: 'https://up-theranostics-databank.onrender.com', // TEMP, ENABLE THIS ON DEPLOYMENT
-      //backendUrl: 'http://localhost:8000', // DISABLE THIS ON DEPLOYMENT
       navVisible: false,
     };
   },
