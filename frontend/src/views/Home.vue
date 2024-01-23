@@ -1169,7 +1169,7 @@ export default {
                     <option value="with metastasis">With Metastasis</option>
                   </select>
                 </div>
-                <div v-if="view_patient.part1.pt1_bone_scan == 'with_metastasis'" class="input-group input-group-sm" style="margin-left:20px; width:calc(100% - 20px)">
+                <div v-if="view_patient.part1.pt1_bone_scan == 'with metastasis'" class="input-group input-group-sm" style="margin-left:20px; width:calc(100% - 20px)">
                   <span class="input-group-text">Location</span>
                   <input v-model="view_patient.part1.pt1_bone_withmetas" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
                 </div>
@@ -1428,7 +1428,7 @@ export default {
                 <span class="ms-1" style="font-weight:bold">D. Plan</span>
                 <div class="input-group mb-3" style="width:calc(100% - 20px)">
                   <span class="input-group-text" style="font-size: 16px;">Plan of Action</span>
-                  <textarea class="form-control" v-model="view_patient.part1.pt1_new_plan" :disabled="editDisabled" type="text" aria-label="part1_new_plan" style="font-size: 12px;"></textarea>
+                  <textarea class="form-control" v-model="view_patient.part1.pt1_plan" :disabled="editDisabled" name="new_plan" type="text" aria-label="new_plan" style="font-size: 12px;"></textarea>
                 </div>
                 <!-- end 1.3 -->
               <!-- end Part 1 -->
@@ -1809,7 +1809,7 @@ export default {
           </div>
           <div v-if="patient_view_follow_up.pt4_bone_scan == 'with metastasis'" :disabled="editDisabled" class="input-group input-group-sm"  style="margin-left:40px; width:calc(100% - 40px)">
             <span class="input-group-text">Location</span>
-            <input v-model="patient_view_follow_up.pt4_withmetas" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
+            <input v-model="patient_view_follow_up.pt4_bone_withmetas" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
             <br>
           </div>
           <div class="align-self-start p-2" style="border: 1px solid lightgray; border-radius: 5px; gap: 5px; margin-left:20px;">
@@ -2150,7 +2150,7 @@ export default {
           </div>
           <div v-if="part4.pt4_bone_scan == 'with metastasis'" class="input-group input-group-sm" style="margin-left:40px; width:calc(100% - 40px)">
             <span class="input-group-text">Location</span>
-            <input v-model="part4.pt4_withmetas" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
+            <input v-model="part4.pt4_bone_withmetas" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
           </div>
           <div class="align-self-start p-2" style="border: 1px solid lightgray; border-radius: 5px; gap: 5px; margin-left:20px;">
             <span style="font-size: 14px; padding-right: 1cm; font-weight: bold;">iv. PSMA</span>
@@ -2387,6 +2387,7 @@ export default {
               <option value="high risk">High Risk</option>
             </select>
           </div>
+          
           <span class="ms-1" style="font-weight: bold">D. Plan</span>
           <div class="input-group mb-3">
             <span class="input-group-text" style="font-size: 16px;">Plan of Action</span>

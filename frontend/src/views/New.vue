@@ -550,7 +550,7 @@ export default {
       <span class="ms-1">D. Plan</span>
       <div class="input-group mb-3">
         <span class="input-group-text">Plan of Action</span>
-        <textarea class="form-control" v-model="part1.pt1_new_plan" aria-label="part1_new_plan" style="font-size: 12px;"></textarea>
+        <textarea class="form-control" v-model="part1.pt1_plan" aria-label="part1_new_plan" style="font-size: 12px;"></textarea>
       </div>
       <!-- end 1.3 -->
       <button @click="switchDiv('part2Div')" type="button" class="align-self-center btn btn-lg myButton2">Next</button>
@@ -578,7 +578,7 @@ export default {
         </div>
         <div class="input-group mt-3" style="font-size: 12px; width:calc(100% - 20px);">
           <span class="input-group-text" style="font-size: 14px;">Pre-medications</span>
-          <textarea v-model="part2_pt2_premed" class="form-control" aria-label="new_plan"></textarea>
+          <textarea v-model="therapy_sessions[index].pt2_premed" class="form-control" aria-label="new_plan"></textarea>
         </div>
         <div class="input-group mb-2" style="font-size: 12px; width:calc(100% - 20px);">
           <span class="input-group-text" style="font-size: 14px;">Medications (w/ Furosemide)</span>
