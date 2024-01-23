@@ -1169,7 +1169,7 @@ export default {
                     <option value="with metastasis">With Metastasis</option>
                   </select>
                 </div>
-                <div v-if="view_patient.part1.pt1_bone_scan == 'with_metastasis'" class="input-group input-group-sm" style="margin-left:20px; width:calc(100% - 20px)">
+                <div v-if="view_patient.part1.pt1_bone_scan == 'with metastasis'" class="input-group input-group-sm" style="margin-left:20px; width:calc(100% - 20px)">
                   <span class="input-group-text">Location</span>
                   <input v-model="view_patient.part1.pt1_bone_withmetas" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
                 </div>
