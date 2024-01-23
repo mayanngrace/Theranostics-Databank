@@ -55,7 +55,7 @@ export default {
         <span class="input-group-text">Password</span>
         <input v-model="password" type="password" class="form-control" placeholder="Enter your password">
       </div>
-      <button @click="doLogin()" type="button" class="btn login-btn">Log In</button>
+      <button @click="doLogin()" type="button" class="btn login-btn">Log in</button>
     </div>
   </div>
 </template>

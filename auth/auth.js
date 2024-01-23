@@ -33,8 +33,8 @@ async function configureLocalStrategy(db) {
       passport.use(new LocalStrategy(async function verify(username, password, done) {
         try {
           const my_user = {
-            username: 'user',
-            password: '1234'
+            username: 'useradmin',
+            password: 'useradmin'
           }
           if (username == my_user.username && password == my_user.password) {
             return done(null, my_user)
