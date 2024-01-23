@@ -5,8 +5,8 @@ export default {
   components: {Header},
   data() {
     return {
-      backendUrl: 'https://up-theranostics-databank.onrender.com', // TEMP, DISABLE THIS ON DEPLOYMENT
-      // backendUrl: '', // ENABLE THIS ON DEPLOYMENT
+     // backendUrl: 'https://up-theranostics-databank.onrender.com', // TEMP, ENABLE THIS ON DEPLOYMENT
+     backendUrl: 'http://localhost:8000', // DISABLE THIS ON DEPLOYMENT
       currentDivShown: 'table',
       editDisabled: true,
       filter_config: '',
@@ -610,7 +610,7 @@ export default {
 <body>
   <div class="d-flex flex-column"> 
   <Header />
-  <div class="d-flex flex-column p-3" style="flex: 1 1 auto; margin-left: 30px; margin-right:30px; width: calc(100% - 60px);">
+  <div class="d-flex flex-column p-3" id="form-page">
     <!-- Count Div -->
     <div v-if="currentDivShown == 'table'" id= "filter-table" class="align-items-center d-flex flex-column partDiv mb-2">
       <h3 class="align-self-start mt-3" style="font-size: 18px; text-align:left; font-weight: bold;">Filter by:</h3>
@@ -649,11 +649,11 @@ export default {
         </div>
         <!-- end L2 bone metastatis -->
         <!-- L2 lesion during screeening -->
-        <div class="align-items-start d-flex justify-content-start flex-column input-group-text" v-if="l1dropdown == 'lesions during screening'">
+        <div class="align-items-start d-flex justify-content-start flex-column input-group-text" v-if="l1dropdown == 'lesions during screening'" style="width:250px;">
           <!-- PSMA Header + Ga-68 dropdown -->
           <div class="align-items-center d-flex flex-row">
             <input v-model="l2_lesion_screening.psma" class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input" checked>
-            <span style="margin-left:5px; font-size: 16px;">PSMA</span>
+            <span style="margin-left:5px; font-size: 16px; font-weight: bold;">PSMA</span>
             <div class="ms-3" v-if="l2_lesion_screening.psma">
               <select v-model="l2_lesion_screening.psma_dropdown" class="align-self-start" style="font-size: 16px; height: 20px;">
                 <option value="">--Select Option--</option>
@@ -700,13 +700,14 @@ export default {
           </div>
           <!-- end PSMA Checkboxes -->
         </div>
-        <div v-if="l1dropdown == 'lesions during screening'" class="align-items-start d-flex flex-column input-group-text">
+        <div v-if="l1dropdown == 'lesions during screening'" class="align-items-start d-flex flex-column input-group-text" style="width:250px;" >
           <!-- FDG Header -->
-          <div class="align-items-center d-flex flex-row justify-content-center">
+          <div class="align-items-center d-flex flex-row justify-content-center" >
             <input v-model="l2_lesion_screening.fdg" class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input" checked>
-            <span style="margin-left:5px; font-size: 16px;">FDG PET/C</span>
+            <span style="margin-left:5px; font-size: 16px; font-weight: bold;">FDG PET/C</span>
           </div>
           <!-- end FDG Header -->
+
           <!-- FDG Checkboxes -->
           <div v-if="l2_lesion_screening.fdg" class="align-items-start d-flex flex-row justify-content-start mt-3" style="gap: 20px;">
             <div class="align-items-start d-flex flex-column justify-content-center">
@@ -749,7 +750,7 @@ export default {
         <div v-if="l1dropdown == 'lesions during post therapy'" class="d-flex flex-column p-1" style="border: 1px solid gray; height: 150px; overflow-y: scroll;">
           <div class="d-flex flex-row" v-for="x in highestSessions" style="gap: 5px;">
             <input v-model="post_therapy_config" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" :value="x">
-            <label class="form-check-label" for="inlineRadio1" style="font-size: 14px;">Post Therapy #{{x}}</label>
+            <label class="form-check-label" for="inlineRadio1" style="font-size: 14px; font-weight: bold;">Post Therapy #{{x}}</label>
           </div>
         </div>
         <div v-if="l1dropdown == 'lesions during post therapy'" class="d-flex flex-column p-1">
@@ -783,16 +784,16 @@ export default {
         <div v-if="l1dropdown == 'lesions during follow up'" class="d-flex flex-column p-1" style="border: 1px solid gray; height: 150px; overflow-y: scroll;">
           <div class="d-flex flex-row" v-for="x in highestFollowUpRecords" style="gap: 5px;">
             <input v-model="follow_up_config" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" :value="x-1">
-            <label class="form-check-label" for="inlineRadio1" style="font-size: 14px;">Follow Up Record #{{x}}</label>
+            <label class="form-check-label" for="inlineRadio1" style="font-size: 14px; font-weight:bold;">Follow Up Record #{{x}}</label>
           </div>
         </div>
         <!-- end L2 follow up checkboxes -->
         <!-- L3 checkboxes -->
-        <div class="align-items-start d-flex justify-content-start flex-column input-group-text" v-if="l1dropdown == 'lesions during follow up'">
+        <div class="align-items-start d-flex justify-content-start flex-column input-group-text" v-if="l1dropdown == 'lesions during follow up'" style="width:250px;">
           <!-- PSMA Header + Ga-68 dropdown -->
           <div class="align-items-center d-flex flex-row">
             <input v-model="l3_follow_up_lesion.psma" class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">
-            <span style="margin-left:5px; font-size: 16px;">PSMA</span>
+            <span style="margin-left:5px; font-size: 16px; font-weight:bold;">PSMA</span>
             <div class="ms-3" v-if="l3_follow_up_lesion.psma">
               <select v-model="l3_follow_up_lesion.psma_dropdown" class="align-self-start" style="font-size: 16px; height: 20px;">
                 <option value="">--Select Option--</option>
@@ -835,11 +836,11 @@ export default {
           </div>
           <!-- end PSMA Checkboxes -->
         </div>
-        <div v-if="l1dropdown == 'lesions during follow up'" class="align-items-start d-flex flex-column input-group-text">
+        <div v-if="l1dropdown == 'lesions during follow up'" class="align-items-start d-flex flex-column input-group-text" style="width:280px;">
           <!-- FDG Header -->
           <div class="align-items-center d-flex flex-row justify-content-center">
             <input v-model="l3_follow_up_lesion.fdg" class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">
-            <span style="margin-left:5px; font-size: 16px;">FDG PET/C</span>
+            <span style="margin-left:5px; font-size: 16px; font-weight: bold">FDG PET/C</span>
           </div>
           <!-- end FDG Header -->
           <!-- FDG Checkboxes -->
@@ -889,12 +890,6 @@ export default {
       <hr>
     </div>
     <!-- Search -->
-    <!-- <div v-if="currentDivShown == 'table'" class="align-self-end d-flex flex-row mb-2" style="gap: 5px;">
-      <input v-model="searchString" type="text" class="form-control form-control-sm" placeholder="Search by first name or last name" style="flex: none; width: 300px;">
-      <button @click="readPatients()" type="button" class="btn btn-sm btn-secondary">Search</button>
-      <button v-if="searchString" @click="clearSearch()" type="button" class="btn btn-sm btn-secondary">Clear Search</button>
-    </div> -->
-
     <div v-if="currentDivShown == 'table'" id="search-bar" class="d-flex flex-row mb-2">
     <input v-model="searchString" type="text" class="form-control form-control-sm" placeholder="Search by first name or last name..." style="flex-grow: 1; width: auto;">
     <button @click="readPatients()" type="button" class="btn btn-sm btn-secondary" style="position: absolute; right: 0; z-index: 1; background: black; min-height:40px; min-width:40px;">
@@ -955,11 +950,12 @@ export default {
       <!-- View Patient Header -->
       <div class="d-flex flex-row justify-content-between mb-4" style="margin-bottom:1px; margin-top:20px">
         <h1 style="font-size: 25px; font-weight: bold;">View Patient</h1>
-        <span @click="switchDiv('table')" class="myButton1"><i class="fas fa-times"></i>&nbsp; Close</span>
+        <span @click="switchDiv('table')" class="myButton2"><i class="fas fa-times"></i>&nbsp; Close</span>
       </div>
-     <hr>
+     
       <!-- end View Patient Header -->
-      <h3 style="font-size: 18px; font-weight: bold; color:#0B2509;">FIRST VISIT RECORDS</h3>
+      <h3 style="font-size: 20px; font-weight: bold; color:#0B2509;">INITIAL RECORDS</h3>
+      <hr>
 
       <!-- START OF ACCORDION -->
       <div class="accordion" id="accordionExample">
@@ -976,7 +972,7 @@ export default {
                 <span v-if="!editDisabled" @click="finishEditing()" class="align-self-end myButton1"><i class="fas fa-check-circle"></i>&nbsp;Finish</span>
                 
                 <!-- 1.1 -->
-                <b>1.1 Demographics</b>
+                <b style="text-decoration:underline; font-size:17px; color:#0B2509;">1.1 Demographics</b>
                 <div class="input-group input-group-sm">
                   <span class="input-group-text">a. Patient Code</span>
                   <input v-model="view_patient.part1.pt1_patient_code" disabled type="text" class="form-control" placeholder="" style="flex: none; min-width: 250px;">
@@ -1026,7 +1022,7 @@ export default {
                   <input v-model="view_patient.part1.pt1_date_treatment" :disabled="editDisabled" type="date" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
                 </div>
                 <div class="input-group input-group-sm">
-                  <span class="input-group-text">Type of Treatment</span>
+                  <span class="input-group-text" style="margin-left:40px">Type of Treatment</span>
                   <select v-model="view_patient.part1.pt1_type_treatment" :disabled="editDisabled" name="type_of_treatment" style="font-size: 14px;">
                     <option value="hormonal therapy">Hormonal Therapy</option>
                     <option value="radiation therapy">Radiation Therapy</option>
@@ -1040,7 +1036,7 @@ export default {
                 </div>
                 <!-- end 1.1 -->
                 <!-- 1.2 -->
-                <b class="mt-3">1.2 Physical Examination</b>
+                <b class="mt-3" style="text-decoration:underline; font-size:17px;color:#0B2509;">1.2 Physical Examination</b>
                 <!-- Reference: https://ecog-acrin.org/resources/ecog-performance-status/ -->
                 <div class="input-group input-group-sm">
                   <span class="input-group-text">a. ECOG Score</span>
@@ -1091,17 +1087,18 @@ export default {
                 </div>
                 <span class="ms-1">h. Symptoms</span>
                 <div class="input-group input-group-sm">
-                  <span class="input-group-text">Local Symptoms</span>
-                  <input type="text" v-model="view_patient.part1.pt1_local_symps" :disabled="editDisabled" class="form-control" placeholder="e.g. dysuria, urinary retention, polyuria, etc." style="flex: none; min-width: 500px;">
+                  <span class="input-group-text">h1. Local Symptoms</span>
+                  <input type="text" v-model="view_patient.part1.pt1_local_symps" :disabled="editDisabled" class="form-control" placeholder="e.g. dysuria, urinary retention, polyuria, etc." style="flex: none; min-width: 300px;">
                 </div>
                 <div class="input-group input-group-sm">
-                  <span class="input-group-text">Systemic Symptoms</span>
-                  <input type="text" v-model="view_patient.part1.pt1_sys_symps" :disabled="editDisabled" class="form-control" placeholder="e.g. bone pain, weight loss, fatigue, etc." style="flex: none; min-width: 500px;">
+                  <span class="input-group-text">h2. Systemic Symptoms</span>
+                  <input type="text" v-model="view_patient.part1.pt1_sys_symps" :disabled="editDisabled" class="form-control" placeholder="e.g. bone pain, weight loss, fatigue, etc." style="flex: none; min-width: 300px;">
                 </div>
                 <!-- end 1.2 -->
+
                 <!-- 1.3 -->
-                <b class="mt-3">1.3 Screening/Baseline</b>
-                <span class="ms-1">a. Laboratory</span>
+                <b class="mt-3" style="text-decoration:underline; font-size:17px; color:#0B2509;">1.3 Screening/Baseline</b>
+                <span class="ms-1" style="font-weight:bold">A. Laboratory</span>
                 <div class="input-group input-group-sm">
                   <span class="input-group-text">i. PSA</span>
                   <input type="text" v-model="view_patient.part1.pt1_psa" :disabled="editDisabled" class="form-control" placeholder="" style="flex: none; min-width: 500px;">
@@ -1110,7 +1107,7 @@ export default {
                   <span class="input-group-text">ii. Creatinine</span>
                   <input type="text" v-model="view_patient.part1.pt1_creatinine" :disabled="editDisabled" class="form-control" placeholder="" style="flex: none; min-width: 500px;">
                 </div>
-                <div class="align-self-start d-flex flex-column p-2" style="border: 1px solid lightgray; border-radius: 5px; gap: 5px;">
+                <div class="align-self-start d-flex flex-column p-2" style="border: 1px solid lightgray; border-radius: 5px; gap: 5px; margin-left:20px;">
                   <span class="ms-1" style="font-size: 14px;">iii. CBC</span>
                   <div class="d-flex flex-column ms-2" style="gap: 5px;">
                     <div class="input-group input-group-sm">
@@ -1147,7 +1144,8 @@ export default {
                   <span class="input-group-text">vi. SGPT, SGOT, Bilirubins</span>
                   <input type="text" v-model="view_patient.part1.pt1_ssb" :disabled="editDisabled" class="form-control" placeholder="" style="flex: none; min-width: 500px;">
                 </div>
-                <span class="ms-1">b. Imaging</span>
+
+                <span class="ms-1" style="font-weight:bold">B. Imaging</span>
                 <div class="input-group input-group-sm">
                   <span class="input-group-text">i. Salivary Gland</span>
                   <select v-model="view_patient.part1.pt1_salivary" :disabled="editDisabled" name="salivary_gland" style="font-size: 14px; width: 150px;">
@@ -1165,252 +1163,271 @@ export default {
                   </select>
                 </div>
                 <div class="input-group input-group-sm">
-                  <span class="input-group-text" style="color: red; font-weight: bold;">iii. Bone Scan</span>
+                  <span class="input-group-text" style="color: white; background-color:black;">iii. Bone Scan</span>
                   <select v-model="view_patient.part1.pt1_bone_scan" :disabled="editDisabled" name="pt1_bone_scan" style="font-size: 14px;">
                     <option value="no metastasis">No Metastasis</option>
                     <option value="with metastasis">With Metastasis</option>
                   </select>
                 </div>
-                <div v-if="view_patient.part1.pt1_bone_scan == 'with_metastasis'" class="input-group input-group-sm">
+                <div v-if="view_patient.part1.pt1_bone_scan == 'with_metastasis'" class="input-group input-group-sm" style="margin-left:20px; width:calc(100% - 20px)">
                   <span class="input-group-text">Location</span>
                   <input v-model="view_patient.part1.pt1_bone_withmetas" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
                 </div>
-                <div class="align-self-start p-2" style="border: 1px solid lightgray; border-radius: 5px; gap: 5px;">
-                  <span style="font-size: 14px; padding-right: 1cm; color: red; font-weight: bold;">iv. PSMA</span>
+
+                <div class="align-self-start p-2" style="border: 1px solid lightgray; border-radius: 5px; gap: 5px; margin-left:20px;">
+                  <span style="font-size: 14px; padding-right: 1cm; font-weight: bold;">iv. PSMA</span>
                   <div class="form-check form-check-inline">
                     <input v-model="view_patient.part1.pt1_psma_picked" :disabled="editDisabled" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="ga-68">
-                    <label class="form-check-label" for="inlineRadio1" style="font-size: 14px; color: red; font-weight: bold;">Ga-68</label>
+                    <label class="form-check-label" for="inlineRadio1" style="font-size: 14px;font-weight: bold;">Ga-68</label>
                   </div>
                   <div class="form-check form-check-inline">
                     <input v-model="view_patient.part1.pt1_psma_picked" :disabled="editDisabled" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="f-18">
-                    <label class="form-check-label" for="inlineRadio2" style="font-size: 14px; color: red; font-weight: bold;">F-18</label>
+                    <label class="form-check-label" for="inlineRadio2" style="font-size: 14px;font-weight: bold;">F-18</label>
                   </div>
+
                   <div class="d-flex flex-column" style="gap: 5px;">
                     <div class="input-group input-group-sm">
-                      <span class="input-group-text">a. Prostate</span>
+                      <span class="input-group-text" style="color:white; background-color:black;">a. Prostate</span>
                       <select v-model="view_patient.part1.pt1_psma_prostate" :disabled="editDisabled" name="pt1_psma_prostate" style="font-size: 14px;">
                         <option value="psma_absent_prostate">Absent</option>
                         <option value="psma_present_prostate">Present</option>
                       </select>
                     </div>
-                    <div v-if="view_patient.part1.pt1_psma_prostate == 'psma_present_prostate'" class="input-group input-group-sm">
+                    <div v-if="view_patient.part1.pt1_psma_prostate == 'psma_present_prostate'" class="input-group input-group-sm" style="margin-left:20px; width:calc(100% - 20px)">
                       <span class="input-group-text">Location</span>
                       <input v-model="view_patient.part1.pt1_psma_prostate_loc" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-                      <span class="input-group-text">SUV</span>
+                      <span class="input-group-text" style="margin-left:20px;">SUV</span>
                       <input v-model="view_patient.part1.pt1_psma_prostate_suv" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-                      <span class="input-group-text">Measurement (cm)</span>
+                      <span class="input-group-text" style="margin-left:20px;">Measurement (cm)</span>
                       <input v-model="view_patient.part1.pt1_psma_prostate_meas" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
                     </div>
+
                     <div class="input-group input-group-sm">
-                      <span class="input-group-text">b. Lymph Nodes</span>
+                      <span class="input-group-text" style="color:white; background-color:black;">b. Lymph Nodes</span>
                       <select v-model="view_patient.part1.pt1_psma_lymphs" :disabled="editDisabled" name="pt1_psma_lymphs" style="font-size: 14px;">
                         <option value="psma_absent_node">Absent</option>
                         <option value="psma_present_node">Present</option>
                       </select>
                     </div>
-                    <div v-if="view_patient.part1.pt1_psma_lymphs == 'psma_present_node'" class="input-group input-group-sm">
+                    <div v-if="view_patient.part1.pt1_psma_lymphs == 'psma_present_node'" class="input-group input-group-sm" style="margin-left:20px; width:calc(100% - 20px)">
                       <span class="input-group-text">Location</span>
                       <input v-model="view_patient.part1.pt1_psma_lymphs_loc" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-                      <span class="input-group-text">SUV</span>
+                      <span class="input-group-text" style="margin-left:20px;">SUV</span>
                       <input v-model="view_patient.part1.pt1_psma_lymphs_suv" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-                      <span class="input-group-text">Measurement (cm)</span>
+                      <span class="input-group-text" style="margin-left:20px;">Measurement (cm)</span>
                       <input v-model="view_patient.part1.pt1_psma_lymphs_meas" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
                     </div>
+
                     <div class="input-group input-group-sm">
-                      <span class="input-group-text">c. Bone</span>
+                      <span class="input-group-text" style="color:white; background-color:black;">c. Bone</span>
                       <select v-model="view_patient.part1.pt1_psma_bone" :disabled="editDisabled" name="pt1_psma_bone" style="font-size: 14px;">
                         <option value="psma_absent_bone">Absent</option>
                         <option value="psma_present_bone">Present</option>
                       </select>
                     </div>
-                    <div v-if="view_patient.part1.pt1_psma_bone == 'psma_present_bone'" class="input-group input-group-sm">
+                    <div v-if="view_patient.part1.pt1_psma_bone == 'psma_present_bone'" class="input-group input-group-sm" style="margin-left:20px; width:calc(100% - 20px)">
                       <span class="input-group-text">Location</span>
                       <input v-model="view_patient.part1.pt1_psma_bone_loc" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-                      <span class="input-group-text">SUV</span>
+                      <span class="input-group-text" style="margin-left:20px;">SUV</span>
                       <input v-model="view_patient.part1.pt1_psma_bone_suv" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-                      <span class="input-group-text">Measurement (cm)</span>
+                      <span class="input-group-text" style="margin-left:20px;">Measurement (cm)</span>
                       <input v-model="view_patient.part1.pt1_psma_bone_meas" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
                     </div>
+
                     <div class="input-group input-group-sm">
-                      <span class="input-group-text">d. Brain</span>
+                      <span class="input-group-text" style="color:white; background-color:black;">d. Brain</span>
                       <select v-model="view_patient.part1.pt1_psma_brain" :disabled="editDisabled" name="pt1_psma_brain" style="font-size: 14px;">
                         <option value="psma_absent_brain">Absent</option>
                         <option value="psma_present_brain">Present</option>
                       </select>
                     </div>
-                    <div v-if="view_patient.part1.pt1_psma_brain == 'psma_present_brain'" class="input-group input-group-sm">
+                    <div v-if="view_patient.part1.pt1_psma_brain == 'psma_present_brain'" class="input-group input-group-sm" style="margin-left:20px; width:calc(100% - 20px)">
                       <span class="input-group-text">Location</span>
                       <input v-model="view_patient.part1.pt1_psma_brain_loc" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-                      <span class="input-group-text">SUV</span>
+                      <span class="input-group-text" style="margin-left:20px;">SUV</span>
                       <input v-model="view_patient.part1.pt1_psma_brain_suv" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-                      <span class="input-group-text">Measurement (cm)</span>
+                      <span class="input-group-text" style="margin-left:20px;">Measurement (cm)</span>
                       <input v-model="view_patient.part1.pt1_psma_brain_meas" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
                     </div>
+
                     <div class="input-group input-group-sm">
-                      <span class="input-group-text">e. Lungs</span>
+                      <span class="input-group-text" style="color:white; background-color:black;">e. Lungs</span>
                       <select v-model="view_patient.part1.pt1_psma_lungs" :disabled="editDisabled" name="pt1_psma_lungs" style="font-size: 14px;">
                         <option value="psma_absent_lungs">Absent</option>
                         <option value="psma_present_lungs">Present</option>
                       </select>
                     </div>
-                    <div v-if="view_patient.part1.pt1_psma_lungs == 'psma_present_lungs'" class="input-group input-group-sm">
+                    <div v-if="view_patient.part1.pt1_psma_lungs == 'psma_present_lungs'" class="input-group input-group-sm" style="margin-left:20px; width:calc(100% - 20px)">
                       <span class="input-group-text">Location</span>
                       <input v-model="view_patient.part1.pt1_psma_lungs_loc" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-                      <span class="input-group-text">SUV</span>
+                      <span class="input-group-text" style="margin-left:20px;">SUV</span>
                       <input v-model="view_patient.part1.pt1_psma_lungs_suv" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-                      <span class="input-group-text">Measurement (cm)</span>
+                      <span class="input-group-text" style="margin-left:20px;">Measurement (cm)</span>
                       <input v-model="view_patient.part1.pt1_psma_lungs_meas" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
                     </div>
+
                     <div class="input-group input-group-sm">
-                      <span class="input-group-text">f. Liver</span>
+                      <span class="input-group-text" style="color:white; background-color:black;">f. Liver</span>
                       <select v-model="view_patient.part1.pt1_psma_liver" :disabled="editDisabled" name="pt1_psma_liver" style="font-size: 14px;">
                         <option value="psma_absent_liver">Absent</option>
                         <option value="psma_present_liver">Present</option>
                       </select>
                     </div>
-                    <div v-if="view_patient.part1.pt1_psma_liver == 'psma_present_liver'" class="input-group input-group-sm">
+                    <div v-if="view_patient.part1.pt1_psma_liver == 'psma_present_liver'" class="input-group input-group-sm" style="margin-left:20px; width:calc(100% - 20px)">
                       <span class="input-group-text">Location</span>
                       <input v-model="view_patient.part1.pt1_psma_liver_loc" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-                      <span class="input-group-text">SUV</span>
+                      <span class="input-group-text" style="margin-left:20px;">SUV</span>
                       <input v-model="view_patient.part1.pt1_psma_liver_suv" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-                      <span class="input-group-text">Measurement (cm)</span>
+                      <span class="input-group-text" style="margin-left:20px;">Measurement (cm)</span>
                       <input v-model="view_patient.part1.pt1_psma_liver_meas" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
                     </div>
+
                     <div class="input-group input-group-sm">
-                      <span class="input-group-text">g. Others</span>
+                      <span class="input-group-text" style="color:white; background-color:black;">g. Others</span>
                       <select v-model="view_patient.part1.pt1_psma_others" :disabled="editDisabled" name="pt1_psma_others" style="font-size: 14px;">
                         <option value="psma_absent_others">Absent</option>
                         <option value="psma_present_others">Present</option>
                       </select>
                     </div>
-                    <div v-if="view_patient.part1.pt1_psma_others == 'psma_present_others'" class="input-group input-group-sm">
+                    <div v-if="view_patient.part1.pt1_psma_others == 'psma_present_others'" class="input-group input-group-sm" style="margin-left:20px; width:calc(100% - 20px)">
                       <span class="input-group-text">Location</span>
                       <input v-model="view_patient.part1.pt1_psma_others_loc" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-                      <span class="input-group-text">SUV</span>
+                      <span class="input-group-text" style="margin-left:20px;">SUV</span>
                       <input v-model="view_patient.part1.pt1_psma_others_suv" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-                      <span class="input-group-text">Measurement (cm)</span>
+                      <span class="input-group-text" style="margin-left:20px;">Measurement (cm)</span>
                       <input v-model="view_patient.part1.pt1_psma_others_meas" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
                     </div>
                   </div>
                 </div>
-                <div class="align-self-start d-flex flex-column p-2" style="border: 1px solid lightgray; border-radius: 5px; gap: 5px;">
-                  <span style="padding-right:1cm; color: red; font-weight: bold;">v. FDG PET/CT</span>
+
+                <div class="align-self-start d-flex flex-column p-2" style="border: 1px solid lightgray; border-radius: 5px; gap: 5px; margin-left:20px">
+                  <span style="padding-right:1cm; font-weight: bold;">v. FDG PET/CT</span>
+
                   <div class="input-group input-group-sm">
-                  <span class="input-group-text">a. Prostate</span>
+                  <span class="input-group-text" style="color:white; background-color:black;">a. Prostate</span>
                   <select v-model="view_patient.part1.pt1_fdg_prostate" :disabled="editDisabled" name="pt1_fdg_prostate" style="font-size: 14px;">
                     <option value="fdg_absent_prostate">Absent</option>
                     <option value="fdg_present_prostate">Present</option>
                   </select>
                   </div>
-                  <div v-if="view_patient.part1.pt1_fdg_prostate == 'fdg_present_prostate'" class="input-group input-group-sm">
+                  <div v-if="view_patient.part1.pt1_fdg_prostate == 'fdg_present_prostate'" class="input-group input-group-sm" style="margin-left:20px; width:calc(100% - 20px)">
                     <span class="input-group-text">Location</span>
                     <input v-model="view_patient.part1.pt1_fdg_prostate_loc" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-                    <span class="input-group-text">SUV</span>
+                    <span class="input-group-text" style="margin-left:20px;">SUV</span>
                     <input v-model="view_patient.part1.pt1_fdg_prostate_suv" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-                    <span class="input-group-text">Measurement (cm)</span>
+                    <span class="input-group-text" style="margin-left:20px;">Measurement (cm)</span>
                     <input v-model="view_patient.part1.pt1_fdg_prostate_meas" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
                   </div>
+
                   <div class="input-group input-group-sm">
-                  <span class="input-group-text">b. Lymph Nodes</span>
+                  <span class="input-group-text" style="color:white; background-color:black;">b. Lymph Nodes</span>
                   <select v-model="view_patient.part1.pt1_fdg_lymphs" :disabled="editDisabled" name="pt1_fdg_lymphs" style="font-size: 14px;">
                     <option value="fdg_absent_node">Absent</option>
                     <option value="fdg_present_node">Present</option>
                   </select>
                   </div>
-                  <div v-if="view_patient.part1.pt1_fdg_lymphs == 'fdg_present_node'" class="input-group input-group-sm">
+                  <div v-if="view_patient.part1.pt1_fdg_lymphs == 'fdg_present_node'" class="input-group input-group-sm" style="margin-left:20px; width:calc(100% - 20px)">
                     <span class="input-group-text">Location</span>
                     <input v-model="view_patient.part1.pt1_fdg_lymphs_loc" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-                    <span class="input-group-text">SUV</span>
+                    <span class="input-group-text" style="margin-left:20px;">SUV</span>
                     <input v-model="view_patient.part1.pt1_fdg_lymphs_suv" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-                    <span class="input-group-text">Measurement (cm)</span>
+                    <span class="input-group-text" style="margin-left:20px;">Measurement (cm)</span>
                     <input v-model="view_patient.part1.pt1_fdg_lymphs_meas" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
                   </div>
+
                   <div class="input-group input-group-sm">
-                  <span class="input-group-text">c. Bone</span>
+                  <span class="input-group-text" style="color:white; background-color:black;">c. Bone</span>
                   <select v-model="view_patient.part1.pt1_fdg_bone" :disabled="editDisabled" name="fdg_bone" style="font-size: 14px;">
                     <option value="fdg_absent_bone">Absent</option>
                     <option value="fdg_present_bone">Present</option>
                   </select>
                   </div>
-                  <div v-if="view_patient.part1.pt1_fdg_bone == 'fdg_present_bone'" class="input-group input-group-sm">
+                  <div v-if="view_patient.part1.pt1_fdg_bone == 'fdg_present_bone'" class="input-group input-group-sm" style="margin-left:20px; width:calc(100% - 20px)">
                     <span class="input-group-text">Location</span>
                     <input v-model="view_patient.part1.pt1_fdg_bone_loc" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-                    <span class="input-group-text">SUV</span>
+                    <span class="input-group-text" style="margin-left:20px;">SUV</span>
                     <input v-model="view_patient.part1.pt1_fdg_bone_suv" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-                    <span class="input-group-text">Measurement (cm)</span>
+                    <span class="input-group-text" style="margin-left:20px;">Measurement (cm)</span>
                     <input v-model="view_patient.part1.pt1_fdg_bone_meas" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
                   </div>
+
                   <div class="input-group input-group-sm">
-                  <span class="input-group-text">d. Brain</span>
+                  <span class="input-group-text" style="color:white; background-color:black;">d. Brain</span>
                   <select v-model="view_patient.part1.pt1_fdg_brain" :disabled="editDisabled" name="fdg_brain" style="font-size: 14px;">
                     <option value="fdg_absent_brain">Absent</option>
                     <option value="fdg_present_brain">Present</option>
                   </select>
                   </div>
-                  <div v-if="view_patient.part1.pt1_fdg_brain == 'fdg_present_brain'" class="input-group input-group-sm">
+                  <div v-if="view_patient.part1.pt1_fdg_brain == 'fdg_present_brain'" class="input-group input-group-sm" style="margin-left:20px; width:calc(100% - 20px)">
                     <span class="input-group-text">Location</span>
                     <input v-model="view_patient.part1.pt1_fdg_brain_loc" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-                    <span class="input-group-text">SUV</span>
+                    <span class="input-group-text" style="margin-left:20px;">SUV</span>
                     <input v-model="view_patient.part1.pt1_fdg_brain_suv" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-                    <span class="input-group-text">Measurement (cm)</span>
+                    <span class="input-group-text" style="margin-left:20px;">Measurement (cm)</span>
                     <input v-model="view_patient.part1.pt1_fdg_brain_meas" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
                   </div>
+
                   <div class="input-group input-group-sm">
-                  <span class="input-group-text">e. Lungs</span>
+                  <span class="input-group-text" style="color:white; background-color:black;">e. Lungs</span>
                   <select v-model="view_patient.part1.pt1_fdg_lungs" :disabled="editDisabled" name="fdg_lungs" style="font-size: 14px;">
                     <option value="fdg_absent_lungs">Absent</option>
                     <option value="fdg_present_lungs">Present</option>
                   </select>
                   </div>
-                  <div v-if="view_patient.part1.pt1_fdg_lungs == 'fdg_present_lungs'" class="input-group input-group-sm">
+                  <div v-if="view_patient.part1.pt1_fdg_lungs == 'fdg_present_lungs'" class="input-group input-group-sm" style="margin-left:20px; width:calc(100% - 20px)">
                     <span class="input-group-text">Location</span>
                     <input v-model="view_patient.part1.pt1_fdg_lungs_loc" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-                    <span class="input-group-text">SUV</span>
+                    <span class="input-group-text" style="margin-left:20px;">SUV</span>
                     <input v-model="view_patient.part1.pt1_fdg_lungs_suv" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-                    <span class="input-group-text">Measurement (cm)</span>
+                    <span class="input-group-text" style="margin-left:20px;">Measurement (cm)</span>
                     <input v-model="view_patient.part1.pt1_fdg_lungs_meas" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
                   </div>
+
                   <div class="input-group input-group-sm">
-                  <span class="input-group-text">f. Liver</span>
+                  <span class="input-group-text" style="color:white; background-color:black;">f. Liver</span>
                   <select v-model="view_patient.part1.pt1_fdg_liver" :disabled="editDisabled" name="fdg_liver" style="font-size: 14px;">
                     <option value="fdg_absent_liver">Absent</option>
                     <option value="fdg_present_liver">Present</option>
                   </select>
                   </div>
-                  <div v-if="view_patient.part1.pt1_fdg_liver == 'fdg_present_liver'" class="input-group input-group-sm">
+                  <div v-if="view_patient.part1.pt1_fdg_liver == 'fdg_present_liver'" class="input-group input-group-sm" style="margin-left:20px; width:calc(100% - 20px)" >
                     <span class="input-group-text">Location</span>
                     <input v-model="view_patient.part1.pt1_fdg_liver_loc" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-                    <span class="input-group-text">SUV</span>
+                    <span class="input-group-text" style="margin-left:20px;">SUV</span>
                     <input v-model="view_patient.part1.pt1_fdg_liver_suv" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-                    <span class="input-group-text">Measurement (cm)</span>
+                    <span class="input-group-text" style="margin-left:20px;">Measurement (cm)</span>
                     <input v-model="view_patient.part1.pt1_fdg_liver_meas" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
                   </div>
+
                   <div class="input-group input-group-sm">
-                  <span class="input-group-text">g. Others</span>
+                  <span class="input-group-text" style="color:white; background-color:black;">g. Others</span>
                   <select v-model="view_patient.part1.pt1_fdg_others" :disabled="editDisabled" name="fdg_others" style="font-size: 14px;">
                     <option value="fdg_absent_others">Absent</option>
                     <option value="fdg_present_others">Present</option>
                   </select>
                   </div>
-                  <div v-if="view_patient.part1.pt1_fdg_others == 'fdg_present_others'" class="input-group input-group-sm">
+                  <div v-if="view_patient.part1.pt1_fdg_others == 'fdg_present_others'" class="input-group input-group-sm" style="margin-left:20px; width:calc(100% - 20px)">
                     <span class="input-group-text">Location</span>
                     <input v-model="view_patient.part1.pt1_fdg_others_loc" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-                    <span class="input-group-text">SUV</span>
+                    <span class="input-group-text" style="margin-left:20px;">SUV</span>
                     <input v-model="view_patient.part1.pt1_fdg_others_suv" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-                    <span class="input-group-text">Measurement (cm)</span>
+                    <span class="input-group-text" style="margin-left:20px;">Measurement (cm)</span>
                     <input v-model="view_patient.part1.pt1_fdg_others_meas" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
                   </div>
                 </div>
+
+                <span class="ms-1" style="font-weight:bold">C. Assessment</span>
                 <div class="input-group input-group-sm">
-                  <span class="input-group-text" style="font-size: 16px; color: red; font-weight: bold;">c. Assessment</span>
+                  <span class="input-group-text" style="background-color:black; color: white;">Assessment Type</span>
                   <select v-model="view_patient.part1.pt1_assessment" :disabled="editDisabled" name="part1_new_assessment" style="font-size: 14px; width: 150px;">
                     <option value="low risk">Low Risk</option>
                     <option value="intermediate risk">Intermediate Risk</option>
                     <option value="high risk">High Risk</option>
                   </select>
                 </div>
-                <div class="input-group mb-3">
-                  <span class="input-group-text" style="font-size: 16px;">d. Plan</span>
+                <span class="ms-1" style="font-weight:bold">D. Plan</span>
+                <div class="input-group mb-3" style="width:calc(100% - 20px)">
+                  <span class="input-group-text" style="font-size: 16px;">Plan of Action</span>
                   <textarea class="form-control" v-model="view_patient.part1.pt1_new_plan" :disabled="editDisabled" type="text" aria-label="part1_new_plan" style="font-size: 12px;"></textarea>
                 </div>
                 <!-- end 1.3 -->
@@ -1418,6 +1435,9 @@ export default {
             </div>
           </div>
         </div>
+
+
+
         <div class="accordion-item">
           <h2 class="accordion-header" id="headingTwo">
             <button style="font-weight: bold;" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
@@ -1430,14 +1450,15 @@ export default {
               <!-- Pagination -->
               <nav aria-label="Page navigation example">
                 <ul class="pagination">
-                  <li @click="viewTherapySession(this.view_patient.therapy_sessions[index], index)" v-for="(obj, index) in this.view_patient.therapy_sessions" :key="index" class="page-item"><a class="page-link" href="#">{{index+1}}</a></li>
+                  <li @click="viewTherapySession(this.view_patient.therapy_sessions[index], index)" v-for="(obj, index) in this.view_patient.therapy_sessions" :key="index" class="page-item"><a class="page-link" id="index-link" href="#">{{index+1}}</a></li>
                 </ul>
               </nav>
               <!-- end Pagination -->
               <!-- Therapy -->
               <div v-if="this.view_therapy_session.therapy_session_id" class="partDiv">
-                <span v-if="editDisabled" @click="enableEdit()" class="align-self-start myButton1" style="background-color: #7F6000;">Edit Record</span>
-                <span v-if="!editDisabled" @click="finishEditing()" class="align-self-start myButton1" style="background-color: #023020;">Finish Editing</span>
+                <span v-if="editDisabled" @click="enableEdit()" class="align-self-end myButton1"><i class="fas fa-edit"></i>&nbsp;Edit</span>
+                <span v-if="!editDisabled" @click="finishEditing()" class="align-self-end myButton1"><i class="fas fa-check-circle"></i>&nbsp;Finish</span>
+                <br>
                 <div class="d-flex flex-column p-2" style="border: 1px solid lightgray; gap: 5px;">
                   <div class="input-group input-group-sm">
                     <span class="input-group-text">Therapy Code:</span>
@@ -1446,19 +1467,19 @@ export default {
                 </div>
                 <div class="d-flex flex-column p-2" style="border: 1px solid lightgray; gap: 5px;">
                   <div class="input-group input-group-sm">
-                    <span class="input-group-text">Date of #{{view_therapy_session_index+1}} PSMA-directed Radioligand Therapy (PSMA-RLT)</span>
+                    <span class="input-group-text">Date of #{{view_therapy_session_index+1}} PSMA-RLT</span>
                     <input v-model="this.view_therapy_session.pt2_date_psma" :disabled="editDisabled" type="date" class="form-control" placeholder="" style="flex: none; min-width: 300px;">
                   </div>
-                  <div class="input-group mt-3">
+                  <div class="input-group mt-3"  style="width:calc(100% - 20px)">
                     <span class="input-group-text" style="font-size: 14px;">Pre-medications</span>
                     <textarea v-model="this.view_therapy_session.pt2_premed" class="form-control" :disabled="editDisabled" aria-label="new_plan" style="font-size: 12px;"></textarea>
                   </div>
-                  <div class="input-group mb-2">
-                    <span class="input-group-text" style="font-size: 14px;">Medications (including Furosemide)</span>
+                  <div class="input-group mb-2"  style="width:calc(100% - 20px)">
+                    <span class="input-group-text" style="font-size: 14px;">Medications (w/ Furosemide)</span>
                     <textarea v-model="this.view_therapy_session.pt2_med" :disabled="editDisabled" class="form-control" aria-label="new_plan" style="font-size: 12px;" ></textarea>
                   </div>
-                  <span class="ms-1">Vital Signs</span>
-                  <div class="align-self-start d-flex flex-column p-2" style="border: 1px solid lightgray; border-radius: 5px; gap: 5px;">
+                  <span class="ms-1">VITAL SIGNS</span>
+                  <div class="align-self-start d-flex flex-column p-2" style="border: 1px solid lightgray; border-radius: 5px; gap: 5px; margin-left:20px;">
                     <div class="d-flex flex-column ms-2" style="gap: 5px;">
                       <div class="input-group input-group-sm">
                         <span class="input-group-text">Blood Pressure (BP)</span>
@@ -1479,7 +1500,7 @@ export default {
                     </div>
                   </div>
                   <div class="input-group input-group-sm mt-2 mb-2">
-                    <span class="input-group-text">Date of therapy</span>
+                    <span class="input-group-text">Date of Therapy</span>
                     <input v-model="this.view_therapy_session.pt2_date_therapy" :disabled="editDisabled" type="date" class="form-control" placeholder="" style="flex: none; min-width: 150px;" >
                   </div>
                   <div class="input-group input-group-sm">
@@ -1491,46 +1512,50 @@ export default {
                     <input v-model="this.view_therapy_session.pt2_activity" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 180px;" >
                   </div>
                   <div class="input-group input-group-sm mt-2">
-                    <span class="ms-1" style="color: red; font-weight: bold;">Side effects (report 0 or more side effects)</span>
+                    <span class="ms-1" style="font-weight: bold;">SIDE EFFECTS (report 0 or more side effects)</span>
                     <div class="input-group mb-1 mt-1">
                       <div class="input-group-text">
                         <input true-value="1" v-model="this.view_therapy_session.pt2_fatigue" :disabled="editDisabled" class="form-check-input mt-0" type="checkbox" aria-label="pt2_side_checkbox" >
-                        <span class="input-group-text" style="margin-left:5px; font-size: 12px;">Fatigue</span>
+                        <span class="input-group-text" style="margin-left:5px; font-size: 12px;color:white; background-color:black;">Fatigue</span>
                       </div>
                       <input v-if="this.view_therapy_session.pt2_fatigue" v-model="this.view_therapy_session.pt2_fatigue_text" :disabled="editDisabled" type="text" class="form-control" aria-label="pt2_side_textbox" >
                     </div>
+
                     <div class="input-group mb-1">
                       <div class="input-group-text">
                         <input true-value="1" v-model="this.view_therapy_session.pt2_nausea" class="form-check-input mt-0" :disabled="editDisabled" type="checkbox" aria-label="pt2_side_checkbox" >
-                        <span class="input-group-text" style="margin-left:5px; font-size: 12px;">Nausea/Vomiting</span>
+                        <span class="input-group-text" style="margin-left:5px; font-size: 12px; color:white; background-color:black;">Nausea/Vomiting</span>
                       </div>
                       <input v-if="this.view_therapy_session.pt2_nausea" v-model="this.view_therapy_session.pt2_nausea_text" :disabled="editDisabled" type="text" class="form-control" aria-label="pt2_side_textbox">
                     </div>
+
                     <div class="input-group mb-1">
                       <div class="input-group-text">
                         <input true-value="1" v-model="this.view_therapy_session.pt2_dry_lips" class="form-check-input mt-0" :disabled="editDisabled" type="checkbox" aria-label="pt2_side_checkbox" >
-                        <span class="input-group-text" style="margin-left:5px; font-size: 12px;">Dry Lips/Mouth</span>
+                        <span class="input-group-text" style="margin-left:5px; font-size: 12px;color:white; background-color:black;">Dry Lips/Mouth</span>
                       </div>
                       <input v-if="this.view_therapy_session.pt2_dry_lips" v-model="this.view_therapy_session.pt2_dry_lips_text" :disabled="editDisabled" type="text" class="form-control" aria-label="pt2_side_textbox">
                     </div>
+
                     <div class="input-group mb-1">
                       <div class="input-group-text">
                         <input true-value="1" v-model="this.view_therapy_session.pt2_headache" class="form-check-input mt-0" :disabled="editDisabled" type="checkbox" aria-label="pt2_side_checkbox">
-                        <span class="input-group-text" style="margin-left:5px; font-size: 12px;">Headache</span>
+                        <span class="input-group-text" style="margin-left:5px; font-size: 12px; color:white; background-color:black;">Headache</span>
                       </div>
                       <input v-if="this.view_therapy_session.pt2_headache" v-model="this.view_therapy_session.pt2_headache_text" :disabled="editDisabled" type="text" class="form-control" aria-label="pt2_side_textbox">
                     </div>
+
                     <div class="input-group mb-1">
                       <div class="input-group-text">
                         <input true-value="1" v-model="this.view_therapy_session.pt2_bone_pain" class="form-check-input mt-0" :disabled="editDisabled" type="checkbox" aria-label="pt2_side_checkbox">
-                        <span class="input-group-text" style="margin-left:5px; font-size: 12px;">Bone Pain</span>
+                        <span class="input-group-text" style="margin-left:5px; font-size: 12px;color:white; background-color:black;">Bone Pain</span>
                       </div>
                       <input v-if="this.view_therapy_session.pt2_bone_pain" v-model="this.view_therapy_session.pt2_bone_pain_text" :disabled="editDisabled" type="text" class="form-control" aria-label="pt2_side_textbox">
                     </div>
                     <div class="input-group mb-1">
                       <div class="input-group-text">
                         <input true-value="1" v-model="this.view_therapy_session.pt2_others" class="form-check-input mt-0" :disabled="editDisabled" type="checkbox" value="pt2_others" aria-label="pt2_side_checkbox" >
-                        <span class="input-group-text" style="margin-left:5px; font-size: 12px;">Others</span>
+                        <span class="input-group-text" style="margin-left:5px; font-size: 12px; color:white; background-color:black;">Others</span>
                       </div>
                       <input v-if="this.view_therapy_session.pt2_others" v-model="this.view_therapy_session.pt2_others_text" :disabled="editDisabled" type="text" class="form-control" aria-label="pt2_side_textbox">
                     </div>
@@ -1542,6 +1567,8 @@ export default {
             </div>
           </div>
         </div>
+
+
         <div class="accordion-item">
           <h2 class="accordion-header" id="headingThree">
             <button style="font-weight: bold;" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
@@ -1554,30 +1581,35 @@ export default {
               <!-- Pagination -->
               <nav aria-label="Page navigation example">
                 <ul class="pagination">
-                  <li @click="viewPostTherapySession(this.view_patient.post_therapy_sessions[index], index)" v-for="(obj, index) in this.view_patient.post_therapy_sessions" :key="index" class="page-item"><a class="page-link" href="#">{{index+1}}</a></li>
+                  <li @click="viewPostTherapySession(this.view_patient.post_therapy_sessions[index], index)" v-for="(obj, index) in this.view_patient.post_therapy_sessions" :key="index" class="page-item"><a class="page-link" id="index-link" href="#">{{index+1}}</a></li>
                 </ul>
               </nav>
               <!-- end Pagination -->
               <!-- Post Therapy Instance -->
-              <div v-if="this.view_post_therapy_session.post_therapy_session_id" class="d-flex flex-column p-2" style="border: 1px solid lightgray; gap: 5px;">
-                <span v-if="editDisabled" @click="enableEdit()" class="align-self-start myButton1" style="background-color: #7F6000;">Edit Record</span>
-                <span v-if="!editDisabled" @click="finishEditing()" class="align-self-start myButton1" style="background-color: #023020;">Finish Editing</span>
-                <div class="d-flex flex-column p-2" style="border: 1px solid lightgray; gap: 5px;">
+              <div v-if="this.view_post_therapy_session.post_therapy_session_id" class="d-flex flex-column p-2" style="border: 2px solid black; gap: 5px;">
+                <br>
+                <span v-if="editDisabled" @click="enableEdit()" class="align-self-end myButton1"><i class="fas fa-edit"></i>&nbsp;Edit</span>
+                <span v-if="!editDisabled" @click="finishEditing()" class="align-self-end myButton1"><i class="fas fa-check-circle"></i>&nbsp;Finish</span>
+                <br>
+                
                   <div class="input-group input-group-sm">
                     <span class="input-group-text">Post Therapy Code:</span>
                     <input v-model="this.view_post_therapy_session.post_therapy_session_id" disabled type="text" class="form-control" placeholder="" style="flex: none; min-width: 300px;">
                   </div>
-                </div>
+                
                 <div class="input-group input-group-sm">
                   <span class="input-group-text">Date</span>
                   <input v-model="this.view_post_therapy_session.pt3_date_post_therapy" :disabled="editDisabled" type="date" class="form-control" placeholder="" style="flex: none; min-width: 150px;">
                 </div>
+
                 <!-- Post Therapy Header -->
+                <div style="margin-top:20px">       
                 <div class="align-items-center d-flex flex-row">
-                  <span class="me-3" >#{{view_post_therapy_session_index+1}} Post Therapy Scan</span>
+                  <br>
+                  <span class="me-3" >&nbsp;&nbsp;&nbsp;&nbsp;#{{view_post_therapy_session_index+1}} Post Therapy Scan</span>
                   <!-- Post Therapy Header Right -->
                   <input v-model="this.view_post_therapy_session.pt3_hour" :disabled="editDisabled" type="text" class="form-control p-1" placeholder="" style="flex: none; font-size: 14px; width: 30px;">
-                  <span class="input-group-text p-1" style="margin-right: 10px; font-size: 14px;">(Hour)</span>
+                  <span class="input-group-text p-1" style="margin-right: 10px; font-size: 14px;">(Hour/s)</span>
                   <div class="form-check form-check-inline">
                     <input v-model="this.view_post_therapy_session.pt3_spectct" :disabled="editDisabled" class="form-check-input" type="radio" name="spectct" id="with2" value="with2">
                     <label class="form-check-label" for="inlineRadio1" style="font-size: 14px">with SPECT/CT</label>
@@ -1593,66 +1625,72 @@ export default {
                   <div class="input-group input-group-sm">
                     <!-- Lesion -->
                     <div class="input-group input-group-sm p-3">
-                      <span class="input-group-text" style="color: red; font-weight: bold;" >Lesions</span>
+                      <span style=" font-weight: bold; margin-bottom:20px;" >LESIONS</span>
                         <!-- Lesion Body -->
                         <div class="input-group mb-1">
                           <div class="input-group-text">
                             <input true-value="1" v-model="this.view_post_therapy_session.pt3_prostate" :disabled="editDisabled" class="form-check-input mt-0" type="checkbox" aria-label="pt3_lession_checkbox">
-                            <span class="input-group-text" style="margin-left:5px; font-size: 12px;">Prostate</span>
+                            <span class="input-group-text" style="margin-left:5px; font-size: 12px; color:white; background-color:black;">Prostate</span>
                           </div>
                           <input v-if="this.view_post_therapy_session.pt3_prostate" v-model="this.view_post_therapy_session.pt3_prostate_text" :disabled="editDisabled" type="text" class="form-control" aria-label="pt3_lession_textbox">
                         </div>
                         <div class="input-group mb-1">
                           <div class="input-group-text">
                             <input true-value="1" v-model="this.view_post_therapy_session.pt3_lymph_nodes" class="form-check-input mt-0" :disabled="editDisabled" type="checkbox" aria-label="pt3_lession_checkbox">
-                            <span class="input-group-text" style="margin-left:5px; font-size: 12px;">Lymph Nodes</span>
+                            <span class="input-group-text" style="margin-left:5px; font-size: 12px; color:white; background-color:black;">Lymph Nodes</span>
                           </div>
                           <input v-if="this.view_post_therapy_session.pt3_lymph_nodes" v-model="this.view_post_therapy_session.pt3_lymph_nodes_text" :disabled="editDisabled" type="text" class="form-control" aria-label="pt3_lession_textbox">
                         </div>
                         <div class="input-group mb-1">
                           <div class="input-group-text">
                             <input true-value="1" v-model="this.view_post_therapy_session.pt3_bones" class="form-check-input mt-0" :disabled="editDisabled" type="checkbox" aria-label="pt3_lession_checkbox">
-                            <span class="input-group-text" style="margin-left:5px; font-size: 12px;">Bones</span>
+                            <span class="input-group-text" style="margin-left:5px; font-size: 12px; color:white; background-color:black;">Bones</span>
                           </div>
                           <input v-if="this.view_post_therapy_session.pt3_bones" v-model="this.view_post_therapy_session.pt3_bones_text" :disabled="editDisabled" type="text" class="form-control" aria-label="pt3_lession_textbox">
                         </div>
                         <div class="input-group mb-1">
                           <div class="input-group-text">
                             <input true-value="1" v-model="this.view_post_therapy_session.pt3_lungs" class="form-check-input mt-0" :disabled="editDisabled" type="checkbox" aria-label="pt3_lession_checkbox">
-                            <span class="input-group-text" style="margin-left:5px; font-size: 12px;">Lungs</span>
+                            <span class="input-group-text" style="margin-left:5px; font-size: 12px; color:white; background-color:black;">Lungs</span>
                           </div>
                           <input v-if="this.view_post_therapy_session.pt3_lungs" v-model="this.view_post_therapy_session.pt3_lungs_text" :disabled="editDisabled" type="text" class="form-control" aria-label="pt3_lession_textbox">
                         </div>
                         <div class="input-group mb-1">
                           <div class="input-group-text">
                             <input true-value="1" v-model="this.view_post_therapy_session.pt3_liver" class="form-check-input mt-0" :disabled="editDisabled" type="checkbox" aria-label="pt3_lession_checkbox">
-                            <span class="input-group-text" style="margin-left:5px; font-size: 12px;">Liver</span>
+                            <span class="input-group-text" style="margin-left:5px; font-size: 12px; color:white; background-color:black;">Liver</span>
                           </div>
                           <input v-if="this.view_post_therapy_session.pt3_liver" v-model="this.view_post_therapy_session.pt3_liver_text" :disabled="editDisabled" type="text" class="form-control" aria-label="pt3_lession_textbox">
                         </div>
                         <!-- end Lesion Body -->
                     </div>
+                  </div>
                     <!-- end Lesion -->
                   </div>
+
                 <!-- Dosimetry -->
                 <div class="">
                   <div class="input-group input-group-sm">
-                    <span class="">Dosimetry</span>
+                    <span class="">&nbsp;&nbsp;&nbsp;&nbsp;DOSIMETRY</span>
                   </div>            
                   <!-- Dosimetry Body -->
                   <div class="p-3">
                     <div class="input-group mb-1">
                       <div class="input-group-text">
-                        <span class="input-group-text" style="margin-left:5px; font-size: 12px;">Salivary Gland</span>
+                        <span class="input-group-text" style="margin-left:2px; font-size: 12px;">Salivary Gland</span>
                       </div>
                       <input v-model="this.view_post_therapy_session.pt3_sg" :disabled="editDisabled" type="text" class="form-control" aria-label="pt3_lession_textbox ">
                     </div>
+
                     <div class="input-group mb-1">
                       <div class="input-group-text">
                         <span class="input-group-text" style="margin-left:5px; font-size: 12px;">Left Kidney</span>
                       </div>
                       <input v-model="this.view_post_therapy_session.pt3_lk" :disabled="editDisabled" type="text" class="form-control" aria-label="pt3_lession_textbox">
-                      <div class="input-group-text">
+                    </div>
+                    
+                    <div class="input-group mb-1">
+                    <div class="input-group-text">
                         <span class="input-group-text" style="margin-left:5px; font-size: 12px;">Right Kidney</span>
                       </div>
                       <input v-model="this.view_post_therapy_session.pt3_rk" :disabled="editDisabled" type="text" class="form-control" aria-label="pt3_lession_textbox">
@@ -1669,12 +1707,15 @@ export default {
           </div>
         </div>
       </div>
+
+
       <!-- Follow Up Records -->
-      <h3 class="mt-3" style="font-size: 18px; font-weight: bold;">Follow Up Records</h3>
+      <h3 class="mt-3" style="font-size: 20px; font-weight: bold; color:#0B2509">FOLLOW UP RECORDS</h3>
+      <hr>
         <!-- Pagination -->
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
-                  <li @click="viewFollowUp(this.view_patient.part4[index], index)" v-for="(obj, index) in this.view_patient.part4" :key="index" class="page-item"><span class="page-link" style="color: blue; cursor: pointer;">{{index+1}}</span></li>
+                  <li @click="viewFollowUp(this.view_patient.part4[index], index)" v-for="(obj, index) in this.view_patient.part4" :key="index" class="page-item"><span class="page-link" id="index-link">{{index+1}}</span></li>
               </ul>
             </nav>
         <!-- end Pagination -->
@@ -1682,8 +1723,9 @@ export default {
         <!-- Follow Up Record -->
         <div v-if="patient_view_follow_up.record_id" class="p-3">
         <div class="partDiv">
-          <span v-if="editDisabled" @click="enableEdit()" class="align-self-start myButton1" style="background-color: #7F6000;">Edit Record</span>
-          <span v-if="!editDisabled" @click="finishEditing()" class="align-self-start myButton1" style="background-color: #023020;">Finish Editing</span>
+          <span v-if="editDisabled" @click="enableEdit()" class="align-self-end myButton1"><i class="fas fa-edit"></i>&nbsp;Edit</span>
+          <span v-if="!editDisabled" @click="finishEditing()" class="align-self-end myButton1"><i class="fas fa-check-circle"></i>&nbsp;Finish</span>
+          <br>
           <div class="input-group input-group-sm">
             <span class="input-group-text">Patient Code</span>
             <input disabled v-model="view_patient.part1.pt1_patient_code" type="text" class="form-control" placeholder="" style="flex: none; min-width: 300px;">
@@ -1692,12 +1734,14 @@ export default {
             <span class="input-group-text">Follow Up Record Code</span>
             <input disabled v-model="patient_view_follow_up.record_id" type="text" class="form-control" placeholder="" style="flex: none; min-width: 300px;">
           </div>
-          <div class="input-group input-group-sm">
+          <div class="input-group input-group-sm" style="margin-bottom:10px;">
             <span class="input-group-text">Date of Follow Up</span>
             <input :disabled="editDisabled" v-model="patient_view_follow_up.pt4_date" type="date" class="form-control" placeholder="" style="flex: none; min-width: 300px;">
           </div>
-          <span style="font-size: 16px; font-weight: bold;">Diagnosis</span>
-          <span class="ms-1">a. Laboratory</span>
+          <br>
+          <span style="font-size: 18px; font-weight: bold;">DIAGNOSIS</span>
+          <br>
+          <span class="ms-1" style="font-weight: bold">A. Laboratory</span>
           <div class="input-group input-group-sm">
             <span class="input-group-text">i. PSA</span>
             <input :disabled="editDisabled" v-model="patient_view_follow_up.pt4_psa" type="text" class="form-control" placeholder="" style="flex: none; min-width: 500px;">
@@ -1706,7 +1750,7 @@ export default {
             <span class="input-group-text">ii. Creatinine</span>
             <input :disabled="editDisabled" v-model="patient_view_follow_up.pt4_creatinine" type="text" class="form-control" placeholder="" style="flex: none; min-width: 500px;">
           </div>
-          <div class="align-self-start d-flex flex-column p-2" style="border: 1px solid lightgray; border-radius: 5px; gap: 5px;">
+          <div class="align-self-start d-flex flex-column p-2" style="border: 1px solid lightgray; border-radius: 5px; gap: 5px; margin-left:20px;">
             <span class="ms-1" style="font-size: 14px;">iii. CBC</span>
             <div class="d-flex flex-column ms-2" style="gap: 5px;">
               <div class="input-group input-group-sm">
@@ -1743,7 +1787,7 @@ export default {
             <span class="input-group-text">vi. SGPT, SGOT, Bilirubins</span>
             <input v-model="patient_view_follow_up.pt4_ssb" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 500px;">
           </div>
-          <span class="ms-1">b. Imaging</span>
+          <span class="ms-1" style="font-weight: bold">B. Imaging</span>
           <div class="input-group input-group-sm">
             <span class="input-group-text">i. Salivary Gland</span>
             <select v-model="patient_view_follow_up.pt4_salivary" :disabled="editDisabled" name="salivary_gland" style="font-size: 14px; width: 150px;">
@@ -1763,246 +1807,251 @@ export default {
               <option value="with metastasis">With Metastasis</option>
             </select>
           </div>
-          <div v-if="patient_view_follow_up.pt4_bone_scan == 'with_metastasis'" :disabled="editDisabled" class="input-group input-group-sm">
+          <div v-if="patient_view_follow_up.pt4_bone_scan == 'with metastasis'" :disabled="editDisabled" class="input-group input-group-sm"  style="margin-left:40px; width:calc(100% - 40px)">
             <span class="input-group-text">Location</span>
             <input v-model="patient_view_follow_up.pt4_withmetas" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
+            <br>
           </div>
-          <div class="align-self-start p-2" style="border: 1px solid lightgray; border-radius: 5px; gap: 5px;">
-            <span style="font-size: 14px; padding-right: 1cm; color: red; font-weight: bold;">iv. PSMA</span>
+          <div class="align-self-start p-2" style="border: 1px solid lightgray; border-radius: 5px; gap: 5px; margin-left:20px;">
+            <span style="font-size: 14px; padding-right: 1cm; font-weight: bold;">iv. PSMA</span>
           <div class="form-check form-check-inline">
             <input  v-model="patient_view_follow_up.pt4_psma_picked" :disabled="editDisabled" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="ga-68">
-            <label class="form-check-label" for="inlineRadio1" style="font-size: 14px; color: red; font-weight: bold;">Ga-68</label>
+            <label class="form-check-label" for="inlineRadio1" style="font-size: 14px; font-weight: bold;">Ga-68</label>
           </div>
           <div class="form-check form-check-inline">
             <input v-model="patient_view_follow_up.pt4_psma_picked" :disabled="editDisabled" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="f-18">
-            <label class="form-check-label" for="inlineRadio2" style="font-size: 14px; color: red; font-weight: bold;">F-18</label>
+            <label class="form-check-label" for="inlineRadio2" style="font-size: 14px; font-weight: bold;">F-18</label>
           </div>
+
             <div class="d-flex flex-column" style="gap: 5px;">
               <div class="input-group input-group-sm">
-                <span class="input-group-text">a. Prostate</span>
+                <span class="input-group-text" style="color:white; background-color:black">a. Prostate</span>
                 <select v-model="patient_view_follow_up.pt4_psma_prostate" :disabled="editDisabled" name="psma_prostate" style="font-size: 14px;">
                   <option value="psma_absent_prostate">Absent</option>
                   <option value="psma_present_prostate">Present</option>
                 </select>
               </div>
-              <div v-if="patient_view_follow_up.pt4_psma_prostate == 'psma_present_prostate'" class="input-group input-group-sm">
+              <div v-if="patient_view_follow_up.pt4_psma_prostate == 'psma_present_prostate'" class="input-group input-group-sm" style="margin-left:40px; width:calc(100% - 40px)">
                 <span class="input-group-text">Location</span>
                 <input v-model="patient_view_follow_up.pt4_psma_prostate_loc" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-                <span class="input-group-text">SUV</span>
+                <span class="input-group-text" style="margin-left:20px;">SUV</span>
                 <input v-model="patient_view_follow_up.pt4_psma_prostate_suv" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-                <span class="input-group-text">Measurement (cm)</span>
+                <span class="input-group-text" style="margin-left:20px;">Measurement (cm)</span>
                 <input v-model="patient_view_follow_up.pt4_psma_prostate_meas" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
               </div>
+
               <div class="input-group input-group-sm">
-                <span class="input-group-text">b. Lymph Nodes</span>
+                <span class="input-group-text" style="color:white; background-color:black">b. Lymph Nodes</span>
                 <select v-model="patient_view_follow_up.pt4_psma_lymphs" :disabled="editDisabled" name="psma_lymphn" style="font-size: 14px;">
                   <option value="psma_absent_node">Absent</option>
                   <option value="psma_present_node">Present</option>
                 </select>
               </div>
-              <div v-if="patient_view_follow_up.pt4_psma_lymphs == 'psma_present_node'" class="input-group input-group-sm">
+              <div v-if="patient_view_follow_up.pt4_psma_lymphs == 'psma_present_node'" class="input-group input-group-sm" style="margin-left:40px; width:calc(100% - 40px)">
                 <span class="input-group-text">Location</span>
                 <input v-model="patient_view_follow_up.pt4_psma_lymphs_loc" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-                <span class="input-group-text">SUV</span>
+                <span class="input-group-text" style="margin-left:20px;">SUV</span>
                 <input v-model="patient_view_follow_up.pt4_psma_lymphs_suv" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-                <span class="input-group-text">Measurement (cm)</span>
+                <span class="input-group-text" style="margin-left:20px;">Measurement (cm)</span>
                 <input v-model="patient_view_follow_up.pt4_psma_lymphs_meas" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
               </div>
               <div class="input-group input-group-sm">
-                <span class="input-group-text">c. Bone</span>
+                <span class="input-group-text" style="color:white; background-color:black">c. Bone</span>
                 <select v-model="patient_view_follow_up.pt4_psma_bone" :disabled="editDisabled" name="psma_bone" style="font-size: 14px;">
                   <option value="psma_absent_bone">Absent</option>
                   <option value="psma_present_bone">Present</option>
                 </select>
               </div>
-              <div v-if="patient_view_follow_up.pt4_psma_bone == 'psma_present_bone'" class="input-group input-group-sm">
+              <div v-if="patient_view_follow_up.pt4_psma_bone == 'psma_present_bone'" class="input-group input-group-sm" style="margin-left:40px; width:calc(100% - 40px)">
                 <span class="input-group-text">Location</span>
                 <input v-model="patient_view_follow_up.pt4_psma_bone_loc"  :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-                <span class="input-group-text">SUV</span>
+                <span class="input-group-text" style="margin-left:20px;">SUV</span>
                 <input v-model="patient_view_follow_up.pt4_psma_bone_suv" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-                <span class="input-group-text">Measurement (cm)</span>
+                <span class="input-group-text" style="margin-left:20px;">Measurement (cm)</span>
                 <input v-model="patient_view_follow_up.pt4_psma_bone_meas" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
               </div>
               <div class="input-group input-group-sm">
-                <span class="input-group-text">d. Brain</span>
+                <span class="input-group-text" style="color:white; background-color:black">d. Brain</span>
                 <select v-model="patient_view_follow_up.pt4_psma_brain" :disabled="editDisabled" name="psma_brain" style="font-size: 14px;">
                   <option value="psma_absent_brain">Absent</option>
                   <option value="psma_present_brain">Present</option>
                 </select>
               </div>
-              <div v-if="patient_view_follow_up.pt4_psma_brain == 'psma_present_brain'" class="input-group input-group-sm">
+              <div v-if="patient_view_follow_up.pt4_psma_brain == 'psma_present_brain'" class="input-group input-group-sm" style="margin-left:40px; width:calc(100% - 40px)">
                 <span class="input-group-text">Location</span>
                 <input v-model="patient_view_follow_up.pt4_psma_brain_loc" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-                <span class="input-group-text">SUV</span>
+                <span class="input-group-text" style="margin-left:20px;">SUV</span>
                 <input v-model="patient_view_follow_up.pt4_psma_brain_suv" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-                <span class="input-group-text">Measurement (cm)</span>
+                <span class="input-group-text" style="margin-left:20px;">Measurement (cm)</span>
                 <input v-model="patient_view_follow_up.pt4_psma_brain_meas" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
               </div>
               <div class="input-group input-group-sm">
-                <span class="input-group-text">e. Lungs</span>
+                <span class="input-group-text" style="color:white; background-color:black">e. Lungs</span>
                 <select v-model="patient_view_follow_up.pt4_psma_lungs" :disabled="editDisabled" name="psma_lungs" style="font-size: 14px;">
                   <option value="psma_absent_lungs">Absent</option>
                   <option value="psma_present_lungs">Present</option>
                 </select>
               </div>
-              <div v-if="patient_view_follow_up.pt4_psma_lungs == 'psma_present_lungs'" class="input-group input-group-sm">
+              <div v-if="patient_view_follow_up.pt4_psma_lungs == 'psma_present_lungs'" class="input-group input-group-sm" style="margin-left:40px; width:calc(100% - 40px)">
                 <span class="input-group-text">Location</span>
                 <input v-model="patient_view_follow_up.pt4_psma_lungs_loc" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-                <span class="input-group-text">SUV</span>
+                <span class="input-group-text" style="margin-left:20px;">SUV</span>
                 <input v-model="patient_view_follow_up.pt4_psma_lungs_suv" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-                <span class="input-group-text">Measurement (cm)</span>
+                <span class="input-group-text" style="margin-left:20px;">Measurement (cm)</span>
                 <input v-model="patient_view_follow_up.pt4_psma_lungs_meas" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
               </div>
               <div class="input-group input-group-sm">
-                <span class="input-group-text">f. Liver</span>
+                <span class="input-group-text" style="color:white; background-color:black">f. Liver</span>
                 <select v-model="patient_view_follow_up.pt4_psma_liver" :disabled="editDisabled" name="psma_liver" style="font-size: 14px;">
                   <option value="psma_absent_liver">Absent</option>
                   <option value="psma_present_liver">Present</option>
                 </select>
               </div>
-              <div v-if="patient_view_follow_up.pt4_psma_liver == 'psma_present_liver'" class="input-group input-group-sm">
+              <div v-if="patient_view_follow_up.pt4_psma_liver == 'psma_present_liver'" class="input-group input-group-sm" style="margin-left:40px; width:calc(100% - 40px)">
                 <span class="input-group-text">Location</span>
                 <input v-model="patient_view_follow_up.pt4_psma_liver_loc" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-                <span class="input-group-text">SUV</span>
+                <span class="input-group-text" style="margin-left:20px;">SUV</span>
                 <input v-model="patient_view_follow_up.pt4_psma_liver_suv" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-                <span class="input-group-text">Measurement (cm)</span>
+                <span class="input-group-text" style="margin-left:20px;">Measurement (cm)</span>
                 <input v-model="patient_view_follow_up.pt4_psma_liver_meas" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
               </div>
               <div class="input-group input-group-sm">
-                <span class="input-group-text">g. Others</span>
+                <span class="input-group-text" style="color:white; background-color:black">g. Others</span>
                 <select v-model="patient_view_follow_up.pt4_psma_others" :disabled="editDisabled" name="psma_others" style="font-size: 14px;">
                   <option value="psma_absent_others">Absent</option>
                   <option value="psma_present_others">Present</option>
                 </select>
               </div>
-              <div v-if="patient_view_follow_up.pt4_psma_others == 'psma_present_others'" class="input-group input-group-sm">
+              <div v-if="patient_view_follow_up.pt4_psma_others == 'psma_present_others'" class="input-group input-group-sm" style="margin-left:40px; width:calc(100% - 40px)">
                 <span class="input-group-text">Location</span>
                 <input v-model="patient_view_follow_up.pt4_psma_others_loc" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-                <span class="input-group-text">SUV</span>
+                <span class="input-group-text" style="margin-left:20px;">SUV</span>
                 <input v-model="patient_view_follow_up.pt4_psma_others_suv" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-                <span class="input-group-text">Measurement (cm)</span>
+                <span class="input-group-text" style="margin-left:20px;">Measurement (cm)</span>
                 <input v-model="patient_view_follow_up.pt4_psma_others_meas" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
               </div>
             </div>
           </div>
-          <div class="align-self-start d-flex flex-column p-2" style="border: 1px solid lightgray; border-radius: 5px; gap: 5px;">
-            <span style="padding-right:1cm; color: red; font-weight: bold;">v. FDG PET/CT</span>
+          <div class="align-self-start d-flex flex-column p-2" style="border: 1px solid lightgray; border-radius: 5px; gap: 5px; margin-left:20px;">
+            <span style="padding-right:1cm;font-weight: bold;">v. FDG PET/CT</span>
             <div class="input-group input-group-sm">
-            <span class="input-group-text">a. Prostate</span>
+            <span class="input-group-text" style="color:white; background-color:black">a. Prostate</span>
             <select v-model="patient_view_follow_up.pt4_fdg_prostate" :disabled="editDisabled" name="fdg_prostate" style="font-size: 14px;">
               <option value="fdg_absent_prostate">Absent</option>
               <option value="fdg_present_prostate">Present</option>
             </select>
             </div>
-            <div v-if="patient_view_follow_up.pt4_fdg_prostate == 'fdg_present_prostate'" class="input-group input-group-sm">
+            <div v-if="patient_view_follow_up.pt4_fdg_prostate == 'fdg_present_prostate'" class="input-group input-group-sm" style="margin-left:40px; width:calc(100% - 40px)">
               <span class="input-group-text">Location</span>
               <input v-model="patient_view_follow_up.pt4_fdg_prostate_loc" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-              <span class="input-group-text">SUV</span>
+              <span class="input-group-text" style="margin-left:20px;">SUV</span>
               <input v-model="patient_view_follow_up.pt4_fdg_prostate_suv" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-              <span class="input-group-text">Measurement (cm)</span>
+              <span class="input-group-text" style="margin-left:20px;">Measurement (cm)</span>
               <input v-model="patient_view_follow_up.pt4_fdg_prostate_meas" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
             </div>
             <div class="input-group input-group-sm">
-            <span class="input-group-text">b. Lymph Nodes</span>
+            <span class="input-group-text" style="color:white; background-color:black">b. Lymph Nodes</span>
             <select v-model="patient_view_follow_up.pt4_fdg_lymphs" :disabled="editDisabled" name="fdg_lymphn" style="font-size: 14px;">
               <option value="fdg_absent_node">Absent</option>
               <option value="fdg_present_node">Present</option>
             </select>
             </div>
-            <div v-if="patient_view_follow_up.pt4_fdg_lymphs == 'fdg_present_node'" class="input-group input-group-sm">
+            <div v-if="patient_view_follow_up.pt4_fdg_lymphs == 'fdg_present_node'" class="input-group input-group-sm" style="margin-left:40px; width:calc(100% - 40px)">
               <span class="input-group-text">Location</span>
               <input v-model="patient_view_follow_up.pt4_fdg_lymphs_loc" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-              <span class="input-group-text">SUV</span>
+              <span class="input-group-text" style="margin-left:20px;">SUV</span>
               <input v-model="patient_view_follow_up.pt4_fdg_lymphs_suv" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-              <span class="input-group-text">Measurement (cm)</span>
+              <span class="input-group-text" style="margin-left:20px;">Measurement (cm)</span>
               <input v-model="patient_view_follow_up.pt4_fdg_present_node" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
             </div>
             <div class="input-group input-group-sm">
-            <span class="input-group-text">c. Bone</span>
+            <span class="input-group-text" style="color:white; background-color:black">c. Bone</span>
             <select v-model="patient_view_follow_up.pt4_fdg_bone" :disabled="editDisabled" name="fdg_bone" style="font-size: 14px;">
               <option value="fdg_absent_bone">Absent</option>
               <option value="fdg_present_bone">Present</option>
             </select>
             </div>
-            <div v-if="patient_view_follow_up.pt4_fdg_bone == 'fdg_present_bone'" class="input-group input-group-sm">
+            <div v-if="patient_view_follow_up.pt4_fdg_bone == 'fdg_present_bone'" class="input-group input-group-sm" style="margin-left:40px; width:calc(100% - 40px)">
               <span class="input-group-text">Location</span>
               <input v-model="patient_view_follow_up.pt4_fdg_bone_loc" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-              <span class="input-group-text">SUV</span>
+              <span class="input-group-text" style="margin-left:20px;">SUV</span>
               <input v-model="patient_view_follow_up.pt4_fdg_bone_meas" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-              <span class="input-group-text">Measurement (cm)</span>
+              <span class="input-group-text" style="margin-left:20px;">Measurement (cm)</span>
               <input v-model="patient_view_follow_up.pt4_fdg_bone_meas" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
             </div>
             <div class="input-group input-group-sm">
-            <span class="input-group-text">d. Brain</span>
+            <span class="input-group-text" style="color:white; background-color:black">d. Brain</span>
             <select v-model="patient_view_follow_up.pt4_fdg_brain" :disabled="editDisabled" name="fdg_brain" style="font-size: 14px;">
               <option value="fdg_absent_brain">Absent</option>
               <option value="fdg_present_brain">Present</option>
             </select>
             </div>
-            <div v-if="patient_view_follow_up.pt4_fdg_brain == 'fdg_present_brain'" class="input-group input-group-sm">
+            <div v-if="patient_view_follow_up.pt4_fdg_brain == 'fdg_present_brain'" class="input-group input-group-sm" style="margin-left:40px; width:calc(100% - 40px)">
               <span class="input-group-text">Location</span>
               <input v-model="patient_view_follow_up.pt4_fdg_brain_loc" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-              <span class="input-group-text">SUV</span>
+              <span class="input-group-text" style="margin-left:20px;">SUV</span>
               <input v-model="patient_view_follow_up.pt4_fdg_brain_suv" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-              <span class="input-group-text">Measurement (cm)</span>
+              <span class="input-group-text" style="margin-left:20px;">Measurement (cm)</span>
               <input v-model="patient_view_follow_up.pt4_fdg_brain_meas" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
             </div>
             <div class="input-group input-group-sm">
-            <span class="input-group-text">e. Lungs</span>
+            <span class="input-group-text" style="color:white; background-color:black">e. Lungs</span>
             <select v-model="patient_view_follow_up.pt4_fdg_lungs" :disabled="editDisabled" name="fdg_lungs" style="font-size: 14px;">
               <option value="fdg_absent_lungs">Absent</option>
               <option value="fdg_present_lungs">Present</option>
             </select>
             </div>
-            <div v-if="patient_view_follow_up.pt4_fdg_lungs == 'fdg_present_lungs'" class="input-group input-group-sm">
+            <div v-if="patient_view_follow_up.pt4_fdg_lungs == 'fdg_present_lungs'" class="input-group input-group-sm" style="margin-left:40px; width:calc(100% - 40px)">
               <span class="input-group-text">Location</span>
               <input v-model="patient_view_follow_up.pt4_fdg_lungs_loc" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-              <span class="input-group-text">SUV</span>
+              <span class="input-group-text" style="margin-left:20px;">SUV</span>
               <input v-model="patient_view_follow_up.pt4_fdg_lungs_suv" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-              <span class="input-group-text">Measurement (cm)</span>
+              <span class="input-group-text" style="margin-left:20px;">Measurement (cm)</span>
               <input v-model="patient_view_follow_up.pt4_fdg_lungs_meas" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
             </div>
             <div class="input-group input-group-sm">
-            <span class="input-group-text">f. Liver</span>
+            <span class="input-group-text" style="color:white; background-color:black">f. Liver</span>
             <select v-model="patient_view_follow_up.pt4_fdg_liver" :disabled="editDisabled" name="fdg_liver" style="font-size: 14px;">
               <option value="fdg_absent_liver">Absent</option>
               <option value="fdg_present_liver">Present</option>
             </select>
             </div>
-            <div v-if="patient_view_follow_up.pt4_fdg_liver == 'fdg_present_liver'" class="input-group input-group-sm">
+            <div v-if="patient_view_follow_up.pt4_fdg_liver == 'fdg_present_liver'" class="input-group input-group-sm" style="margin-left:40px; width:calc(100% - 40px)">
               <span class="input-group-text">Location</span>
               <input v-model="patient_view_follow_up.pt4_fdg_liver_loc" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-              <span class="input-group-text">SUV</span>
+              <span class="input-group-text" style="margin-left:20px;">SUV</span>
               <input v-model="patient_view_follow_up.pt4_fdg_liver_suv" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-              <span class="input-group-text">Measurement (cm)</span>
+              <span class="input-group-text" style="margin-left:20px;">Measurement (cm)</span>
               <input v-model="patient_view_follow_up.pt4_fdg_liver_meas" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
             </div>
             <div class="input-group input-group-sm">
-            <span class="input-group-text">g. Others</span>
+            <span class="input-group-text" style="color:white; background-color:black">g. Others</span>
             <select v-model="patient_view_follow_up.pt4_fdg_others" :disabled="editDisabled" name="fdg_others" style="font-size: 14px;">
               <option value="fdg_absent_others">Absent</option>
               <option value="fdg_present_others">Present</option>
             </select>
             </div>
-            <div v-if="patient_view_follow_up.pt4_fdg_others == 'fdg_present_others'" :disabled="editDisabled" class="input-group input-group-sm">
+            <div v-if="patient_view_follow_up.pt4_fdg_others == 'fdg_present_others'" :disabled="editDisabled" class="input-group input-group-sm" style="margin-left:40px; width:calc(100% - 40px)">
               <span class="input-group-text">Location</span>
               <input v-model="patient_view_follow_up.pt4_fdg_others_loc" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-              <span class="input-group-text">SUV</span>
+              <span class="input-group-text" style="margin-left:20px;">SUV</span>
               <input v-model="patient_view_follow_up.pt4_fdg_others_suv" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-              <span class="input-group-text">Measurement (cm)</span>
+              <span class="input-group-text" style="margin-left:20px;">Measurement (cm)</span>
               <input v-model="patient_view_follow_up.pt4_fdg_others_measure" :disabled="editDisabled" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
             </div>
           </div>
+          <span class="ms-1" style="font-weight: bold">C. Assessment</span>
           <div class="input-group input-group-sm">
-            <span class="input-group-text" style="font-size: 16px;">c. Assessment</span>
+            <span class="input-group-text">Assessment Type</span>
             <select v-model="patient_view_follow_up.pt4_assessment" :disabled="editDisabled" name="fu_new_assessment" style="font-size: 14px; width: 150px;">
               <option value="low risk">Low Risk</option>
               <option value="intermediate risk">Intermediate Risk</option>
               <option value="high risk">High Risk</option>
             </select>
           </div>
+          <span class="ms-1" style="font-weight: bold">D. Plan</span>
           <div class="input-group mb-3">
-            <span class="input-group-text" style="font-size: 16px;">d. Plan</span>
+            <span class="input-group-text">Plan of Action</span>
             <textarea class="form-control" v-model="patient_view_follow_up.pt4_plan" :disabled="editDisabled" name="fu_new_plan" aria-label="new_plan" style="font-size: 12px;"></textarea>
           </div>
         </div>
@@ -2011,28 +2060,29 @@ export default {
       <!-- end Follow Up Records -->
     </div>
     <!-- end View Patient Div -->
+
+
     <!-- Add Follow Up Div -->
-    <div v-if="currentDivShown == 'addFollowUpDiv'" class="partDiv">
+    <div v-if="currentDivShown == 'addFollowUpDiv'" class="d-flex flex-column p-3" id="view-page">
       <!-- Add Follow Up Header -->
-      <div class="d-flex flex-row justify-content-between mb-4">
-        <h1 style="font-size: 20px; font-weight: bold;">Add Follow Up Record</h1>
-        <span @click="switchDiv('table')" class="myButton1" style="background-color: #7F6000;">Cancel</span>
+      <div class="d-flex flex-row justify-content-between mb-4" style="margin-bottom:1px; margin-top:20px">
+        <h1 style="font-size: 25px; font-weight: bold;">Add Follow Up Record</h1>
+        <span @click="switchDiv('table')" class="myButton2"><i class="fas fa-times"></i>&nbsp;Cancel</span>
       </div>
       <!-- end Add Follow Up Header -->
       <!-- Follow Up Body -->
       <div class="p-3">
-        <h2 style="font-weight: bold;">Add Follow Up Record</h2>
         <div class="partDiv">
           <div class="input-group input-group-sm">
             <span class="input-group-text">Patient Code</span>
             <input v-model="patient_follow_up.part1.pt1_patient_code" disabled type="text" class="form-control" placeholder="" style="flex: none; min-width: 300px;">
           </div>
-          <div class="input-group input-group-sm">
+          <div class="input-group input-group-sm" style="margin-bottom:20px;">
             <span class="input-group-text">Date of Follow Up</span>
             <input v-model="part4.pt4_date" type="date" class="form-control" placeholder="" style="flex: none; min-width: 300px;">
           </div>
-          <span style="font-size: 16px; font-weight: bold;">Diagnosis</span>
-          <span class="ms-1">a. Laboratory</span>
+          <span style="font-size: 18px; font-weight: bold; color:#0B2509;">DIAGNOSIS</span>
+          <span class="ms-1" style="font-weight: bold;">A. Laboratory</span>
           <div class="input-group input-group-sm">
             <span class="input-group-text">i. PSA</span>
             <input v-model="part4.pt4_psa" type="text" class="form-control" placeholder="" style="flex: none; min-width: 500px;">
@@ -2041,7 +2091,7 @@ export default {
             <span class="input-group-text">ii. Creatinine</span>
             <input v-model="part4.pt4_creatinine" type="text" class="form-control" placeholder="" style="flex: none; min-width: 500px;">
           </div>
-          <div class="align-self-start d-flex flex-column p-2" style="border: 1px solid lightgray; border-radius: 5px; gap: 5px;">
+          <div class="align-self-start d-flex flex-column p-2" style="border: 1px solid lightgray; border-radius: 5px; gap: 5px; margin-left:20px;">
             <span class="ms-1" style="font-size: 14px;">iii. CBC</span>
             <div class="d-flex flex-column ms-2" style="gap: 5px;">
               <div class="input-group input-group-sm">
@@ -2078,7 +2128,7 @@ export default {
             <span class="input-group-text">vi. SGPT, SGOT, Bilirubins</span>
             <input v-model="part4.pt4_ssb" type="text" class="form-control" placeholder="" style="flex: none; min-width: 500px;">
           </div>
-          <span class="ms-1">b. Imaging</span>
+          <span class="ms-1" style="font-weight: bold;">B. Imaging</span>
           <div class="input-group input-group-sm">
             <span class="input-group-text">i. Salivary Gland</span>
             <select v-model="part4.pt4_salivary" name="salivary_gland" style="font-size: 14px; width: 150px;">
@@ -2098,19 +2148,19 @@ export default {
               <option value="with metastasis">With Metastasis</option>
             </select>
           </div>
-          <div v-if="part4.pt4_bone_scan == 'with metastasis'" class="input-group input-group-sm">
+          <div v-if="part4.pt4_bone_scan == 'with metastasis'" class="input-group input-group-sm" style="margin-left:40px; width:calc(100% - 40px)">
             <span class="input-group-text">Location</span>
             <input v-model="part4.pt4_withmetas" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
           </div>
-          <div class="align-self-start p-2" style="border: 1px solid lightgray; border-radius: 5px; gap: 5px;">
-            <span style="font-size: 14px; padding-right: 1cm; color: red; font-weight: bold;">iv. PSMA</span>
+          <div class="align-self-start p-2" style="border: 1px solid lightgray; border-radius: 5px; gap: 5px; margin-left:20px;">
+            <span style="font-size: 14px; padding-right: 1cm; font-weight: bold;">iv. PSMA</span>
           <div class="form-check form-check-inline">
             <input v-model="part4.pt4_psma_picked" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="ga-68">
-            <label class="form-check-label" for="inlineRadio1" style="font-size: 14px; color: red; font-weight: bold;">Ga-68</label>
+            <label class="form-check-label" for="inlineRadio1" style="font-size: 14px; font-weight: bold;">Ga-68</label>
           </div>
           <div class="form-check form-check-inline">
             <input v-model="part4.pt4_psma_picked" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="f-18">
-            <label class="form-check-label" for="inlineRadio2" style="font-size: 14px; color: red; font-weight: bold;">F-18</label>
+            <label class="form-check-label" for="inlineRadio2" style="font-size: 14px;font-weight: bold;">F-18</label>
           </div>
             <div class="d-flex flex-column" style="gap: 5px;">
               <div class="input-group input-group-sm">
@@ -2120,12 +2170,12 @@ export default {
                   <option value="psma_present_prostate">Present</option>
                 </select>
               </div>
-              <div v-if="part4.pt4_psma_prostate == 'psma_present_prostate'" class="input-group input-group-sm">
+              <div v-if="part4.pt4_psma_prostate == 'psma_present_prostate'" class="input-group input-group-sm" style="margin-left:40px; width:calc(100% - 40px)">
                 <span class="input-group-text">Location</span>
                 <input v-model="part4.pt4_psma_prostate_loc" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-                <span class="input-group-text">SUV</span>
+                <span class="input-group-text" style="margin-left:20px;">SUV</span>
                 <input v-model="part4.pt4_psma_prostate_suv" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-                <span class="input-group-text">Measurement (cm)</span>
+                <span class="input-group-text" style="margin-left:20px;">Measurement (cm)</span>
                 <input v-model="part4.pt4_psma_prostate_meas" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
               </div>
               <div class="input-group input-group-sm">
@@ -2135,12 +2185,12 @@ export default {
                   <option value="psma_present_node">Present</option>
                 </select>
               </div>
-              <div v-if="part4.pt4_psma_lymphs == 'psma_present_node'" class="input-group input-group-sm">
+              <div v-if="part4.pt4_psma_lymphs == 'psma_present_node'" class="input-group input-group-sm" style="margin-left:40px; width:calc(100% - 40px)">
                 <span class="input-group-text">Location</span>
                 <input v-model="part4.pt4_psma_lymphs_loc" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-                <span class="input-group-text">SUV</span>
+                <span class="input-group-text" style="margin-left:20px;">SUV</span>
                 <input v-model="part4.pt4_psma_lymphs_suv" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-                <span class="input-group-text">Measurement (cm)</span>
+                <span class="input-group-text" style="margin-left:20px;">Measurement (cm)</span>
                 <input v-model="part4.pt4_psma_lymphs_meas" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
               </div>
               <div class="input-group input-group-sm">
@@ -2150,12 +2200,12 @@ export default {
                   <option value="psma_present_bone">Present</option>
                 </select>
               </div>
-              <div v-if="part4.pt4_psma_bone == 'psma_present_bone'" class="input-group input-group-sm">
+              <div v-if="part4.pt4_psma_bone == 'psma_present_bone'" class="input-group input-group-sm" style="margin-left:40px; width:calc(100% - 40px)">
                 <span class="input-group-text">Location</span>
                 <input v-model="part4.pt4_psma_bone_loc" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-                <span class="input-group-text">SUV</span>
+                <span class="input-group-text" style="margin-left:20px;">SUV</span>
                 <input v-model="part4.pt4_psma_bone_suv" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-                <span class="input-group-text">Measurement (cm)</span>
+                <span class="input-group-text" style="margin-left:20px;">Measurement (cm)</span>
                 <input v-model="part4.pt4_psma_bone_meas" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
               </div>
               <div class="input-group input-group-sm">
@@ -2165,12 +2215,12 @@ export default {
                   <option value="psma_present_brain">Present</option>
                 </select>
               </div>
-              <div v-if="part4.pt4_psma_brain == 'psma_present_brain'" class="input-group input-group-sm">
+              <div v-if="part4.pt4_psma_brain == 'psma_present_brain'" class="input-group input-group-sm" style="margin-left:40px; width:calc(100% - 40px)">
                 <span class="input-group-text">Location</span>
                 <input v-model="part4.pt4_psma_brain_loc" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-                <span class="input-group-text">SUV</span>
+                <span class="input-group-text" style="margin-left:20px;">SUV</span>
                 <input v-model="part4.pt4_psma_brain_suv" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-                <span class="input-group-text">Measurement (cm)</span>
+                <span class="input-group-text" style="margin-left:20px;">Measurement (cm)</span>
                 <input v-model="part4.pt4_psma_brain_meas" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
               </div>
               <div class="input-group input-group-sm">
@@ -2180,12 +2230,12 @@ export default {
                   <option value="psma_present_lungs">Present</option>
                 </select>
               </div>
-              <div v-if="part4.pt4_psma_lungs == 'psma_present_lungs'" class="input-group input-group-sm">
+              <div v-if="part4.pt4_psma_lungs == 'psma_present_lungs'" class="input-group input-group-sm" style="margin-left:40px; width:calc(100% - 40px)">
                 <span class="input-group-text">Location</span>
                 <input v-model="part4.pt4_psma_lungs_loc" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-                <span class="input-group-text">SUV</span>
+                <span class="input-group-text" style="margin-left:20px;">SUV</span>
                 <input v-model="part4.pt4_psma_lungs_suv" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-                <span class="input-group-text">Measurement (cm)</span>
+                <span class="input-group-text" style="margin-left:20px;">Measurement (cm)</span>
                 <input v-model="part4.pt4_psma_lungs_meas" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
               </div>
               <div class="input-group input-group-sm">
@@ -2195,12 +2245,12 @@ export default {
                   <option value="psma_present_liver">Present</option>
                 </select>
               </div>
-              <div v-if="part4.pt4_psma_liver == 'psma_present_liver'" class="input-group input-group-sm">
+              <div v-if="part4.pt4_psma_liver == 'psma_present_liver'" class="input-group input-group-sm" style="margin-left:40px; width:calc(100% - 40px)">
                 <span class="input-group-text">Location</span>
                 <input v-model="part4.pt4_psma_liver_loc" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-                <span class="input-group-text">SUV</span>
+                <span class="input-group-text" style="margin-left:20px;">SUV</span>
                 <input v-model="part4.pt4_psma_liver_suv" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-                <span class="input-group-text">Measurement (cm)</span>
+                <span class="input-group-text"  style="margin-left:20px;">Measurement (cm)</span>
                 <input v-model="part4.pt4_psma_liver_meas" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
               </div>
               <div class="input-group input-group-sm">
@@ -2210,17 +2260,17 @@ export default {
                   <option value="psma_present_others">Present</option>
                 </select>
               </div>
-              <div v-if="part4.pt4_psma_others == 'psma_present_others'" class="input-group input-group-sm">
+              <div v-if="part4.pt4_psma_others == 'psma_present_others'" class="input-group input-group-sm" style="margin-left:40px; width:calc(100% - 40px)">
                 <span class="input-group-text">Location</span>
                 <input v-model="part4.pt4_psma_others_loc" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-                <span class="input-group-text">SUV</span>
+                <span class="input-group-text" style="margin-left:20px;">SUV</span>
                 <input v-model="part4.pt4_psma_others_suv" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-                <span class="input-group-text">Measurement (cm)</span>
+                <span class="input-group-text" style="margin-left:20px;">Measurement (cm)</span>
                 <input v-model="part4.pt4_psma_others_meas" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
               </div>
             </div>
           </div>
-          <div class="align-self-start d-flex flex-column p-2" style="border: 1px solid lightgray; border-radius: 5px; gap: 5px;">
+          <div class="align-self-start d-flex flex-column p-2" style="border: 1px solid lightgray; border-radius: 5px; gap: 5px; margin-left:20px;">
             <span style="padding-right:1cm">v. FDG PET/CT</span>
             <div class="input-group input-group-sm">
             <span class="input-group-text">a. Prostate</span>
@@ -2229,12 +2279,12 @@ export default {
               <option value="fdg_present_prostate">Present</option>
             </select>
             </div>
-            <div v-if="part4.pt4_fdg_prostate == 'fdg_present_prostate'" class="input-group input-group-sm">
+            <div v-if="part4.pt4_fdg_prostate == 'fdg_present_prostate'" class="input-group input-group-sm" style="margin-left:40px; width:calc(100% - 40px)">
               <span class="input-group-text">Location</span>
               <input v-model="part4.pt4_fdg_prostate_loc" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-              <span class="input-group-text">SUV</span>
+              <span class="input-group-text" style="margin-left:20px;">SUV</span>
               <input v-model="part4.pt4_fdg_prostate_suv" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-              <span class="input-group-text">Measurement (cm)</span>
+              <span class="input-group-text" style="margin-left:20px;">Measurement (cm)</span>
               <input v-model="part4.pt4_fdg_prostate_meas" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
             </div>
             <div class="input-group input-group-sm">
@@ -2244,12 +2294,12 @@ export default {
               <option value="fdg_present_node">Present</option>
             </select>
             </div>
-            <div v-if="part4.pt4_fdg_lymphs == 'fdg_present_node'" class="input-group input-group-sm">
+            <div v-if="part4.pt4_fdg_lymphs == 'fdg_present_node'" class="input-group input-group-sm" style="margin-left:40px; width:calc(100% - 40px)">
               <span class="input-group-text">Location</span>
               <input v-model="part4.pt4_fdg_lymphs_loc" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-              <span class="input-group-text">SUV</span>
+              <span class="input-group-text" style="margin-left:20px;">SUV</span>
               <input v-model="part4.pt4_fdg_lymphs_suv" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-              <span class="input-group-text">Measurement (cm)</span>
+              <span class="input-group-text" style="margin-left:20px;">Measurement (cm)</span>
               <input v-model="part4.pt4_fdg_lymphs_meas" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
             </div>
             <div class="input-group input-group-sm">
@@ -2259,12 +2309,12 @@ export default {
               <option value="fdg_present_bone">Present</option>
             </select>
             </div>
-            <div v-if="part4.pt4_fdg_bone == 'fdg_present_bone'" class="input-group input-group-sm">
+            <div v-if="part4.pt4_fdg_bone == 'fdg_present_bone'" class="input-group input-group-sm" style="margin-left:40px; width:calc(100% - 40px)">
               <span class="input-group-text">Location</span>
               <input v-model="part4.pt4_fdg_bone_loc" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-              <span class="input-group-text">SUV</span>
+              <span class="input-group-text" style="margin-left:20px;">SUV</span>
               <input v-model="part4.pt4_fdg_bone_suv" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-              <span class="input-group-text">Measurement (cm)</span>
+              <span class="input-group-text" style="margin-left:20px;">Measurement (cm)</span>
               <input v-model="part4.pt4_fdg_bone_meas" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
             </div>
             <div class="input-group input-group-sm">
@@ -2274,12 +2324,12 @@ export default {
               <option value="fdg_present_brain">Present</option>
             </select>
             </div>
-            <div v-if="part4.pt4_fdg_brain == 'fdg_present_brain'" class="input-group input-group-sm">
+            <div v-if="part4.pt4_fdg_brain == 'fdg_present_brain'" class="input-group input-group-sm" style="margin-left:40px; width:calc(100% - 40px)">
               <span class="input-group-text">Location</span>
               <input v-model="part4.pt4_fdg_brain_loc" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-              <span class="input-group-text">SUV</span>
+              <span class="input-group-text" style="margin-left:20px;">SUV</span>
               <input v-model="part4.pt4_fdg_brain_suv" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-              <span class="input-group-text">Measurement (cm)</span>
+              <span class="input-group-text" style="margin-left:20px;">Measurement (cm)</span>
               <input v-model="part4.pt4_fdg_brain_meas" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
             </div>
             <div class="input-group input-group-sm">
@@ -2289,12 +2339,12 @@ export default {
               <option value="fdg_present_lungs">Present</option>
             </select>
             </div>
-            <div v-if="part4.pt4_fdg_lungs == 'fdg_present_lungs'" class="input-group input-group-sm">
+            <div v-if="part4.pt4_fdg_lungs == 'fdg_present_lungs'" class="input-group input-group-sm" style="margin-left:40px; width:calc(100% - 40px)">
               <span class="input-group-text">Location</span>
               <input v-model="part4.pt4_fdg_lungs_loc" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-              <span class="input-group-text">SUV</span>
+              <span class="input-group-text" style="margin-left:20px;">SUV</span>
               <input v-model="part4.pt4_fdg_lungs_suv" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-              <span class="input-group-text">Measurement (cm)</span>
+              <span class="input-group-text" style="margin-left:20px;">Measurement (cm)</span>
               <input v-model="part4.pt4_fdg_lungs_meas" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
             </div>
             <div class="input-group input-group-sm">
@@ -2304,12 +2354,12 @@ export default {
               <option value="fdg_present_liver">Present</option>
             </select>
             </div>
-            <div v-if="part4.pt4_fdg_liver == 'fdg_present_liver'" class="input-group input-group-sm">
+            <div v-if="part4.pt4_fdg_liver == 'fdg_present_liver'" class="input-group input-group-sm" style="margin-left:40px; width:calc(100% - 40px)">
               <span class="input-group-text">Location</span>
               <input v-model="part4.pt4_fdg_liver_loc" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-              <span class="input-group-text">SUV</span>
+              <span class="input-group-text" style="margin-left:20px;">SUV</span>
               <input v-model="part4.pt4_fdg_liver_suv" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-              <span class="input-group-text">Measurement (cm)</span>
+              <span class="input-group-text" style="margin-left:20px;">Measurement (cm)</span>
               <input v-model="part4.pt4_fdg_liver_meas" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
             </div>
             <div class="input-group input-group-sm">
@@ -2319,30 +2369,32 @@ export default {
               <option value="fdg_present_others">Present</option>
             </select>
             </div>
-            <div v-if="part4.pt4_fdg_others == 'fdg_present_others'" class="input-group input-group-sm">
+            <div v-if="part4.pt4_fdg_others == 'fdg_present_others'" class="input-group input-group-sm" style="margin-left:40px; width:calc(100% - 40px)">
               <span class="input-group-text">Location</span>
               <input v-model="part4.pt4_fdg_others_loc" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-              <span class="input-group-text">SUV</span>
+              <span class="input-group-text" style="margin-left:20px;">SUV</span>
               <input v-model="part4.pt4_fdg_others_suv" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
-              <span class="input-group-text">Measurement (cm)</span>
+              <span class="input-group-text" style="margin-left:20px;">Measurement (cm)</span>
               <input v-model="part4.pt4_fdg_others_measure" type="text" class="form-control" placeholder="" style="flex: none; min-width: 200px;">
             </div>
           </div>
+          <span class="ms-1" style="font-weight: bold">C. Assessment</span>
           <div class="input-group input-group-sm">
-            <span class="input-group-text" style="font-size: 16px;">c. Assessment</span>
+            <span class="input-group-text" style="font-size: 16px;">Assessment Type</span>
             <select v-model="part4.pt4_assessment" name="fu_new_assessment" style="font-size: 14px; width: 150px;">
               <option value="low risk">Low Risk</option>
               <option value="intermediate risk">Intermediate Risk</option>
               <option value="high risk">High Risk</option>
             </select>
           </div>
+          <span class="ms-1" style="font-weight: bold">D. Plan</span>
           <div class="input-group mb-3">
-            <span class="input-group-text" style="font-size: 16px;">d. Plan</span>
+            <span class="input-group-text" style="font-size: 16px;">Plan of Action</span>
             <textarea class="form-control" v-model="part4.pt4_plan" name="fu_new_plan" aria-label="new_plan" style="font-size: 12px;"></textarea>
           </div>
         </div>
       </div>
-      <button @click="addFollowUpRecordAPI()" type="button" class="align-self-center btn btn-lg btn-secondary mb-3">Save Follow-up</button>
+      <button @click="addFollowUpRecordAPI()" type="button" class="align-self-center btn myButton2">Save Follow-up</button>
       <!-- end Follow Up Body -->
     </div>
     <!-- end Add Follow Up Div -->
@@ -2451,20 +2503,61 @@ body {
   width: calc(100% - 300px);
 }
 
-.input-group-text {
-    background-color: black;  
-    color: white; 
-}
-
-.accordion-body input[type="text"],
-.accordion-body input[type="number"] {
-    flex: none;
-    width: 100%; /* Adjust the width as needed */
-    min-width: 200px; /* Optional, adjust as needed */
+#form-page {
+  flex: 1 1 auto; 
+  margin-left: 60px; 
+  margin-right: 60px; 
+  width: calc(100% - 120px);
 }
 
 .accordion-button {
-  color:#0B2509; 
+  background-color:white;
+  border:3px solid #0B2509; 
+}
+.input-group-text {
+    background-color: rgb(195, 194, 194); /* Light blue background for input labels */
+    border: 1px solid white; /* Light blue border for input labels */
+    color:black; /* Soft blue for icons */
+    font-weight: 100px;
+} 
+
+.accordion-body {
+    width: 100%; /* This will make the accordion body span the whole width of its container */
+  }
+
+  /* Fixed width for the labels */
+  .input-group-text {
+    width: 200px; /* This is a fixed width for all labels */
+    white-space: nowrap; /* Prevents text from wrapping */
+    margin-left:20px;
+  }
+
+  /* Ensure the input groups take full width */
+  .input-group {
+    display: flex;
+    width: 100%; /* This will make the input group span the whole width of its container */
+  }
+
+  .input-group .form-control {
+    width: calc(100% - 240px); /* Adjust the width of the input to take the remaining space */
+    flex-grow: 1; /* Allows input field to grow and fill the space */
+  }
+
+  /* Optional: Adjust the spacing between input groups */
+  .input-group + .input-group {
+    margin-top: 10px;
+  }
+
+#index-link {
+  background-color:#0B2509;
+  color:white;
+}
+
+#index-link:hover {
+  background-color:  #0B2509;
+  border-color:  #0B2509;
+  color: white;
+  transform: scale(1.1); 
 }
 
 </style>

@@ -3,8 +3,8 @@ export default {
   name: 'Login',
   data() {
     return {
-      backendUrl: 'https://up-theranostics-databank.onrender.com', // TEMP, DISABLE THIS ON DEPLOYMENT
-      // backendUrl: '', // ENABLE THIS ON DEPLOYMENT
+      // backendUrl: 'https://up-theranostics-databank.onrender.com', // TEMP, ENABLE THIS ON DEPLOYMENT
+      backendUrl: 'http://localhost:8000', // DISABLE THIS ON DEPLOYMENT
       username: '',
       password: ''
     }
@@ -118,9 +118,9 @@ body {
 }
 
 .input-group-text {
-  background-color: rgb(195, 194, 194); /* Light blue background for input labels */
+  background-color: black; /* Light blue background for input labels */
   border: 1px solid white; /* Light blue border for input labels */
-  color:black; /* Soft blue for icons */
+  color: white; /* Soft blue for icons */
   font-weight: 100px;
 }
 
@@ -143,7 +143,7 @@ body {
 }
 
 .login-btn:hover {
-  background-color: #071706; /* Darker blue for hover effect */
+  background-color: #0B2509;  /* Darker blue for hover effect */
 }
 
 </style>
