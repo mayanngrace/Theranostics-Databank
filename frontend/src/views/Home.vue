@@ -370,7 +370,7 @@ export default {
           pt4_salivary: this.part4.pt4_salivary,
           pt4_renal: this.part4.pt4_renal,
           pt4_bone_scan: this.part4.pt4_bone_scan,
-          pt4_bone_withmetas: this.part4.pt4_bone_scan,
+          pt4_bone_withmetas: this.part4.pt4_bone_withmetas,
           pt4_psma_picked: this.part4.pt4_psma_picked,
           pt4_psma_prostate: this.part4.pt4_psma_prostate,
           pt4_psma_prostate_loc: this.part4.pt4_psma_prostate_loc,
